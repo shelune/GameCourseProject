@@ -109,8 +109,8 @@ public class Player {
         if (items.size() < 1) {
             say("EMPTY AREA!");
         } else {
-            for (Item item : items) {
-                System.out.println(item);
+            for (int i = 0; i < items.size(); i++) {
+                System.out.println("(" + i + ") " + items.get(i).getItemName() + "\t| " + items.get(i).getItemDescription());
             }
             setPlayerStamina(staminaPerMove);
             say(dialogue.getExploreItems());
@@ -126,19 +126,21 @@ public class Player {
 
             for (Item item : items) {
                 if (item == items.get(take)) {
-                    inventory.addItem(item);
-                    if (inventory.search(item) != -1 && item.getItemType().equals("Tool")) {
-                        say(item.getItemName() + " already taken.");
-                    } else {
+                    if (item.isFood() || !inventory.hasItem(item)) {
                         say(item.getItemName() + " taken.");
+                    } else {
+                        say(item.getItemName() + " already taken!");
                     }
+                    inventory.addItem(item);
+                } else {
+                    say("No such item found!");
                 }
             }
         }
     }
 
     public void eat() {
-        int foodIndex = inventory.hasFood();
+        int foodIndex = inventory.searchFood();
         if (foodIndex != -1) {
             if (playerStamina == 100) {
                 say(dialogue.getStillFull());

@@ -44,13 +44,17 @@ public class Inventory {
         return inventory.indexOf(item);
     }
 
-    public int hasFood() {
+    public int searchFood() {
         for (Item item : inventory) {
             if (item.isFood()) {
                 return inventory.indexOf(item);
             }
         }
         return -1;
+    }
+
+    public boolean hasItem(Item item) {
+        return inventory.contains(item);
     }
 
     public Item getItem(int index) {

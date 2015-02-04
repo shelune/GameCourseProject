@@ -105,37 +105,37 @@ public class Player {
 
     public void explore() {
         say("Items in this area: ");
-        ArrayList<Item> items = map.getPlace(playerPos).getItemList();
-        if (items.size() < 1) {
+        ArrayList<Item> itemList = map.getPlace(playerPos).getItemList();
+        if (itemList.size() < 1) {
             say("EMPTY AREA!");
         } else {
-            for (int i = 0; i < items.size(); i++) {
-                System.out.println("(" + i + ") " + items.get(i).getItemName() + "\t| " + items.get(i).getItemDescription());
+            for (int i = 0; i < itemList.size(); i++) {
+                say("(" + i + ") " + itemList.get(i).getItemName() + "\t| " + itemList.get(i).getItemDescription());
             }
-            setPlayerStamina(staminaPerMove);
             say(dialogue.getExploreItems());
             int take = -1;
-            while (take >= items.size() || take < 0) {
+            while (take >= itemList.size() || take < 0) {
                 try {
                     take = input.nextInt();
                     say("[Only choose the item numbers available]");
                 } catch (InputMismatchException e) {
+                    say("[Only choose the item numbers available]");
                     input.nextLine();
                 }
             }
-
-            for (Item item : items) {
-                if (item == items.get(take)) {
+            ArrayList toRemove = new ArrayList();
+            for (Item item : itemList) {
+                if (item == itemList.get(take)) {
                     if (item.isFood() || !inventory.hasItem(item)) {
                         say(item.getItemName() + " taken.");
+                        toRemove.add(item);
+                        inventory.addItem(item);
                     } else {
-                        say(item.getItemName() + " already taken!");
+                        say("Should not get too many of this.");
                     }
-                    inventory.addItem(item);
-                } else {
-                    say("No such item found!");
                 }
             }
+            itemList.removeAll(toRemove);
         }
     }
 

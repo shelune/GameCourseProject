@@ -85,7 +85,7 @@ public class Player {
                     events.next();
                     break;
                 case 5:                                                      // Get inventory
-                    printInventory();
+                    showInventory();
                     events.next();
                     break;
                 case 6:                                                      // Rest
@@ -96,7 +96,7 @@ public class Player {
     }
     public void move() {
         say(dialogue.goSomewhere(playerPos, events.getEventList()));       // *initially from home... (will fix)
-        map.move(playerPos, events.getEventList());
+        playerPosTemp = map.move(playerPos, events.getEventList());
         if (playerPosTemp != playerPos) {
             setPlayerStamina(staminaPerMove);                   // check if go or stay, then cost stamina
             playerPos = playerPosTemp;
@@ -119,8 +119,8 @@ public class Player {
                     take = input.nextInt();
                     say("[Only choose the item numbers available]");
                 } catch (InputMismatchException e) {
-                    say("[Only choose the item numbers available]");
-                    input.nextLine();
+                    say("No item taken]");
+                    return;
                 }
             }
             ArrayList toRemove = new ArrayList();
@@ -173,7 +173,7 @@ public class Player {
         }
     }
 
-    public void printInventory() {
+    public void showInventory() {
         inventory.printInventory();
     }
 

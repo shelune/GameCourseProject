@@ -67,13 +67,14 @@ public class Map {
 
     public Place addHome() {
         Place home = new Place (0, "Home", "This is your own home", "HM");
-        home.loadHomeItems();
+        home.setItems();
         Collections.addAll(home.getAccessTo(), "Home", "ClassA", "Mountain", "Mr.Jani's", "Mr.Cherr's", "Police station");
         return home;
     }
 
     public Place addClassA() {
         Place classA = new Place(1, "ClassA", "This is your own class", "CA");
+        classA.setItems();
         Collections.addAll(classA.getAccessTo(), "ClassA", "Home", "ClassB");
         return classA;
     }

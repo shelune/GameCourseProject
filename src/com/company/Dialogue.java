@@ -6,7 +6,7 @@ public class Dialogue {
     /////////////////////////////////// Option Commands + Location Commands
 
     private String generalOpts = "Please choose one action from below. \n \t (1). Move \n \t (2). Explore \n \t (3). Eat food \n \t (4). Study \n \t (5). Check inventory \n \t (6). Rest";
-    private String exploreItems = "\t\t\t-----\nWhich one do you want to take?";
+    private String exploreItems = "[If you want to take items, input a number in the brackets above. If not, just give some letters]\n\t\t\t-----\nWhich one do you want to take?";
     private String toHome = "\t (0) Home";
     private String toClassA = "\t (1) Your classroom";
     private String toClassB = "\t (2) Your buddy's classroom";

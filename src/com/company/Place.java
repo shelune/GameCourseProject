@@ -2,13 +2,11 @@ package com.company;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
 
 /**
  * Created by ASUS on 29-Jan-15.
  */
 public class Place {
-    private Random rand = new Random();
     private Dialogue dialogue = new Dialogue();
 
     private int placeNumber;

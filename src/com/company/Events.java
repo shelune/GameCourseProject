@@ -11,26 +11,20 @@ public class Events {
 
     public int[] getEventFirstNight(ArrayList<String> eventTrigger) {
         int[] statsChanged = new int[] {0, 0, 0, 0};                    // COU - UND - ABN - STAMINA
-        if (eventTrigger.contains("0A")) {
+        if (isTriggered("0A")) {
             return statsChanged;
         }
         String[] event = eventDial.getFirstNight();
         for (String s : event) {
             next(); say(s);
         }
-        int choice = -1;
-        while (choice > 2 || choice < 0) {
-            try {
-                choice = input.nextInt();
-            } catch (InputMismatchException e) {
-                next();
-            }
-            for (ChoiceAction ca : eventDial.getSayMap().get(choice)) {
-                say(ca.getSayString()); next();
-                statsChanged = ca.statsFirstNight(choice);
-            }
+        int choice = takeInput(2);
+        for (ChoiceAction ca : eventDial.getActionFirstNight().get(choice)) {
+            say(ca.getSayString()); next();
+            statsChanged = ca.statsFirstNight(choice);
         }
         eventTrigger.add("0A");
+        say(eventDial.getFirstNightEnd());
         return statsChanged;
     }
 
@@ -40,50 +34,25 @@ public class Events {
             return statsChanged;
         }
         int i;
-        String[] event = eventDial.getFirstSeeNumbers();
-        for (i = 0; i < 6; i++) {
-            say(event[i]);
+        String[] event = eventDial.getFirstSeeNumbers_p1();
+        for (String s : event) {
+            next(); say(s);
+        }
+        int choice = takeInput(1);
+        for (ChoiceAction ca : eventDial.getActionFirstSeeNum_p1().get(choice)) {
+            say(ca.getSayString());
             next();
+            statsChanged = ca.statsFirstSeeNum_p1(choice);
         }
-        int choice = -1;
-        while (choice > 1 || choice < 0) {
-            try {
-                say(event[6]);
-                choice = input.nextInt();
-            } catch (InputMismatchException e) {
-                next();
-            }
-            switch (choice) {
-                case 0:
-                    say(event[7]); say(event[8]); next();
-                    statsChanged[3] = 2;
-                    break;
-                case 1:
-                    say(event[9]); say (event[10]);
-                    break;
-            }
+        event = eventDial.getFirstSeeNumbers_p2();
+        for (String s : event) {
+            next(); say(s);
         }
-        next();
-        say(event[11]); next(); say(event[12]); next(); say(event[13]);
-        choice = -1;
-        while (choice > 1 || choice < 0) {
-            try {
-                say(event[14]);
-                choice = input.nextInt();
-            } catch (InputMismatchException e) {
-                next();
-            }
-            switch (choice) {
-                case 0:
-                    say(event[15]); say(event[16]); next();
-                    statsChanged[2] = 1;
-                    break;
-                case 1:
-                    say(event[17]); say (event[18]); next();
-                    statsChanged[2] = -1;
-                    statsChanged[3] = 30;
-                    break;
-            }
+        choice = takeInput(1);
+        for (ChoiceAction ca : eventDial.getActionFirstSeeNum_p2().get(choice)) {
+            say(ca.getSayString());
+            next();
+            statsChanged = ca.statsFirstSeeNum_p2(choice);
         }
         eventTrigger.add("1A");
         return statsChanged;
@@ -117,4 +86,15 @@ public class Events {
         System.out.println(text);
     }
 
+    public int takeInput(int upperLim) {
+        int choice = -1;
+        while (choice > upperLim || choice < 0) {
+            try {
+                choice = input.nextInt();
+            } catch (InputMismatchException e) {
+                next();
+            }
+        }
+        return choice;
+    }
 }

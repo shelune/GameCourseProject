@@ -25,6 +25,29 @@ public class ChoiceAction {
         return statsChanged;
     }
 
+    public int[] statsFirstSeeNum_p1(int choice) {
+        switch (choice) {
+            case 0:
+                statsChanged[2] = 2;
+                break;
+            case 1:
+                break;
+        }
+        return statsChanged;
+    }
+
+    public int[] statsFirstSeeNum_p2(int choice) {
+        switch (choice) {
+            case 0:
+                statsChanged[2] = 1;
+                break;
+            case 1:
+                statsChanged[2] = -1;
+                statsChanged[3] = 30;
+        }
+        return statsChanged;
+    }
+
     public ChoiceAction(String sayString) {
         super();
         this.sayString = sayString;

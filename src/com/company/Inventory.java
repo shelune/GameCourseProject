@@ -5,10 +5,6 @@ import java.util.ArrayList;
 public class Inventory {
     private ArrayList<Item> inventory = new ArrayList <Item>();
 
-    public Inventory() {
-
-    }
-
     public void addItem(Item item) {
         String itemType = item.getItemType();
         if (itemType.equals("Food")) {
@@ -59,10 +55,6 @@ public class Inventory {
 
     public Item getItem(int index) {
         return inventory.get(index);
-    }
-
-    public ArrayList<Item> getInventory() {
-        return inventory;
     }
 
     public void printInventory() {

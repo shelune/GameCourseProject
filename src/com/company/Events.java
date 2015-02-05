@@ -57,7 +57,43 @@ public class Events {
         eventTrigger.add("1A");
         return statsChanged;
     }
-
+    
+    public int[] getEventREvent1(ArrayList<String> eventTrigger) {
+        int[] statsChanged = new int[] {0, 0, 0, 0};                    // COU - UND - ABN - STAMINA
+        if (isTriggered("R1")) {
+            return statsChanged;
+        }
+        String[] event = eventDial.getREvent1();
+        for (String s : event) {
+            next(); say(s);
+        }
+        int choice = takeInput(3);
+        for (ChoiceAction ca : eventDial.getActionREvent1().get(choice)) {
+            say(ca.getSayString()); next();
+            statsChanged = ca.statsEvent1(choice);
+        }
+        eventTrigger.add("R1");
+        return statsChanged;
+    }
+    
+    public int[] getEventREvent2(ArrayList<String> eventTrigger) {
+        int[] statsChanged = new int[] {0, 0, 0, 0};                    // COU - UND - ABN - STAMINA
+        if (isTriggered("R2")) {
+            return statsChanged;
+        }
+        String[] event = eventDial.getREvent2();
+        for (String s : event) {
+            next(); say(s);
+        }
+        int choice = takeInput(3);
+        for (ChoiceAction ca : eventDial.getActionREvent2().get(choice)) {
+            say(ca.getSayString()); next();
+            statsChanged = ca.statsEvent2(choice);
+        }
+        eventTrigger.add("R2");
+        return statsChanged;
+    }
+    
     public void next() {
         input.nextLine();
     }

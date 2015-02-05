@@ -10,6 +10,8 @@ public class Dialogue {
     private HashMap<Integer, List<ChoiceAction>> actionFirstNight = new HashMap<Integer, List<ChoiceAction>>();
     private HashMap<Integer, List<ChoiceAction>> actionFirstSeeNum_p1 = new HashMap<Integer, List<ChoiceAction>>();
     private HashMap<Integer, List<ChoiceAction>> actionFirstSeeNum_p2 = new HashMap<Integer, List<ChoiceAction>>();
+    private HashMap<Integer, List<ChoiceAction>> actionREvent1 = new HashMap<Integer, List<ChoiceAction>>();
+    private HashMap<Integer, List<ChoiceAction>> actionREvent2 = new HashMap<Integer, List<ChoiceAction>>();
     /////////////////////////////////// Option Commands + Location Commands
 
     private String generalOpts = "Please choose one action from below. \n \t (1). Move \n \t (2). Explore \n \t (3). Eat food \n \t (4). Study \n \t (5). Check inventory \n \t (6). Rest";
@@ -98,6 +100,32 @@ public class Dialogue {
             "...\t# Courage went down by 1 #\t# Understanding went down by 1 #",
             "...\t +++ NEW AREA OPENED : JANITOR'S HOUSE +++",
     };
+    
+    ///////////////////////////////////R.event1
+    private String Revent1Choice0 = "You get ultra panic and get everyone’s attentions… At least you got into her eyes!"; //5
+    private	String Revent1Choice1 = "She thinks you are looking at something behind her… You barely got away";
+    private String Revent1Choice2 = "She is absolutely baffled by your actions. What are you doing at the middle of the class!";
+    private String Revent1Choice3 = "Wait what… where to run?!?";
+    
+    private String[] Revent1	= {
+    		"\tThere she is... She's making your world a dream with her straight black hair, beautiful blue eyes, pretty bunny nose and angelic smile.", //0
+    		"\tJenny, student of Faculty of Literature and your 3 years of crush.",
+    		"\tIt is yet another day that you are looking at her and thinking “Will I be able to be the one that smile is directed at?”. ",
+    		"\tApparently, while you are lost deep in your dream world she has turned towards you and now you are looking right inti those ocean deep eyes.", 
+    		"\tYou're frozen, what to do?\n \t(0) Act as if you haven”t been staring at her last 10 minutes. \n \t(1) Stare at her- Just keep staring... \n \t(2) Wave. \n \t(3) Run for your life. ", //options 4
+    };
+    
+    ///////////////////////////////////R.event2
+    private String Revent2Choice0 = "She scolds you for your ignorance, but at least she is not coming to grab you";
+    private String Revent2Choice1 = "Rest for the day as firefighters come (You come home to see a firetruck in front of your door… Oh gosh noooo!)";
+    private String Revent2Choice2 = "Nothing happened, you don’t have sisters (Are you forgetting about your being the only child?!";
+    private String Revent2Choice3 = "Are you freaking texting your mom you’re busy after she calls you 56768 times? I also like to live dangerously";
+    
+    private String[] Revent2 = {
+    		"\tRing ring! Your mom is calling.",
+    		"\tDuring all the chaos you have forgotten to go through your daily “did you burn the house, yet?” check, several times.",
+    		"\tShe is probably freaking out and ready to call the cops for a missing report. \n \t(0) Answer the call and hope she won't lecture you, too much. \n \t(1) Ignore it and hope she won”t call the firefighters. \n \t(2) Call your sister to save you from Mom's Fury. \n \t(3) Text your mom “I'm busy.”. Actually, never mind, don't do that. No, wait. Don't! ", //options 3
+    };
 
     /////////////////////////////////// Minor Events
 
@@ -111,6 +139,16 @@ public class Dialogue {
 
         actionFirstSeeNum_p2.put(0, Arrays.asList(new ChoiceAction[] {new ChoiceAction(firstSeeNumChoice0_a2), new ChoiceAction(firstSeeNumChoice0_b2)}));
         actionFirstSeeNum_p2.put(1, Arrays.asList(new ChoiceAction[] {new ChoiceAction(firstSeeNumChoice1_a2), new ChoiceAction(firstSeeNumChoice1_b2)}));
+        
+        actionREvent1.put(0, Arrays.asList(new ChoiceAction[] {new ChoiceAction(Revent1Choice0) }));
+        actionREvent1.put(1, Arrays.asList(new ChoiceAction[] {new ChoiceAction(Revent1Choice1) }));
+        actionREvent1.put(2, Arrays.asList(new ChoiceAction[] {new ChoiceAction(Revent1Choice2) }));
+        actionREvent1.put(3, Arrays.asList(new ChoiceAction[] {new ChoiceAction(Revent1Choice3) }));
+        
+        actionREvent2.put(0, Arrays.asList(new ChoiceAction[] {new ChoiceAction(Revent2Choice0) }));
+        actionREvent2.put(1, Arrays.asList(new ChoiceAction[] {new ChoiceAction(Revent2Choice1) }));
+        actionREvent2.put(2, Arrays.asList(new ChoiceAction[] {new ChoiceAction(Revent2Choice2) }));
+        actionREvent2.put(3, Arrays.asList(new ChoiceAction[] {new ChoiceAction(Revent2Choice3) }));
     }
 
     /////////////////////////////////// Methods
@@ -185,7 +223,15 @@ public class Dialogue {
     public String[] getFirstSeeNumbers_p2() {
         return this.firstSeeNumbers_p2;
     }
-
+    
+    public String[] getREvent1()	{
+    	return this.Revent1;
+    }
+    
+    public String[] getREvent2()	{
+    	return this.Revent2;
+    }
+    
     public String getJanitorNote() {
         return janitorNote;
     }
@@ -200,6 +246,14 @@ public class Dialogue {
 
     public HashMap<Integer, List<ChoiceAction>> getActionFirstSeeNum_p2() {
         return actionFirstSeeNum_p2;
+    }
+    
+    public HashMap<Integer, List<ChoiceAction>> getActionREvent1()	{
+    	return actionREvent1;
+    }
+
+    public HashMap<Integer, List<ChoiceAction>> getActionREvent2()	{
+    	return actionREvent2;
     }
 
     public String getFirstNightEnd() {

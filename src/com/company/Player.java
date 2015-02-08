@@ -42,6 +42,9 @@ public class Player {
                         int[] statsChanged = events.getEventFirstNight(events.getEventList());
                         setAllStats(statsChanged);
                         break;
+                    case 2:
+                        statsChanged = events.getEventGetBullied(events.getEventList(), playerUnd);
+                        setAllStats(statsChanged);
                 }
                 say("\t \t \t \t \t \t \t \t \t \t [DAY : " + dayCount + "]");
                 System.out.println(events.getEventList());
@@ -152,7 +155,7 @@ public class Player {
     }
 
     public void rest() {
-        if (!events.isTriggered("1B")) {
+        if (!events.isTriggered("1A")) {
             say("You are not a sloth, right?!");
             return;
         }
@@ -160,7 +163,6 @@ public class Player {
         setPlayerStamina(-1);
         say(dialogue.getEndDay());
         dayCount++;
-        events.clearEventTrigger("1B");
         events.next();
     }
 
@@ -215,7 +217,7 @@ public class Player {
         this.playerCrg += statsChanged[0];
         this.playerUnd += statsChanged[1];
         this.playerAbn += statsChanged[2];
-        this.playerStamina -= statsChanged[3];
+        setPlayerStamina(statsChanged[3]);
     }
 
     public void printAllStats() {                                           // keep track of stats, will be removed

@@ -93,7 +93,44 @@ public class Events {
         eventTrigger.add("R2");
         return statsChanged;
     }
-    
+
+    public int[] getEventREvent3(ArrayList<String> eventTrigger, Inventory inventory) {
+        int[] statsChanged = new int[] {0, 0, 0, 0};                    // COU - UND - ABN - STAMINA
+        if (isTriggered("R3")) {
+            return statsChanged;
+        }
+        String[] event = eventDial.getREvent3();
+        for (String s : event) {
+            next(); say(s);
+        }
+        int choice = takeInput(2);
+        for (ChoiceAction ca : eventDial.getActionREvent3().get(choice)) {
+            say(ca.getSayString()); next();
+            statsChanged = ca.statsEvent3(choice, inventory);
+        }
+        eventTrigger.add("R3");
+        return statsChanged;
+    }
+
+    public int[] getEventGetBullied(ArrayList<String> eventTrigger, int und) {
+        int[] statsChanged = new int[] {0, 0, 0, 0};
+        if (isTriggered("2A")) {
+            return statsChanged;
+        }
+        String[] event = eventDial.getREvent3();
+        for (String s : event) {
+            say(s); next();
+        }
+        int choice = takeInput(3);
+        for (ChoiceAction ca : eventDial.getActionGetBullied().get(choice)) {
+            say(ca.getSayString()); next();
+            statsChanged = ca.statsGetBullied(choice, und);
+        }
+        eventTrigger.add("2A");
+        return statsChanged;
+    }
+
+
     public void next() {
         input.nextLine();
     }

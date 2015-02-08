@@ -12,6 +12,8 @@ public class Dialogue {
     private HashMap<Integer, List<ChoiceAction>> actionFirstSeeNum_p2 = new HashMap<Integer, List<ChoiceAction>>();
     private HashMap<Integer, List<ChoiceAction>> actionREvent1 = new HashMap<Integer, List<ChoiceAction>>();
     private HashMap<Integer, List<ChoiceAction>> actionREvent2 = new HashMap<Integer, List<ChoiceAction>>();
+    private HashMap<Integer, List<ChoiceAction>> actionREvent3 = new HashMap<Integer, List<ChoiceAction>>();
+    private HashMap<Integer, List<ChoiceAction>> actionGetBullied = new HashMap<Integer, List<ChoiceAction>>();
     /////////////////////////////////// Option Commands + Location Commands
 
     private String generalOpts = "Please choose one action from below. \n \t (1). Move \n \t (2). Explore \n \t (3). Eat food \n \t (4). Study \n \t (5). Check inventory \n \t (6). Rest";
@@ -33,7 +35,7 @@ public class Dialogue {
     private String stillFull = "You are still full! You shouldn't eat!";
     private String janitorNote = "I enjoyed the XXXXX days when we were worXXg together in that XXX.\nIt was just a magical substance, and XXXX.\nIt tXXd the daily XXX that we cannot live without into XXXhing so XXX.\nXXX promised that XXX the fate of us but the project got XXXXX due to XXX\n\t\t\t\t\t\t\t56.82.13 | Z \n\t\t\t\t\t\t\t165.168.11 | 3";
 
-    /////////////////////////////////// First Night
+    /////////////////////////////////// Main Event - First Night
 
     private String firstNightChoice0_a = "...\n\tYou slam yourself into the figure, but it just disperse ...\n\tAfter a few times, you find it nowhere to be seen ... It's gone!";
     private String firstNightChoice0_b = "...\n\tBut your Courage is sure to be needed in this journey!\n\t# Courage went up by 2 #";
@@ -52,7 +54,7 @@ public class Dialogue {
             "\t @ You decide to...? \n\t(0) Go through it \t (1) Stand there and observe \t (2) Run away", //7
     };
 
-    /////////////////////////////////// First See Numbers p1
+    /////////////////////////////////// Main Event - First See Numbers p1
 
     private String firstSeeNumChoice0_a1 = "Rekt sees you with very confusing eyes. He thinks you haven't got yourself awake yet.";
     private String firstSeeNumChoice0_b1 = "You just prove your awkwardness within 5 seconds. Good fuqing job!\n\t# Abnormality went up by 2 #";
@@ -69,7 +71,7 @@ public class Dialogue {
             "\tYou decide to...? \n \t(0) Ask about the number \t (1) Tell your dream last night", //6 . OPTIONS
     };
 
-    /////////////////////////////////// First See Numbers p2
+    /////////////////////////////////// Main Event - First See Numbers p2
 
     private String firstSeeNumChoice0_a2 = "You take in a big breath and continue walking. But you feel like your weirdness just gets to another level...";
     private String firstSeeNumChoice0_b2 = "\t# Abnormality went up by 1 #";
@@ -82,6 +84,22 @@ public class Dialogue {
             "You cannot do anything but gasp before this strange scene, but another flash kicks in, and those numbers just vanish again!",
             "You talk to yourself : 'Maybe I am still not that awake yet...'. So you decide to: \n \t(0) Calm yourself down and keep on \t (1) Ask Rekt to slap you hard in the face\n", //14 . OPTIONS
     };
+
+    /////////////////////////////////// Main Event - (possibly) Get Bullied
+    private String getBulliedChoice0 = "Running to the nearest public place, with 3 other guys tailing right behind! Nooo..!";
+    private String getBulliedChoice1 = "You throw out a punch, just to know that you are totally overwhelmed.\nThey kick at your stomach fiercely... At this rate you're gonna be like the hero saving the princess, but without the princess part!";
+    private String getBulliedChoice2 = "You try to talk things into them... Let's see how things go.";
+    private String getBulliedChoice3a = "Wait what are you gonna distract them with?!";
+    private String getBulliedChoice3b = "With your brilliant mind, you take out your jacket and fling them away, then run. Magnificient!";
+
+    private String[] getBullied = {
+            "It is another long day for you. What a relief you don't get to see those numbers again.",
+            "*Thump!* You smash your face into a back. When you get your head up, suddenly all your short-lived relief just vanish...",
+            "It's your 10-year-bully and his pack. 'Not again...', you murmur...\nBut from the way they stretch their necks and cracks their knuckles, you can be sure the next thing coming is not hug.",
+            "What is your decision before your face may merge with the wall?",
+            "(0) Run. Run away. It's not that protagonist is immortal.\n\t(1) Fight your ass back. You'll get beaten up anyway, so let your dignity intact!\n\t(2) Let's negotiate. Your words fight better than your flimsy fists\n\t(3) Distract them. Sneak out!",
+    };
+
 
     /////////////////////////////////// First Death Janitor
     private String[] firstDeath = {
@@ -101,33 +119,45 @@ public class Dialogue {
             "...\t +++ NEW AREA OPENED : JANITOR'S HOUSE +++",
     };
     
-    ///////////////////////////////////R.event1
-    private String Revent1Choice0 = "You get ultra panic and get everyone’s attentions… At least you got into her eyes!"; //5
-    private	String Revent1Choice1 = "She thinks you are looking at something behind her… You barely got away";
-    private String Revent1Choice2 = "She is absolutely baffled by your actions. What are you doing at the middle of the class!";
-    private String Revent1Choice3 = "Wait what… where to run?!?";
+    /////////////////////////////////// R.event1
+    private String rEvent1Choice0 = "You get ultra panic and get everyone’s attentions… At least you got into her eyes!"; //5
+    private	String rEvent1Choice1 = "She thinks you are looking at something behind her… You barely got away";
+    private String rEvent1Choice2 = "She is absolutely baffled by your actions. What are you doing at the middle of the class!";
+    private String rEvent1Choice3 = "Wait what… where to run?!?";
     
-    private String[] Revent1	= {
-    		"\tThere she is... She's making your world a dream with her straight black hair, beautiful blue eyes, pretty bunny nose and angelic smile.", //0
-    		"\tJenny, student of Faculty of Literature and your 3 years of crush.",
-    		"\tIt is yet another day that you are looking at her and thinking “Will I be able to be the one that smile is directed at?”. ",
-    		"\tApparently, while you are lost deep in your dream world she has turned towards you and now you are looking right inti those ocean deep eyes.", 
-    		"\tYou're frozen, what to do?\n \t(0) Act as if you haven”t been staring at her last 10 minutes. \n \t(1) Stare at her- Just keep staring... \n \t(2) Wave. \n \t(3) Run for your life. ", //options 4
+    private String[] rEvent1	= {
+            "Your class is going on as usual. But not anymore when you notice that...",
+    		"THAT, I say, is the girl... She's making your world a dream with her straight black hair, beautiful blue eyes, pretty bunny nose and angelic smile.", //0
+    		"Jenny, student of Faculty of Literature and your 3 years of crush.\nIt is yet another day that you are looking at her and thinking “Will I be able to be the one that smile is directed at?”. ",
+    		"Apparently, while you are lost deep in your dream world she has turned towards you and now you are looking right inti those ocean deep eyes.",
+    		"You're frozen, what to do?\n \t(0) Act as if you haven”t been staring at her last 10 minutes. \n \t(1) Stare at her- Just keep staring... \n \t(2) Wave. \n \t(3) Run for your life. ", //options 4
     };
     
-    ///////////////////////////////////R.event2
-    private String Revent2Choice0 = "She scolds you for your ignorance, but at least she is not coming to grab you";
-    private String Revent2Choice1 = "Rest for the day as firefighters come (You come home to see a firetruck in front of your door… Oh gosh noooo!)";
-    private String Revent2Choice2 = "Nothing happened, you don’t have sisters (Are you forgetting about your being the only child?!";
-    private String Revent2Choice3 = "Are you freaking texting your mom you’re busy after she calls you 56768 times? I also like to live dangerously";
+    /////////////////////////////////// R.event2
+    private String rEvent2Choice0 = "She scolds you for your ignorance, but at least she is not coming to grab you.";
+    private String rEvent2Choice1 = "Rest for the day as firefighters come (You come home to see a firetruck in front of your door… Oh gosh noooo!)";
+    private String rEvent2Choice2 = "Nothing happened, you don’t have sisters (Are you forgetting about your being the only child?!";
+    private String rEvent2Choice3 = "Are you freaking texting your mom you’re busy after she calls you 56768 times? I also like to live dangerously.";
     
-    private String[] Revent2 = {
-    		"\tRing ring! Your mom is calling.",
-    		"\tDuring all the chaos you have forgotten to go through your daily “did you burn the house, yet?” check, several times.",
-    		"\tShe is probably freaking out and ready to call the cops for a missing report. \n \t(0) Answer the call and hope she won't lecture you, too much. \n \t(1) Ignore it and hope she won”t call the firefighters. \n \t(2) Call your sister to save you from Mom's Fury. \n \t(3) Text your mom “I'm busy.”. Actually, never mind, don't do that. No, wait. Don't! ", //options 3
+    private String[] rEvent2 = {
+    		"Ring ring! Your mom is calling.",
+    		"During all the chaos you have forgotten to go through your daily “did you burn the house, yet?” check, several times.",
+    		"She is probably freaking out and ready to call the cops for a missing report. \n \t(0) Answer the call and hope she won't lecture you, too much. \n \t(1) Ignore it and hope she won”t call the firefighters. \n \t(2) Call your sister to save you from Mom's Fury. \n \t(3) Text your mom “I'm busy.”. Actually, never mind, don't do that. No, wait. Don't! ", //options 3
     };
 
-    /////////////////////////////////// Minor Events
+    /////////////////////////////////// R.event3
+    private String rEvent3Choice0 = "You come for the school quite late and miss the class. \n\t# UND went down by 4 #";
+    private String rEvent3Choice1 = "You barely make it to the class and take the quiz.\nAlso you don't really remember whose the bike was... So better just keep it for now eh?\n\t# COU went up by 2 #\n\t# 'Bicycle' Obtained #";
+    private String rEvent3Choice2 = "Not a single f*** was given that day, so you enjoy staying home reading some books.\n\t# UND went down by 4 #";
+
+    private String[] rEvent3 = {
+            "There goes your bus to school. ",
+            "This is your 5th time this month.\nThere should be a quiz in the first lecture today.",
+            "You simply don't want to be late, but getting a cab is just too out of your league.",
+            "What should you do now?! \n \t(0) What's done is done. Wait for the next bus. \n \t(1) “Borrow” one of the bicycles and cycle to school. \n \t(2) Give up, go back home and sleep your frustration off. ",
+    };
+
+    /////////////////////////////////// Constructor
 
     public Dialogue() {
         actionFirstNight.put(0, Arrays.asList(new ChoiceAction[] {new ChoiceAction(firstNightChoice0_a), new ChoiceAction(firstNightChoice0_b)}));
@@ -140,15 +170,24 @@ public class Dialogue {
         actionFirstSeeNum_p2.put(0, Arrays.asList(new ChoiceAction[] {new ChoiceAction(firstSeeNumChoice0_a2), new ChoiceAction(firstSeeNumChoice0_b2)}));
         actionFirstSeeNum_p2.put(1, Arrays.asList(new ChoiceAction[] {new ChoiceAction(firstSeeNumChoice1_a2), new ChoiceAction(firstSeeNumChoice1_b2)}));
         
-        actionREvent1.put(0, Arrays.asList(new ChoiceAction[] {new ChoiceAction(Revent1Choice0) }));
-        actionREvent1.put(1, Arrays.asList(new ChoiceAction[] {new ChoiceAction(Revent1Choice1) }));
-        actionREvent1.put(2, Arrays.asList(new ChoiceAction[] {new ChoiceAction(Revent1Choice2) }));
-        actionREvent1.put(3, Arrays.asList(new ChoiceAction[] {new ChoiceAction(Revent1Choice3) }));
+        actionREvent1.put(0, Arrays.asList(new ChoiceAction[] {new ChoiceAction(rEvent1Choice0) }));
+        actionREvent1.put(1, Arrays.asList(new ChoiceAction[] {new ChoiceAction(rEvent1Choice1) }));
+        actionREvent1.put(2, Arrays.asList(new ChoiceAction[] {new ChoiceAction(rEvent1Choice2) }));
+        actionREvent1.put(3, Arrays.asList(new ChoiceAction[] {new ChoiceAction(rEvent1Choice3) }));
         
-        actionREvent2.put(0, Arrays.asList(new ChoiceAction[] {new ChoiceAction(Revent2Choice0) }));
-        actionREvent2.put(1, Arrays.asList(new ChoiceAction[] {new ChoiceAction(Revent2Choice1) }));
-        actionREvent2.put(2, Arrays.asList(new ChoiceAction[] {new ChoiceAction(Revent2Choice2) }));
-        actionREvent2.put(3, Arrays.asList(new ChoiceAction[] {new ChoiceAction(Revent2Choice3) }));
+        actionREvent2.put(0, Arrays.asList(new ChoiceAction[] {new ChoiceAction(rEvent2Choice0) }));
+        actionREvent2.put(1, Arrays.asList(new ChoiceAction[] {new ChoiceAction(rEvent2Choice1) }));
+        actionREvent2.put(2, Arrays.asList(new ChoiceAction[] {new ChoiceAction(rEvent2Choice2) }));
+        actionREvent2.put(3, Arrays.asList(new ChoiceAction[] {new ChoiceAction(rEvent2Choice3) }));
+
+        actionREvent3.put(0, Arrays.asList(new ChoiceAction[] {new ChoiceAction(rEvent3Choice0) }));
+        actionREvent3.put(1, Arrays.asList(new ChoiceAction[] {new ChoiceAction(rEvent3Choice1) }));
+        actionREvent3.put(2, Arrays.asList(new ChoiceAction[] {new ChoiceAction(rEvent3Choice2) }));
+
+        actionGetBullied.put(0, Arrays.asList(new ChoiceAction[] {new ChoiceAction(getBulliedChoice0)}));
+        actionGetBullied.put(1, Arrays.asList(new ChoiceAction[] {new ChoiceAction(getBulliedChoice1)}));
+        actionGetBullied.put(2, Arrays.asList(new ChoiceAction[] {new ChoiceAction(getBulliedChoice2)}));
+        actionGetBullied.put(3, Arrays.asList(new ChoiceAction[] {new ChoiceAction(getBulliedChoice3a)}));
     }
 
     /////////////////////////////////// Methods
@@ -225,11 +264,19 @@ public class Dialogue {
     }
     
     public String[] getREvent1()	{
-    	return this.Revent1;
+    	return this.rEvent1;
     }
     
     public String[] getREvent2()	{
-    	return this.Revent2;
+    	return this.rEvent2;
+    }
+
+    public String[] getREvent3()	{
+        return this.rEvent3;
+    }
+
+    public String[] getGetBullied() {
+        return this.getBullied;
     }
     
     public String getJanitorNote() {
@@ -254,6 +301,14 @@ public class Dialogue {
 
     public HashMap<Integer, List<ChoiceAction>> getActionREvent2()	{
     	return actionREvent2;
+    }
+
+    public HashMap<Integer, List<ChoiceAction>> getActionREvent3()	{
+        return actionREvent3;
+    }
+
+    public HashMap<Integer, List<ChoiceAction>> getActionGetBullied()	{
+        return actionGetBullied;
     }
 
     public String getFirstNightEnd() {

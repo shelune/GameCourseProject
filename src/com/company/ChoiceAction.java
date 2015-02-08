@@ -85,6 +85,48 @@ public class ChoiceAction {
     	}
     	return statsChanged;
     }
+
+    public int[] statsEvent3(int choice, Inventory inventory) {
+        switch (choice)	{
+            case 0:
+                statsChanged[1] = -4;
+                break;
+            case 1:
+                statsChanged[0] = 2;
+                inventory.addItem(new Item("Bike", "Make it easier for you to go around"));
+                break;
+            case 2:
+                statsChanged[1] = -4;
+                break;
+            case 3:
+                statsChanged[4] = 50;
+                break;
+        }
+        return statsChanged;
+    }
+
+    public int[] statsGetBullied(int choice, int und) {
+        switch (choice)	{
+            case 0:
+                statsChanged[0] = -1;
+                statsChanged[2] = 1;
+                break;
+            case 1:
+                if (und > 10) {
+                    statsChanged[0] = 2;
+                } else {
+                    statsChanged[3] = -100;
+                }
+                break;
+            case 2:
+                statsChanged[0] = 1;
+                break;
+            case 3:
+                statsChanged[3] = -101;
+                break;
+        }
+        return statsChanged;
+    }
     
     public ChoiceAction(String sayString) {
         super();

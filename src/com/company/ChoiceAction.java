@@ -1,4 +1,4 @@
-package com.company;
+//package com.company;
 /**
  * Created by ASUS on 05-Feb-15.
  */
@@ -23,7 +23,21 @@ public class ChoiceAction {
         }
         return statsChanged;
     }
-
+    
+    public int[] statsFirstDeath(int choice)	{
+    	switch (choice) {
+        case 0:
+            statsChanged[0] = 2;
+            statsChanged[1] = 1;
+            break;
+        case 1:
+            statsChanged[0] = -1;
+            statsChanged[1] = -1;
+            break;
+    	}
+    	return statsChanged;
+    }
+    	
     public int[] statsFirstSeeNum_p1(int choice) {
         switch (choice) {
             case 0:

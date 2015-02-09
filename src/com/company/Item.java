@@ -87,11 +87,10 @@ public class Item {
         return this.clue;
     }
 
-    public int puzzle() {
-        int result = 0;
+    public void puzzle(Events events, Player player) {
         Events.next();
         if (!keyItem) {
-            return result;
+            player.setPlayerStamina(60);
         } else {
             if (itemName.equalsIgnoreCase("small note")) {
                 Player.say(getItemClue());
@@ -99,19 +98,23 @@ public class Item {
                 int i = takeInput(3);
                 switch (i) {
                     case 1:
+                        events.setEventTrigger("MT");
                         Player.say("How brilliant! If you switch the note side down, it would be \n\t56.82.13 N | 165.168.11 W\nObviously some kind of geography stuff with latitude and longitude.");
                         Player.say("...\t +++ NEW AREA OPENED : MOUNTAIN +++");
-                        i = 1;
+                        solved();
                         break;
                     default:
                         Player.say("It seems not to be the case here... Although you want to think of something else, it is getting really late and you need some other time to figure this out.");
+                        player.setPlayerStamina(60);
                         break;
                 }
             }
-            return result;
         }
     }
 
+    public void solved() {
+        this.keyItem = false;
+    }
     public String toString() {
         return itemName + " (" + itemDescription + ")";
     }

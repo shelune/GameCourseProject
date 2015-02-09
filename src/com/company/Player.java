@@ -109,7 +109,7 @@ public class Player {
             events.setEventTrigger("TC");
         }
         if (playerPos == 1 && dayCount == 3) {
-            events.getEventFirstInJanitor(inventory);
+            events.getEventFirstInJanitor(inventory, this);
         }
     }
 
@@ -163,10 +163,7 @@ public class Player {
             int i = events.takeInput(1);
             switch (i) {
                     case 0:
-                        int solved = keyItem.puzzle();
-                        if (solved != 1) {
-                            setPlayerStamina(40);
-                        }
+                        keyItem.puzzle(events, this);
                         break;
                     case 1:
                         break;

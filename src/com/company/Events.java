@@ -104,7 +104,7 @@ public class Events {
         return statsChanged;
     }
 
-    public int[] getEventFirstInJanitor(Inventory inventory) {
+    public int[] getEventFirstInJanitor(Inventory inventory, Player player) {
         int[] statsChanged = new int[] {0, 0, 0, 0};
         if (isTriggered("5A")) {
             return statsChanged;
@@ -112,7 +112,9 @@ public class Events {
         printEvent(eventDial.getFirstInJanitor());
         Item note = new Item("Small Note", "A note with barely readable text", eventDial.getJanitorNote());
         inventory.addItem(note);
-        note.puzzle();
+        note.puzzle(this, player);
+        eventTrigger.add("5A");
+        return statsChanged;
     }
 
     public int[] getEventREvent1(ArrayList<String> eventTrigger) {

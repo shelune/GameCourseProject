@@ -64,7 +64,7 @@ public class Place {
 
     public ArrayList<Item> loadJanitorItems() {
         ArrayList<Item> temp = new ArrayList<Item>();
-        Item note = new Item("Small Note", dialogue.getJanitorNote());
+        Item note = new Item("Small Note", "An old note with hardly readable letters.", dialogue.getJanitorNote());
         Collections.addAll(temp, note);
         return temp;
     }

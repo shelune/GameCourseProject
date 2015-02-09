@@ -5,7 +5,7 @@ import java.util.*;
 public class Player {
 
     private Random rand = new Random();
-    private Scanner input = new Scanner(System.in);
+    public static Scanner input = new Scanner(System.in);
     private Events events = new Events();                       // Initiate events
     private Dialogue dialogue = new Dialogue();                 // Initiate dialogues
     private Map map = new Map();                                // Initiate map
@@ -36,7 +36,7 @@ public class Player {
 
         GAME:                                                   // main loop
         while (gameRun) {
-            while (dayCount < 22 && playerStamina > 0) {
+            while (dayCount < 22 && playerStamina > 20) {
                 switch (dayCount) {                             // this switch is for night events
                     case 1:
                         int[] statsChanged = events.getEventFirstNight(events.getEventList());
@@ -54,8 +54,7 @@ public class Player {
                 input.nextLine();                               // print all player's info
                 actions();                                      // all actions available
             }
-            say("GAME OVER!");
-            System.exit(0);
+            rest();
         }
     }
 
@@ -67,31 +66,31 @@ public class Player {
                 choice = input.nextInt();
             }
             catch (InputMismatchException e) {
-                events.next();
+                Events.next();
             }
             switch (choice) {
                 case 1:                                                     // Go to places
                     int[] statsChanged = events.getEventFirstSeeNumbers(events.getEventList());
                     setAllStats(statsChanged);
                     move();
-                    events.next();
+                    Events.next();
                     break;
                 case 2:                                                     // Check area
                     explore();
-                    events.next();
+                    Events.next();
                     //
                     break;
                 case 3:                                                     // Recover Stamina (if have food)
                     eat();
-                    events.next();
+                    Events.next();
                     break;
                 case 4:                                                     // Study
                     study();
-                    events.next();
+                    Events.next();
                     break;
                 case 5:                                                      // Get inventory
                     showInventory();
-                    events.next();
+                    Events.next();
                     break;
                 case 6:                                                      // Rest
                     rest();
@@ -105,6 +104,12 @@ public class Player {
         if (playerPosTemp != playerPos) {
             setPlayerStamina(staminaPerMove);                   // check if go or stay, then cost stamina
             playerPos = playerPosTemp;
+        }
+        if (playerPos == 1 && !events.isTriggered("TC")) {
+            events.setEventTrigger("TC");
+        }
+        if (playerPos == 1 && dayCount == 3) {
+            events.getEventFirstInJanitor(inventory);
         }
     }
 
@@ -152,18 +157,34 @@ public class Player {
 
     public void showInventory() {
         inventory.printInventory();
+        Item keyItem = inventory.searchKeyItem();
+        if (keyItem != null) {
+            say("\n" + dialogue.getCheckClue() + keyItem.getItemName() + " ?\n\t(0) Yes\n\t(1) No");
+            int i = events.takeInput(1);
+            switch (i) {
+                    case 0:
+                        int solved = keyItem.puzzle();
+                        if (solved != 1) {
+                            setPlayerStamina(40);
+                        }
+                        break;
+                    case 1:
+                        break;
+            }
+        }
     }
 
     public void rest() {
-        if (!events.isTriggered("1A")) {
+        if (!events.isTriggered("TC")) {
             say("You are not a sloth, right?!");
             return;
         }
         playerPos = 0;
         setPlayerStamina(-1);
+        events.clearEventTrigger("TC");
         say(dialogue.getEndDay());
         dayCount++;
-        events.next();
+        Events.next();
     }
 
     public void setPlayerStamina(int stamina) {

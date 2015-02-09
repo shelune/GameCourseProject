@@ -1,4 +1,4 @@
-//package com.company;
+package com.company;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,10 +15,12 @@ public class Dialogue {
     private HashMap<Integer, List<ChoiceAction>> actionREvent2 = new HashMap<Integer, List<ChoiceAction>>();
     private HashMap<Integer, List<ChoiceAction>> actionREvent3 = new HashMap<Integer, List<ChoiceAction>>();
     private HashMap<Integer, List<ChoiceAction>> actionGetBullied = new HashMap<Integer, List<ChoiceAction>>();
+    private HashMap<Integer, List<ChoiceAction>> actionMetJanitor = new HashMap<Integer, List<ChoiceAction>>();
     /////////////////////////////////// Option Commands + Location Commands
 
     private String generalOpts = "Please choose one action from below. \n \t (1). Move \n \t (2). Explore \n \t (3). Eat food \n \t (4). Study \n \t (5). Check inventory \n \t (6). Rest";
     private String exploreItems = "[If you want to take items, input a number in the brackets above. If not, just give some letters]\n\t\t\t-----\nWhich one do you want to take?";
+    private String checkClue = "Do you want to check this ";
     private String toHome = "\t (0) Home";
     private String toClassA = "\t (1) Your classroom";
     private String toClassB = "\t (2) Your buddy's classroom";
@@ -86,7 +88,7 @@ public class Dialogue {
             "You talk to yourself : 'Maybe I am still not that awake yet...'. So you decide to: \n \t(0) Calm yourself down and keep on \t (1) Ask Rekt to slap you hard in the face\n", //14 . OPTIONS
     };
 
-    /////////////////////////////////// Main Event - (possibly) Get Bullied
+    /////////////////////////////////// Main Event - Get Bullied
     private String getBulliedChoice0 = "Running to the nearest public place, with 3 other guys tailing right behind! Nooo..!";
     private String getBulliedChoice1 = "You throw out a punch, just to know that you are totally overwhelmed.\nThey kick at your stomach fiercely... At this rate you're gonna be like the hero saving the princess, but without the princess part!";
     private String getBulliedChoice2 = "You try to talk things into them... Let's see how things go.";
@@ -96,9 +98,9 @@ public class Dialogue {
     private String[] getBullied = {
             "It is another long day for you. What a relief you don't get to see those numbers again.",
             "*Thump!* You smash your face into a back. When you get your head up, suddenly all your short-lived relief just vanish...",
-            "It's your 10-year-bully and his pack. 'Not again...', you murmur...\nBut from the way they stretch their necks and cracks their knuckles, you can be sure the next thing coming is not hug.",
+            "It's your 10-year-bully and his pack. 'Not again...', you murmur...\nBut from the way they stretch their necks and cracks their knuckles, you can be sure the next thing coming is not a hug.",
             "What is your decision before your face may merge with the wall?",
-            "(0) Run. Run away. It's not that protagonist is immortal.\n\t(1) Fight your ass back. You'll get beaten up anyway, so let your dignity intact!\n\t(2) Let's negotiate. Your words fight better than your flimsy fists\n\t(3) Distract them. Sneak out!",
+            "\t(0) Run. Run away. It's not that protagonist is immortal.\n\t(1) Fight your ass back. You'll get beaten up anyway, so let your dignity intact!\n\t(2) Let's negotiate. Your words fight better than your flimsy fists\n\t(3) Distract them. Sneak out!",
     };
 
     /////////////////////////////////// First Met Janitor
@@ -114,7 +116,7 @@ public class Dialogue {
             "\t(0) Gosh they were almost murdering me!\n\t(1) Of course not! I was just about to teach them a lesson.\n\t(2) I'm fine but who are you by the way?",
     };
 
-    /////////////////////////////////// First Death Janitor p2
+    /////////////////////////////////// First Death Janitor
     private String firstDeathChoice0 = "...\tRekt smiles eagerly, 'That's my dude! Alright this evening we will pay him a visit! Don't be late!'...\n \t# Courage went up by 2 #\t# Understanding went up by 1 #...\n \t +++ NEW AREA OPENED : JANITOR'S HOUSE +++";
     private String firstDeathChoice1 = "...\tRekt knocks on your shoulder, 'What the hell dude?! He was fighting off the bullies for you, remember?! You're coming with me!'...\n \t# Courage went down by 1 #\t# Understanding went down by 1 #...\n \t +++ NEW AREA OPENED : JANITOR'S HOUSE +++";
     
@@ -141,8 +143,8 @@ public class Dialogue {
             "...\tWhat will you do now, going with him?\n \t(0) Nod and agree \t (1) Nope, stay away from the dead", // options . 8
     };
 
-    /////////////////////////////////// First Death Janitor Observed
-    private String[] janiDeathObserved = {
+    /////////////////////////////////// First time Inside Janitor's
+    private String[] firstInJanitor = {
             "Finally you break into his house. It is much bigger when you look from inside. Still, the creepy feeling somewhere...",
             "In the middle of the living room is the place they found him dead. The reason is, as mentioned, unknown.",
             "However, you have something tingling that keeps telling you this is not a suicide or whatnot. Yesterday he didn't show any sign of mental instability.",
@@ -151,6 +153,7 @@ public class Dialogue {
             "'Hey dude! Look at this! It has been stumbled beneath the table right here! Maybe the police has overlooked it.', seems like Rekt really cares about this person.",
             "The note itself is old and scratchy... But you can read some most visibile lines on it.",
             "'Janitor's Note' Obtained!",
+            "You carefully read the note... It is really hard to read those scratched letters, so all you can read is...",
     };
     
     /////////////////////////////////// R.event1
@@ -226,6 +229,10 @@ public class Dialogue {
         actionGetBullied.put(1, Arrays.asList(new ChoiceAction[] {new ChoiceAction(getBulliedChoice1)}));
         actionGetBullied.put(2, Arrays.asList(new ChoiceAction[] {new ChoiceAction(getBulliedChoice2)}));
         actionGetBullied.put(3, Arrays.asList(new ChoiceAction[] {new ChoiceAction(getBulliedChoice3a)}));
+
+        actionMetJanitor.put(0, Arrays.asList(new ChoiceAction[] {new ChoiceAction(metJanitorChoice0)}));
+        actionMetJanitor.put(1, Arrays.asList(new ChoiceAction[] {new ChoiceAction(metJanitorChoice1)}));
+        actionMetJanitor.put(2, Arrays.asList(new ChoiceAction[] {new ChoiceAction(metJanitorChoice2)}));
     }
 
     /////////////////////////////////// Methods
@@ -281,6 +288,10 @@ public class Dialogue {
         return this.exploreItems;
     }
 
+    public String getCheckClue() {
+        return this.checkClue;
+    }
+
     public String getEndDay() {
         return this.endDay;
     }
@@ -312,21 +323,29 @@ public class Dialogue {
     public String[] getFirstSeeNumbers_p2() {
         return this.firstSeeNumbers_p2;
     }
-    
-    public String[] getREvent1()	{
-    	return this.rEvent1;
+
+    public String[] getEventGetBullied() {
+        return this.getBullied;
     }
-    
+
+    public String[] getFirstMetJanitor() {
+        return this.metJanitor;
+    }
+
+    public String[] getFirstInJanitor() {
+        return this.firstInJanitor;
+    }
+
+    public String[] getREvent1()	{
+        return this.rEvent1;
+    }
+
     public String[] getREvent2()	{
-    	return this.rEvent2;
+        return this.rEvent2;
     }
 
     public String[] getREvent3()	{
         return this.rEvent3;
-    }
-
-    public String[] getGetBullied() {
-        return this.getBullied;
     }
     
     public String getJanitorNote() {
@@ -344,28 +363,33 @@ public class Dialogue {
     public HashMap<Integer, List<ChoiceAction>> getActionFirstSeeNum_p2() {
         return actionFirstSeeNum_p2;
     }
-    
-    public HashMap<Integer, List<ChoiceAction>> getActionREvent1()	{
-    	return actionREvent1;
-    }
 
-    public HashMap<Integer, List<ChoiceAction>> getActionREvent2()	{
-    	return actionREvent2;
-    }
-
-    public HashMap<Integer, List<ChoiceAction>> getActionREvent3()	{
-        return actionREvent3;
-    }
-    
-    public HashMap<Integer, List<ChoiceAction>> getActionFirstDeath()	{
-        return actionFirstDeath;
-    }
 
     public HashMap<Integer, List<ChoiceAction>> getActionGetBullied()	{
         return actionGetBullied;
     }
 
+    public HashMap<Integer, List<ChoiceAction>> getActionMetJanitor()	{
+        return actionMetJanitor;
+    }
+
     public String getFirstNightEnd() {
         return "Eventually, the darkness slowly fades away ... But the creepy feeling keeps on and prolongs throughout the night. It was a very haunting dream...";
+    }
+
+    public HashMap<Integer, List<ChoiceAction>> getActionREvent1()	{
+        return actionREvent1;
+    }
+
+    public HashMap<Integer, List<ChoiceAction>> getActionREvent2()	{
+        return actionREvent2;
+    }
+
+    public HashMap<Integer, List<ChoiceAction>> getActionREvent3()	{
+        return actionREvent3;
+    }
+
+    public HashMap<Integer, List<ChoiceAction>> getActionFirstDeath()	{
+        return actionFirstDeath;
     }
 }

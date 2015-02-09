@@ -1,9 +1,12 @@
 package com.company;
 
 
+import java.util.InputMismatchException;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Item {
+    private Scanner input = new Scanner(System.in);
     private boolean keyItem = false;
     private String itemType;
     private String itemName;
@@ -31,9 +34,11 @@ public class Item {
 
     public Item(String name, String description, String clue) {
         this.keyItem = true;
+        this.itemType = "KeyItem";
         this.itemName = name;
         this.itemDescription = description;
         this.clue = clue;
+        this.itemCount = 1;
     }
 
     public String getItemType() {
@@ -78,8 +83,49 @@ public class Item {
         this.itemCount--;
     }
 
+    public String getItemClue() {
+        return this.clue;
+    }
+
+    public int puzzle() {
+        int result = 0;
+        Events.next();
+        if (!keyItem) {
+            return result;
+        } else {
+            if (itemName.equalsIgnoreCase("small note")) {
+                Player.say(getItemClue());
+                Player.say("What do you these numbers at the end of the note to be?\n\t(0) An IP address\n\t(1) A location\n\t(2) Some phone numbers\n\t(3) Words in a book");
+                int i = takeInput(3);
+                switch (i) {
+                    case 1:
+                        Player.say("How brilliant! If you switch the note side down, it would be \n\t56.82.13 N | 165.168.11 W\nObviously some kind of geography stuff with latitude and longitude.");
+                        Player.say("...\t +++ NEW AREA OPENED : MOUNTAIN +++");
+                        i = 1;
+                        break;
+                    default:
+                        Player.say("It seems not to be the case here... Although you want to think of something else, it is getting really late and you need some other time to figure this out.");
+                        break;
+                }
+            }
+            return result;
+        }
+    }
+
     public String toString() {
         return itemName + " (" + itemDescription + ")";
+    }
+
+    public int takeInput(int upperLim) {
+        int choice = -1;
+        while (choice > upperLim || choice < 0) {
+            try {
+                choice = input.nextInt();
+            } catch (InputMismatchException e) {
+                Events.next();
+            }
+        }
+        return choice;
     }
 }
 

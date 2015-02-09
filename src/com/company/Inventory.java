@@ -53,13 +53,13 @@ public class Inventory {
         return inventory.contains(item);
     }
 
-    public boolean hasKeyItem(Item item) {
+    public Item searchKeyItem() {
         for (Item i : inventory) {
-            if (i.isKeyItem()) {
-                return item.getItemName().equalsIgnoreCase(i.getItemName());
-            }
+           if (i.isKeyItem()) {
+               return i;
+           }
         }
-        return false;
+        return null;
     }
 
     public Item getItem(int index) {

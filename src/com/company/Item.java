@@ -4,9 +4,11 @@ package com.company;
 import java.util.Random;
 
 public class Item {
+    private boolean keyItem = false;
     private String itemType;
     private String itemName;
     private String itemDescription;         // description with stamina rec / how-to-use hint
+    private String clue;
     private int staminaRec;                 // MUST BE NEGATIVE
     private int itemCount;                  // how many item you have
 
@@ -27,7 +29,12 @@ public class Item {
         this.itemCount = 1;
     }
 
-
+    public Item(String name, String description, String clue) {
+        this.keyItem = true;
+        this.itemName = name;
+        this.itemDescription = description;
+        this.clue = clue;
+    }
 
     public String getItemType() {
         return this.itemType;
@@ -61,6 +68,10 @@ public class Item {
 
     public boolean isFood() {
         return itemType.equals("Food");
+    }
+
+    public boolean isKeyItem() {
+        return keyItem;
     }
 
     public void consume() {

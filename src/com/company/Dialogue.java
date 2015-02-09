@@ -74,7 +74,7 @@ public class Dialogue {
     /////////////////////////////////// Main Event - First See Numbers p2
 
     private String firstSeeNumChoice0_a2 = "You take in a big breath and continue walking. But you feel like your weirdness just gets to another level...";
-    private String firstSeeNumChoice0_b2 = "\t# Abnormality went up by 1 #";
+    private String firstSeeNumChoice0_b2 = "\t# Abnormality went up by 2 #";
     private String firstSeeNumChoice1_a2 = "You tell Rekt cautiously : 'It's like I'm still sleepy'. Immediately, he swings his big palm into your face.\n\tSwear to God you can even see whirling stars now, but at least you don't get suspected.";
     private String firstSeeNumChoice1_b2 = "\t# Abnormality went down by 1 #\n\t# Stamina went down by A LOT #";
 
@@ -100,6 +100,18 @@ public class Dialogue {
             "(0) Run. Run away. It's not that protagonist is immortal.\n\t(1) Fight your ass back. You'll get beaten up anyway, so let your dignity intact!\n\t(2) Let's negotiate. Your words fight better than your flimsy fists\n\t(3) Distract them. Sneak out!",
     };
 
+    /////////////////////////////////// First Met Janitor
+    private String metJanitorChoice0 = "'Glad I came on time, eh?', he smiles kindly and introduces himself to be the school's janitor. He has been working here for several years.";
+    private String metJanitorChoice1 = "'What a bold boy!', he replies with a bit of smirking face. Still, he introduces himself to be the school's janitor. He has been working here for several years.";
+    private String metJanitorChoice2 = "He introduces himself to be the school's janitor. Has been working here for several years.";
+
+    private String[] metJanitor = {
+            "'Hey what are you doing there!?', a craggy, loud voice echoes from afar.",
+            "All of your enemies just back off immediately when they see that person, then runs away quickly.",
+            "*Phew* You blow a breathe of relief. 'Who can that life saver be?', you turn around.",
+            "He is coming towards you, with a bucket and a broomstick on the hands, asking if you was okay.",
+            "\t(0) Gosh they were almost murdering me!\n\t(1) Of course not! I was just about to teach them a lesson.\n\t(2) I'm fine but who are you by the way?",
+    };
 
     /////////////////////////////////// First Death Janitor
     private String[] firstDeath = {
@@ -117,6 +129,18 @@ public class Dialogue {
             "...\tRekt knocks on your shoulder, 'What the hell dude?! He was fighting off the bullies for you, remember?! You're coming with me!'",
             "...\t# Courage went down by 1 #\t# Understanding went down by 1 #",
             "...\t +++ NEW AREA OPENED : JANITOR'S HOUSE +++",
+    };
+
+    /////////////////////////////////// First Death Janitor Observed
+    private String[] janiDeathObserved = {
+            "Finally you break into his house. It is much bigger when you look from inside. Still, the creepy feeling somewhere...",
+            "In the middle of the living room is the place they found him dead. The reason is, as mentioned, unknown.",
+            "However, you have something tingling that keeps telling you this is not a suicide or whatnot. Yesterday he didn't show any sign of mental instability.",
+            "It really chills your spine when you think of the number 1 yesterday. Could it be...?",
+            "Right when you are confused, Rekt pats your shoulder to show you a little note.",
+            "'Hey dude! Look at this! It has been stumbled beneath the table right here! Maybe the police has overlooked it.', seems like Rekt really cares about this person.",
+            "The note itself is old and scratchy... But you can read some most visibile lines on it.",
+            "'Janitor's Note' Obtained!",
     };
     
     /////////////////////////////////// R.event1

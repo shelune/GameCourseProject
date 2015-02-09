@@ -52,7 +52,9 @@ public class Events {
         for (ChoiceAction ca : eventDial.getActionFirstSeeNum_p2().get(choice)) {
             say(ca.getSayString());
             next();
-            statsChanged = ca.statsFirstSeeNum_p2(choice);
+            for (int j = 0; j < statsChanged.length; j++) {
+                statsChanged[j] += ca.statsFirstSeeNum_p2(choice)[j];
+            }
         }
         eventTrigger.add("1A");
         return statsChanged;
@@ -129,6 +131,7 @@ public class Events {
         eventTrigger.add("2A");
         return statsChanged;
     }
+
 
 
     public void next() {

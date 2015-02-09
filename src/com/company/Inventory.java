@@ -53,6 +53,15 @@ public class Inventory {
         return inventory.contains(item);
     }
 
+    public boolean hasKeyItem(Item item) {
+        for (Item i : inventory) {
+            if (i.isKeyItem()) {
+                return item.getItemName().equalsIgnoreCase(i.getItemName());
+            }
+        }
+        return false;
+    }
+
     public Item getItem(int index) {
         return inventory.get(index);
     }

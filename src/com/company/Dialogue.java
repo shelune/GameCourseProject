@@ -1,4 +1,4 @@
-package com.company;
+//package com.company;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,6 +8,7 @@ import java.util.List;
 public class Dialogue {
 
     private HashMap<Integer, List<ChoiceAction>> actionFirstNight = new HashMap<Integer, List<ChoiceAction>>();
+    private HashMap<Integer, List<ChoiceAction>> actionFirstDeath = new HashMap<Integer, List<ChoiceAction>>();
     private HashMap<Integer, List<ChoiceAction>> actionFirstSeeNum_p1 = new HashMap<Integer, List<ChoiceAction>>();
     private HashMap<Integer, List<ChoiceAction>> actionFirstSeeNum_p2 = new HashMap<Integer, List<ChoiceAction>>();
     private HashMap<Integer, List<ChoiceAction>> actionREvent1 = new HashMap<Integer, List<ChoiceAction>>();
@@ -113,22 +114,31 @@ public class Dialogue {
             "\t(0) Gosh they were almost murdering me!\n\t(1) Of course not! I was just about to teach them a lesson.\n\t(2) I'm fine but who are you by the way?",
     };
 
-    /////////////////////////////////// First Death Janitor
+    /////////////////////////////////// First Death Janitor p2
+    private String firstDeathChoice0 = "...\tRekt smiles eagerly, 'That's my dude! Alright this evening we will pay him a visit! Don't be late!'...\n \t# Courage went up by 2 #\t# Understanding went up by 1 #...\n \t +++ NEW AREA OPENED : JANITOR'S HOUSE +++";
+    private String firstDeathChoice1 = "...\tRekt knocks on your shoulder, 'What the hell dude?! He was fighting off the bullies for you, remember?! You're coming with me!'...\n \t# Courage went down by 1 #\t# Understanding went down by 1 #...\n \t +++ NEW AREA OPENED : JANITOR'S HOUSE +++";
+    
+    
     private String[] firstDeath = {
             "\tYou walk into the class, thinking you're late but actually you're not. It seems that people are fussing over something so they ignore you.", // 0
             "...\tThe Chemistry class goes on as usual but the teacher seems a bit troubled. What happened, you wonder...",
             "...\tRekt seems to be quite worried as well. Will you ask him the happening?\n \t(0) Ask him \t (1) Just ignore it", //options . 2
+    };
+    
+    private String[] firstDeath_p0 = {
             "...\tAs if he were waiting for your question! He gapses it : 'Dude you know what, our only JANITOR is DEAD!'",
             "...\tThey don't even know what the cause was! He was just, like, straight up dead like that! No injury and no blood, so people suspect it was a breakdown",
-            "...\t'But the stuff in his room was a bit shuffled up, I heard so. There's no way he died from a breakdown shit, he is the most healthy person I know!', Rekt hisses.", // 5
-            "...\t'Hey dude have you heard it! Our JANITOR is DEAD!' Rekt rushes towards you without you opening your trap.",
+            "...\t'But the stuff in his room was a bit shuffled up, I heard so. There's no way he died from a breakdown shit, he is the most healthy person I know!', Rekt hisses.",
             "...\t'So, what do you say, are you coming to his house with me? We can, you know, get in to see the scene!",
             "...\tWhat will you do now, going with him?\n \t(0) Nod and agree \t (1) Nope, stay away from the dead", // options . 8
-            "...\tRekt smiles eagerly, 'That's my dude! Alright this evening we will pay him a visit! Don't be late!'",
-            "...\t# Courage went up by 2 #\t# Understanding went up by 1 #", // 10
-            "...\tRekt knocks on your shoulder, 'What the hell dude?! He was fighting off the bullies for you, remember?! You're coming with me!'",
-            "...\t# Courage went down by 1 #\t# Understanding went down by 1 #",
-            "...\t +++ NEW AREA OPENED : JANITOR'S HOUSE +++",
+    };
+    
+    private String[] firstDeath_p1 = {
+            "...\t'Hey dude have you heard it! Our JANITOR is DEAD!' Rekt rushes towards you without you opening your trap.",
+            "...\t'So, what do you say, are you coming to his house with me? We can, you know, get in to see the scene!",
+            "...\t'But the stuff in his room was a bit shuffled up, I heard so. There's no way he died from a breakdown shit, he is the most healthy person I know!', Rekt hisses.", // 5
+            "...\t'So, what do you say, are you coming to his house with me? We can, you know, get in to see the scene!",
+            "...\tWhat will you do now, going with him?\n \t(0) Nod and agree \t (1) Nope, stay away from the dead", // options . 8
     };
 
     /////////////////////////////////// First Death Janitor Observed
@@ -144,29 +154,29 @@ public class Dialogue {
     };
     
     /////////////////////////////////// R.event1
-    private String rEvent1Choice0 = "You get ultra panic and get everyone’s attentions… At least you got into her eyes!"; //5
-    private	String rEvent1Choice1 = "She thinks you are looking at something behind her… You barely got away";
+    private String rEvent1Choice0 = "You get ultra panic and get everyoneâ€™s attentionsâ€¦ At least you got into her eyes!"; //5
+    private	String rEvent1Choice1 = "She thinks you are looking at something behind herâ€¦ You barely got away";
     private String rEvent1Choice2 = "She is absolutely baffled by your actions. What are you doing at the middle of the class!";
-    private String rEvent1Choice3 = "Wait what… where to run?!?";
+    private String rEvent1Choice3 = "Wait whatâ€¦ where to run?!?";
     
     private String[] rEvent1	= {
             "Your class is going on as usual. But not anymore when you notice that...",
     		"THAT, I say, is the girl... She's making your world a dream with her straight black hair, beautiful blue eyes, pretty bunny nose and angelic smile.", //0
-    		"Jenny, student of Faculty of Literature and your 3 years of crush.\nIt is yet another day that you are looking at her and thinking “Will I be able to be the one that smile is directed at?”. ",
+    		"Jenny, student of Faculty of Literature and your 3 years of crush.\nIt is yet another day that you are looking at her and thinking â€œWill I be able to be the one that smile is directed at?â€�. ",
     		"Apparently, while you are lost deep in your dream world she has turned towards you and now you are looking right inti those ocean deep eyes.",
-    		"You're frozen, what to do?\n \t(0) Act as if you haven”t been staring at her last 10 minutes. \n \t(1) Stare at her- Just keep staring... \n \t(2) Wave. \n \t(3) Run for your life. ", //options 4
+    		"You're frozen, what to do?\n \t(0) Act as if you havenâ€�t been staring at her last 10 minutes. \n \t(1) Stare at her- Just keep staring... \n \t(2) Wave. \n \t(3) Run for your life. ", //options 4
     };
     
     /////////////////////////////////// R.event2
     private String rEvent2Choice0 = "She scolds you for your ignorance, but at least she is not coming to grab you.";
-    private String rEvent2Choice1 = "Rest for the day as firefighters come (You come home to see a firetruck in front of your door… Oh gosh noooo!)";
-    private String rEvent2Choice2 = "Nothing happened, you don’t have sisters (Are you forgetting about your being the only child?!";
-    private String rEvent2Choice3 = "Are you freaking texting your mom you’re busy after she calls you 56768 times? I also like to live dangerously.";
+    private String rEvent2Choice1 = "Rest for the day as firefighters come (You come home to see a firetruck in front of your doorâ€¦ Oh gosh noooo!)";
+    private String rEvent2Choice2 = "Nothing happened, you donâ€™t have sisters (Are you forgetting about your being the only child?!";
+    private String rEvent2Choice3 = "Are you freaking texting your mom youâ€™re busy after she calls you 56768 times? I also like to live dangerously.";
     
     private String[] rEvent2 = {
     		"Ring ring! Your mom is calling.",
-    		"During all the chaos you have forgotten to go through your daily “did you burn the house, yet?” check, several times.",
-    		"She is probably freaking out and ready to call the cops for a missing report. \n \t(0) Answer the call and hope she won't lecture you, too much. \n \t(1) Ignore it and hope she won”t call the firefighters. \n \t(2) Call your sister to save you from Mom's Fury. \n \t(3) Text your mom “I'm busy.”. Actually, never mind, don't do that. No, wait. Don't! ", //options 3
+    		"During all the chaos you have forgotten to go through your daily â€œdid you burn the house, yet?â€� check, several times.",
+    		"She is probably freaking out and ready to call the cops for a missing report. \n \t(0) Answer the call and hope she won't lecture you, too much. \n \t(1) Ignore it and hope she wonâ€�t call the firefighters. \n \t(2) Call your sister to save you from Mom's Fury. \n \t(3) Text your mom â€œI'm busy.â€�. Actually, never mind, don't do that. No, wait. Don't! ", //options 3
     };
 
     /////////////////////////////////// R.event3
@@ -178,7 +188,7 @@ public class Dialogue {
             "There goes your bus to school. ",
             "This is your 5th time this month.\nThere should be a quiz in the first lecture today.",
             "You simply don't want to be late, but getting a cab is just too out of your league.",
-            "What should you do now?! \n \t(0) What's done is done. Wait for the next bus. \n \t(1) “Borrow” one of the bicycles and cycle to school. \n \t(2) Give up, go back home and sleep your frustration off. ",
+            "What should you do now?! \n \t(0) What's done is done. Wait for the next bus. \n \t(1) â€œBorrowâ€� one of the bicycles and cycle to school. \n \t(2) Give up, go back home and sleep your frustration off. ",
     };
 
     /////////////////////////////////// Constructor
@@ -188,6 +198,10 @@ public class Dialogue {
         actionFirstNight.put(1, Arrays.asList(new ChoiceAction[] {new ChoiceAction(firstNightChoice1_a), new ChoiceAction(firstNightChoice1_b)}));
         actionFirstNight.put(2, Arrays.asList(new ChoiceAction[] {new ChoiceAction(firstNightChoice2_a)}));
 
+        
+        actionFirstDeath.put(0, Arrays.asList(new ChoiceAction[] {new ChoiceAction(firstDeathChoice0)}));
+        actionFirstDeath.put(1, Arrays.asList(new ChoiceAction[] {new ChoiceAction(firstDeathChoice1)}));    
+        
         actionFirstSeeNum_p1.put(0, Arrays.asList(new ChoiceAction[] {new ChoiceAction(firstSeeNumChoice0_a1), new ChoiceAction(firstSeeNumChoice0_b1)}));
         actionFirstSeeNum_p1.put(1, Arrays.asList(new ChoiceAction[] {new ChoiceAction(firstSeeNumChoice1_a1), new ChoiceAction(firstSeeNumChoice1_b1)}));
 
@@ -278,7 +292,19 @@ public class Dialogue {
     public String[] getFirstNight() {
         return this.firstNight;
     }
+    
+    public String[] getFirstDeath()	{
+    	return this.firstDeath;
+    }
 
+    public String[] getFirstDeath_p0()	{
+    	return this.firstDeath_p0;
+    }
+    
+    public String[] getFirstDeath_p1()	{
+    	return this.firstDeath_p1;
+    }
+    
     public String[] getFirstSeeNumbers_p1() {
         return this.firstSeeNumbers_p1;
     }
@@ -329,6 +355,10 @@ public class Dialogue {
 
     public HashMap<Integer, List<ChoiceAction>> getActionREvent3()	{
         return actionREvent3;
+    }
+    
+    public HashMap<Integer, List<ChoiceAction>> getActionFirstDeath()	{
+        return actionFirstDeath;
     }
 
     public HashMap<Integer, List<ChoiceAction>> getActionGetBullied()	{

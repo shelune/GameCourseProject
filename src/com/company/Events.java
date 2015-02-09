@@ -1,4 +1,4 @@
-package com.company;
+//package com.company;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -27,7 +27,7 @@ public class Events {
         say(eventDial.getFirstNightEnd());
         return statsChanged;
     }
-
+    
     public int[] getEventFirstSeeNumbers(ArrayList<String> eventTrigger) {
         int[] statsChanged = new int[] {0, 0, 0, 0};                    // COU - UND - ABN - STAMINA
         if (eventTrigger.contains("1A")) {
@@ -132,7 +132,36 @@ public class Events {
         return statsChanged;
     }
 
-
+    public int[] getEventFirstDeath(ArrayList<String> eventTrigger) {
+        int[] statsChanged = new int[] {0, 0, 0, 0};                    // COU - UND - ABN - STAMINA
+        if (isTriggered("3A")) {
+            return statsChanged;
+        }
+        String[] event = eventDial.getFirstDeath();
+        for (String s : event) {
+            next(); say(s);
+        }
+        int firstChoice = takeInput(1);
+        if (firstChoice==0)	{
+            String[] event_p0 = eventDial.getFirstDeath_p0();
+            for (String s : event_p0) {
+                next(); say(s);
+            }
+        }
+        if (firstChoice==1)	{
+            String[] event_p1 = eventDial.getFirstDeath_p1();
+            for (String s : event_p1) {
+                next(); say(s);
+            }
+        }
+        int choice = takeInput(1);
+        for (ChoiceAction ca : eventDial.getActionFirstDeath().get(choice)) {
+            say(ca.getSayString()); next();
+            statsChanged = ca.statsFirstDeath(choice);
+        }
+        eventTrigger.add("3A");
+        return statsChanged;
+    }
 
     public void next() {
         input.nextLine();

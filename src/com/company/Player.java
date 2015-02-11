@@ -5,7 +5,7 @@ import java.util.*;
 public class Player {
 
     private Random rand = new Random();
-    private Scanner input = new Scanner(System.in);
+    public static Scanner input = new Scanner(System.in);
     private Events events = new Events();                       // Initiate events
     private Dialogue dialogue = new Dialogue();                 // Initiate dialogues
     private Map map = new Map();                                // Initiate map
@@ -20,6 +20,7 @@ public class Player {
     private int playerPos = 0;
     private int playerPosTemp = 0;
     private int staminaPerMove = 8 + rand.nextInt(12);          // stamina cost when moving around the map
+    private int[] statsChanged = new int[] {0, 0, 0, 0};
 
     private int dayCount = 1;                                   // DAY COUNT!!!!
 
@@ -36,11 +37,10 @@ public class Player {
 
         GAME:                                                   // main loop
         while (gameRun) {
-            while (dayCount < 22 && playerStamina > 0) {
+            while (dayCount < 22 && playerStamina > 20) {
                 switch (dayCount) {                             // this switch is for night events
                     case 1:
-                        int[] statsChanged = events.getEventFirstNight(events.getEventList());
-                        setAllStats(statsChanged);
+                        events.getEventFirstNight(this);
                         break;
                 }
                 say("\t \t \t \t \t \t \t \t \t \t [DAY : " + dayCount + "]");
@@ -51,92 +51,89 @@ public class Player {
                 input.nextLine();                               // print all player's info
                 actions();                                      // all actions available
             }
-            say("GAME OVER!");
-            System.exit(0);
+            rest();
         }
     }
 
     public void actions() {
-        int choice = 0;
-        while (choice > 6 || choice < 1) {
+        int choice = -1;
+        while (choice > 6 || choice < 0) {
             try {
                 say(dialogue.getGeneralOpts());
                 choice = input.nextInt();
             }
             catch (InputMismatchException e) {
-                events.next();
+                Events.next();
             }
             switch (choice) {
                 case 1:                                                     // Go to places
+                    events.getEventFirstSeeNumbers(this);                   // event 1A
                     move();
-                    events.next();
+                    Events.next();
                     break;
                 case 2:                                                     // Check area
                     explore();
-                    events.next();
+                    Events.next();
                     //
                     break;
                 case 3:                                                     // Recover Stamina (if have food)
                     eat();
-                    events.next();
+                    Events.next();
                     break;
                 case 4:                                                     // Study
                     study();
-                    events.next();
+                    Events.next();
                     break;
                 case 5:                                                      // Get inventory
-                    printInventory();
-                    events.next();
+                    showInventory();
+                    Events.next();
                     break;
                 case 6:                                                      // Rest
                     rest();
+                    break;
+                case 0:
+                    dayCount = 5;
+                    events.setEventTrigger("JN");
+                    events.setEventTrigger("TC");
                     break;
             }
         }
     }
     public void move() {
-        say(dialogue.goSomewhere(playerPos, events.getEventList()));       // *initially from home... (will fix)
-        map.move(playerPos, events.getEventList());
+        if (playerPos == 1 && dayCount == 1 && events.isTriggered("TC")) {
+            events.getEventAfterClass1st(this, inventory);
+        }
+        say(dialogue.goSomewhere(playerPos, events.getEventList()));
+        playerPosTemp = map.move(playerPos, events.getEventList());
         if (playerPosTemp != playerPos) {
             setPlayerStamina(staminaPerMove);                   // check if go or stay, then cost stamina
             playerPos = playerPosTemp;
         }
+        loadEventsAfterMoved();
+    }
+
+    public void loadEventsAfterMoved() {
+        if (playerPos == 1 && !events.isTriggered("TC")) {
+            events.setEventTrigger("TC");
+            setPlayerUnd(2);
+            say(dialogue.getAtSchool());
+            say("\t...\n");
+        }
+        if (playerPos == 1 && dayCount == 2) {
+            events.getEventGetBullied(this, playerUnd);
+            events.getEventMetJanitor(this);
+        }
+        if (playerPos == 4 && dayCount == 5) {
+            events.getEventFirstInJanitor(inventory, this);
+        }
     }
 
     public void explore() {
-        say("Items in this area: ");
-        ArrayList<Item> itemList = map.getPlace(playerPos).getItemList();
-        if (itemList.size() < 1) {
-            say("EMPTY AREA!");
-        } else {
-            for (int i = 0; i < itemList.size(); i++) {
-                say("(" + i + ") " + itemList.get(i).getItemName() + "\t| " + itemList.get(i).getItemDescription());
-            }
-            say(dialogue.getExploreItems());
-            int take = -1;
-            while (take >= itemList.size() || take < 0) {
-                try {
-                    take = input.nextInt();
-                    say("[Only choose the item numbers available]");
-                } catch (InputMismatchException e) {
-                    say("[Only choose the item numbers available]");
-                    input.nextLine();
-                }
-            }
-            ArrayList toRemove = new ArrayList();
-            for (Item item : itemList) {
-                if (item == itemList.get(take)) {
-                    if (item.isFood() || !inventory.hasItem(item)) {
-                        say(item.getItemName() + " taken.");
-                        toRemove.add(item);
-                        inventory.addItem(item);
-                    } else {
-                        say("Should not get too many of this.");
-                    }
-                }
-            }
-            itemList.removeAll(toRemove);
+        ArrayList<Item> itemList = map.showItems(playerPos);
+        if (itemList.size() > 0) {
+            takeItems(itemList);
         }
+        return;
     }
 
     public void eat() {
@@ -157,7 +154,7 @@ public class Player {
 
     public void study() {
         if (dayCount % 7 != 0) {
-            if (!events.isTriggered("1B")) {
+            if (!events.isTriggered("TC")) {
                 say("School is waiting right now! No time for studying!");
             } else {
                 if (rand.nextInt(2) == 1) {
@@ -166,24 +163,42 @@ public class Player {
                     say("You sit down and study hard.\n\t# Understanding went up by 2 #");
                 }
                 setPlayerStamina((playerStamina / 2));
-                setPlayerInt(2);
+                setPlayerUnd(2);
             }
         } else {
             say("DAY OFF! NO STUDY!");
         }
     }
 
-    public void printInventory() {
+    public void showInventory() {
+        inventory.delInvalidItem();
         inventory.printInventory();
+        Item keyItem = inventory.searchKeyItem();
+        if (keyItem != null) {
+            say("\n" + dialogue.getCheckClue() + keyItem.getItemName() + " ?\n\t(0) Yes\n\t(1) No");
+            int i = events.takeInput(1);
+            switch (i) {
+                    case 0:
+                        keyItem.puzzle(events, this, inventory);
+                        break;
+                    case 1:
+                        break;
+            }
+        }
     }
 
     public void rest() {
+        if (!events.isTriggered("TC")) {
+            say("You are not a sloth, right?!");
+            Events.next();
+            return;
+        }
         playerPos = 0;
         setPlayerStamina(-1);
+        events.clearEventTrigger("TC");
         say(dialogue.getEndDay());
         dayCount++;
-        events.clearEventTrigger("1B");
-        events.next();
+        Events.next();
     }
 
     public void setPlayerStamina(int stamina) {
@@ -194,12 +209,39 @@ public class Player {
         }
     }
 
+    public void takeItems(ArrayList<Item> itemList) {
+        say(dialogue.getExploreItems());
+        int take = -1;
+        while (take >= itemList.size() || take < 0) {
+            try {
+                take = input.nextInt();
+                say("[Only choose the item numbers available]");
+            } catch (InputMismatchException e) {
+                say("[No item taken]");
+                return;
+            }
+        }
+        ArrayList toRemove = new ArrayList();
+        for (Item item : itemList) {
+            if (item == itemList.get(take)) {
+                if (item.isFood() || !inventory.hasItem(item)) {
+                    say(item.getItemName() + " taken.");
+                    toRemove.add(item);
+                    inventory.addItem(item);
+                } else {
+                    say("Should not get too many of this.");
+                }
+            }
+        }
+        itemList.removeAll(toRemove);
+    }
+
     public void setPlayerCrg(int courage) {
         this.playerCrg += courage;
     }
 
-    public void setPlayerInt(int intel) {
-        this.playerUnd += intel;
+    public void setPlayerUnd(int und) {
+        this.playerUnd += und;
     }
 
     public void setPlayerAbn(int abn) {
@@ -210,7 +252,7 @@ public class Player {
         this.playerCrg += statsChanged[0];
         this.playerUnd += statsChanged[1];
         this.playerAbn += statsChanged[2];
-        this.playerStamina += statsChanged[3];
+        setPlayerStamina(statsChanged[3]);
     }
 
     public void printAllStats() {                                           // keep track of stats, will be removed

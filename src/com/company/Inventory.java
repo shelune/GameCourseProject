@@ -5,10 +5,6 @@ import java.util.ArrayList;
 public class Inventory {
     private ArrayList<Item> inventory = new ArrayList <Item>();
 
-    public Inventory() {
-
-    }
-
     public void addItem(Item item) {
         String itemType = item.getItemType();
         if (itemType.equals("Food")) {
@@ -44,6 +40,14 @@ public class Inventory {
         return inventory.indexOf(item);
     }
 
+    public void delInvalidItem() {
+        for (Item i : inventory) {
+            if (i.getItemCount() == 0) {
+                inventory.remove(i);
+            }
+        }
+    }
+
     public int searchFood() {
         for (Item item : inventory) {
             if (item.isFood()) {
@@ -57,18 +61,32 @@ public class Inventory {
         return inventory.contains(item);
     }
 
-    public Item getItem(int index) {
-        return inventory.get(index);
+    public boolean hasItem(String name) {
+        for (Item i : inventory) {
+            if (i.getItemName().equalsIgnoreCase(name)) {
+
+            }
+        }
+        return false;
     }
 
-    public ArrayList<Item> getInventory() {
-        return inventory;
+    public Item searchKeyItem() {
+        for (Item i : inventory) {
+           if (i.isKeyItem()) {
+               return i;
+           }
+        }
+        return null;
+    }
+
+    public Item getItem(int index) {
+        return inventory.get(index);
     }
 
     public void printInventory() {
         System.out.println("Inventory: ");
         for (Item item : inventory) {
-            System.out.print(item.getItemName() + "\tx" + item.getItemCount() + " | ");
+            System.out.println(item.getItemName() + "\tx" + item.getItemCount() + " | " + item.getItemDescription());
         }
     }
 }

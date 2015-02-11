@@ -65,15 +65,29 @@ public class Map {
         }
     }
 
+    public ArrayList<Item> showItems(int pos) {
+        say("Items in this area: ");
+        ArrayList<com.company.Item> itemList = getPlace(pos).getItemList();
+        if (itemList.size() < 1) {
+            say("EMPTY AREA!");
+        } else {
+            for (int i = 0; i < itemList.size(); i++) {
+                say("(" + i + ") " + itemList.get(i).getItemName() + "\t| " + itemList.get(i).getItemDescription());
+            }
+        }
+        return itemList;
+    }
+
     public Place addHome() {
         Place home = new Place (0, "Home", "This is your own home", "HM");
-        home.loadHomeItems();
+        home.setItems();
         Collections.addAll(home.getAccessTo(), "Home", "ClassA", "Mountain", "Mr.Jani's", "Mr.Cherr's", "Police station");
         return home;
     }
 
     public Place addClassA() {
         Place classA = new Place(1, "ClassA", "This is your own class", "CA");
+        classA.setItems();
         Collections.addAll(classA.getAccessTo(), "ClassA", "Home", "ClassB");
         return classA;
     }
@@ -95,5 +109,9 @@ public class Map {
         Place janitor = new Place(4, "Mr.Jani's", "This is your school janitor's house. It feels creepy somehow", "JN");
         Collections.addAll(janitor.getAccessTo(), "Home", "ClassB");
         return janitor;
+    }
+
+    public static void say(String text) {
+        System.out.println(text);
     }
 }

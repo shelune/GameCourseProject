@@ -1,18 +1,3 @@
-Skip to content
- This repository
-Explore
-Gist
-Blog
-Help
-akzuki akzuki
- 
-1  Unwatch 
-  Star 0
- Fork 0akzuki/GameProject
- branch: master  GameProject/src/gameproject/ChoiceAction.java
-akzukiakzuki 7 hours ago con cu
-1 contributor
-180 lines (166 sloc)  4.256 kb RawBlameHistory   
 package com.company;
 /**
  * Created by ASUS on 05-Feb-15.

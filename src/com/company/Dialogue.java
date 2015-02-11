@@ -1,9 +1,6 @@
 package com.company;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class Dialogue {
 
@@ -82,10 +79,24 @@ public class Dialogue {
     private String firstSeeNumChoice1_b2 = "\t# Abnormality went down by 1 #\n\t# Stamina went down by A LOT #";
 
     private String[] firstSeeNumbers_p2 = {
-            "With no further delay, you and Rekt rush to school as it is a bit late already\nBut it is like your nightmare never ends!... There are the numbers '21' floating on EVERYONE on the street!\n",
+            "With no further delay, you and Rekt rush to school as it is a bit late already\nBut it is like your nightmare never ends!... There are the numbers '21' floating on EVERYONE on the street!",
             "WHAT THE HECK IS GOING ON?!!",
             "You cannot do anything but gasp before this strange scene, but another flash kicks in, and those numbers just vanish again!",
             "You talk to yourself : 'Maybe I am still not that awake yet...'. So you decide to: \n \t(0) Calm yourself down and keep on \t (1) Ask Rekt to slap you hard in the face\n", //14 . OPTIONS
+    };
+
+    /////////////////////////////////// Main Event - After Class 1st day
+
+    private String[] afterClass1st = {
+            "It has been such a hard day for you. You are still messed up by the sight in the morning",
+            "What was the number?!",
+            "Is that a freaking days-to-live number as in novels?",
+            "‘Gosh, I’m so tired. I’m coming home for a rest’, you mumble to yourself.",
+            "'WAIT DUDE!! You forgot my Finnish homework!'",
+            "'You promised to do that for me, remember?!', Rekt shouts so loud from behind.",
+            "'When did I promise that stupid thing?!', you let out a heavy sigh.",
+            "'Homework 1' Obtained!",
+            "Alright now it's really time to head home!",
     };
 
     /////////////////////////////////// Main Event - Get Bullied
@@ -292,6 +303,26 @@ public class Dialogue {
         return this.checkClue;
     }
 
+    public String getAtSchool() {
+        String result = "";
+        Random rand = new Random();
+        int subject = rand.nextInt(3);
+        switch (subject) {
+            case 0:
+                result = "Today you have Maths. Gosh this stuff blows your brain.\n\t# Understanding went up by 2 #";
+                break;
+            case 1:
+                result = "Today you have Finnish. What the heck do they think when putting Finnish in your schedule?!\n\t# Understanding went up by 2 #";
+                break;
+            case 2:
+                result = "Today you have Biology. So hard, but at least you are familiar with it from before.\n\t# Understanding went up by 2 #";
+                break;
+            case 3:
+                result = "Today is for History! Gosh, they always say that you should let it past right?! Right?!\n\t# Understanding went up by 2 #";
+        }
+        return result;
+    }
+
     public String getEndDay() {
         return this.endDay;
     }
@@ -302,6 +333,10 @@ public class Dialogue {
 
     public String[] getFirstNight() {
         return this.firstNight;
+    }
+
+    public String[] getAfterClass1st() {
+        return this.afterClass1st;
     }
     
     public String[] getFirstDeath()	{

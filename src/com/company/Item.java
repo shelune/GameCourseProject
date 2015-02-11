@@ -2,7 +2,6 @@ package com.company;
 
 
 import java.util.InputMismatchException;
-import java.util.Random;
 import java.util.Scanner;
 
 public class Item {
@@ -14,8 +13,6 @@ public class Item {
     private String clue;
     private int staminaRec;                 // MUST BE NEGATIVE
     private int itemCount;                  // how many item you have
-
-    private final static Random rand = new Random();
 
     public Item(String name, String description, int stamina, int count) {
         this.itemType = "Food";
@@ -105,11 +102,30 @@ public class Item {
                         break;
                     default:
                         Player.say("It seems not to be the case here... Although you want to think of something else, it is getting really late and you need some other time to figure this out.");
-                        player.setPlayerStamina(60);
+                        player.setPlayerStamina(50);
+                        break;
+                }
+            }
+            if (itemName.equalsIgnoreCase("finnish homework")) {
+                Player.say("What are the correct meanings of the following words?");
+                Player.say("WORDS : Tuuli | Tuli | Tulli\n\t(0) Wind | Fire | Customs\n\t(1) Fire | Wind | Customs\n\t(2) Customs | Fire | Wind\n\t(3) Fire | Customs | Wind");
+                int i = takeInput(3);
+                switch (i) {
+                    case 0:
+                        solved();
+                        Player.say("Seems to be the right answer! You can give Rekt this with certainty!");
+                        this.consume();
+                        break;
+                    default:
+                        Player.say("You are not sure about this though... Probably wanna give him the answer later.");
+                        player.setPlayerStamina(30);
                         break;
                 }
             }
         }
+    }
+
+    public void puzzle(Events events, Player player, Inventory inventory) {
     }
 
     public void solved() {

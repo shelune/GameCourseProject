@@ -40,6 +40,14 @@ public class Inventory {
         return inventory.indexOf(item);
     }
 
+    public void delInvalidItem() {
+        for (Item i : inventory) {
+            if (i.getItemCount() == 0) {
+                inventory.remove(i);
+            }
+        }
+    }
+
     public int searchFood() {
         for (Item item : inventory) {
             if (item.isFood()) {
@@ -51,6 +59,15 @@ public class Inventory {
 
     public boolean hasItem(Item item) {
         return inventory.contains(item);
+    }
+
+    public boolean hasItem(String name) {
+        for (Item i : inventory) {
+            if (i.getItemName().equalsIgnoreCase(name)) {
+
+            }
+        }
+        return false;
     }
 
     public Item searchKeyItem() {
@@ -69,7 +86,7 @@ public class Inventory {
     public void printInventory() {
         System.out.println("Inventory: ");
         for (Item item : inventory) {
-            System.out.print(item.getItemName() + "\tx" + item.getItemCount() + " | ");
+            System.out.println(item.getItemName() + "\tx" + item.getItemCount() + " | " + item.getItemDescription());
         }
     }
 }

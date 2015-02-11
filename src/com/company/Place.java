@@ -48,25 +48,22 @@ public class Place {
         ArrayList<Item> temp = new ArrayList<Item>();
         switch (placeNumber) {
             case 0:
-                Item apple = new Item("Apple", "Recovers 10 Stamina", 10, 1);
+                // Item apple = new Item("Apple", "Recovers 10 Stamina", 10, 1);
                 Item phone = new Item("Phone", "Used to call someone");
                 Item magnifier = new Item("Magnifier", "Used to see tiny things");
-                Collections.addAll(temp, apple, phone, magnifier);
+                Collections.addAll(temp, phone, magnifier);
                 break;
             case 1:
                 Item calculator = new Item("Calculator", "A mechanical calculator for complex problems");
                 Collections.addAll(temp, calculator);
                 break;
+            case 4:
+                Item statue = new Item("Status", "A small statue with a small crack on it", "KEY INSIDE");
+                Collections.addAll(temp, statue);
+                break;
 
         }
         itemList = temp;
-    }
-
-    public ArrayList<Item> loadJanitorItems() {
-        ArrayList<Item> temp = new ArrayList<Item>();
-        Item note = new Item("Small Note", "An old note with hardly readable letters.", dialogue.getJanitorNote());
-        Collections.addAll(temp, note);
-        return temp;
     }
 
     @Override

@@ -20,6 +20,7 @@ public class Player {
     private int playerPos = 0;
     private int playerPosTemp = 0;
     private int staminaPerMove = 8 + rand.nextInt(12);          // stamina cost when moving around the map
+    private int[] statsChanged = new int[] {0, 0, 0, 0};
 
     private int dayCount = 1;                                   // DAY COUNT!!!!
 
@@ -39,12 +40,8 @@ public class Player {
             while (dayCount < 22 && playerStamina > 20) {
                 switch (dayCount) {                             // this switch is for night events
                     case 1:
-                        int[] statsChanged = events.getEventFirstNight(events.getEventList());
-                        setAllStats(statsChanged);
+                        events.getEventFirstNight(this);
                         break;
-                    case 2:
-                        statsChanged = events.getEventGetBullied(events.getEventList(), playerUnd);
-                        setAllStats(statsChanged);
                 }
                 say("\t \t \t \t \t \t \t \t \t \t [DAY : " + dayCount + "]");
                 System.out.println(events.getEventList());
@@ -59,8 +56,8 @@ public class Player {
     }
 
     public void actions() {
-        int choice = 0;
-        while (choice > 6 || choice < 1) {
+        int choice = -1;
+        while (choice > 6 || choice < 0) {
             try {
                 say(dialogue.getGeneralOpts());
                 choice = input.nextInt();
@@ -70,8 +67,7 @@ public class Player {
             }
             switch (choice) {
                 case 1:                                                     // Go to places
-                    int[] statsChanged = events.getEventFirstSeeNumbers(events.getEventList());
-                    setAllStats(statsChanged);
+                    events.getEventFirstSeeNumbers(this);                   // event 1A
                     move();
                     Events.next();
                     break;
@@ -95,20 +91,39 @@ public class Player {
                 case 6:                                                      // Rest
                     rest();
                     break;
+                case 0:
+                    dayCount = 5;
+                    events.setEventTrigger("JN");
+                    events.setEventTrigger("TC");
+                    break;
             }
         }
     }
     public void move() {
-        say(dialogue.goSomewhere(playerPos, events.getEventList()));       // *initially from home... (will fix)
+        if (playerPos == 1 && dayCount == 1 && events.isTriggered("TC")) {
+            events.getEventAfterClass1st(this, inventory);
+        }
+        say(dialogue.goSomewhere(playerPos, events.getEventList()));
         playerPosTemp = map.move(playerPos, events.getEventList());
         if (playerPosTemp != playerPos) {
             setPlayerStamina(staminaPerMove);                   // check if go or stay, then cost stamina
             playerPos = playerPosTemp;
         }
+        loadEventsAfterMoved();
+    }
+
+    public void loadEventsAfterMoved() {
         if (playerPos == 1 && !events.isTriggered("TC")) {
             events.setEventTrigger("TC");
+            setPlayerUnd(2);
+            say(dialogue.getAtSchool());
+            say("\t...\n");
         }
-        if (playerPos == 1 && dayCount == 3) {
+        if (playerPos == 1 && dayCount == 2) {
+            events.getEventGetBullied(this, playerUnd);
+            events.getEventMetJanitor(this);
+        }
+        if (playerPos == 4 && dayCount == 5) {
             events.getEventFirstInJanitor(inventory, this);
         }
     }
@@ -139,7 +154,7 @@ public class Player {
 
     public void study() {
         if (dayCount % 7 != 0) {
-            if (!events.isTriggered("1B")) {
+            if (!events.isTriggered("TC")) {
                 say("School is waiting right now! No time for studying!");
             } else {
                 if (rand.nextInt(2) == 1) {
@@ -156,6 +171,7 @@ public class Player {
     }
 
     public void showInventory() {
+        inventory.delInvalidItem();
         inventory.printInventory();
         Item keyItem = inventory.searchKeyItem();
         if (keyItem != null) {
@@ -163,7 +179,7 @@ public class Player {
             int i = events.takeInput(1);
             switch (i) {
                     case 0:
-                        keyItem.puzzle(events, this);
+                        keyItem.puzzle(events, this, inventory);
                         break;
                     case 1:
                         break;
@@ -174,6 +190,7 @@ public class Player {
     public void rest() {
         if (!events.isTriggered("TC")) {
             say("You are not a sloth, right?!");
+            Events.next();
             return;
         }
         playerPos = 0;

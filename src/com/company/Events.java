@@ -9,7 +9,7 @@ public class Events {
     private ArrayList<String> eventTrigger = new ArrayList <String>();
     private Dialogue eventDial = new Dialogue();                    // get the dialogues for events
 
-    public int[] getEventFirstNight(ArrayList<String> eventTrigger) {
+    public int[] getEventFirstNight(Player player) {
         int[] statsChanged = new int[] {0, 0, 0, 0};                    // COU - UND - ABN - STAMINA
         if (isTriggered("0A")) {
             return statsChanged;
@@ -20,12 +20,13 @@ public class Events {
             Player.say(ca.getSayString()); next();
             statsChanged = ca.statsFirstNight(choice);
         }
+        player.setAllStats(statsChanged);
         eventTrigger.add("0A");
         Player.say(eventDial.getFirstNightEnd());
         return statsChanged;
     }
     
-    public int[] getEventFirstSeeNumbers(ArrayList<String> eventTrigger) {
+    public int[] getEventFirstSeeNumbers(Player player) {
         int[] statsChanged = new int[] {0, 0, 0, 0};                    // COU - UND - ABN - STAMINA
         if (eventTrigger.contains("1A")) {
             return statsChanged;
@@ -38,20 +39,33 @@ public class Events {
             next();
             statsChanged = ca.statsFirstSeeNum_p1(choice);
         }
+        player.setAllStats(statsChanged);
         printEvent(eventDial.getFirstSeeNumbers_p2());
         choice = takeInput(1);
         for (ChoiceAction ca : eventDial.getActionFirstSeeNum_p2().get(choice)) {
             Player. say(ca.getSayString());
             next();
-            for (int j = 0; j < statsChanged.length; j++) {
-                statsChanged[j] += ca.statsFirstSeeNum_p2(choice)[j];
-            }
+            statsChanged = ca.statsFirstSeeNum_p2(choice);
         }
+        player.setAllStats(statsChanged);
+        player.setAllStats(statsChanged);
         eventTrigger.add("1A");
         return statsChanged;
     }
 
-    public int[] getEventGetBullied(ArrayList<String> eventTrigger, int und) {
+    public void getEventAfterClass1st(Player player, Inventory inventory) {
+        int[] statsChanged = new int[] {0, 0, 0, 0};
+        if (isTriggered("1B")) {
+            return;
+        }
+        player.setPlayerStamina(25);
+        printEvent(eventDial.getAfterClass1st());
+        Item homework1 = new Item("Finnish Homework", "Rekt's weekend homework", "ASSIGNMENT");
+        inventory.addItem(homework1);
+        eventTrigger.add("1B");
+    }
+
+    public int[] getEventGetBullied(Player player, int und) {
         int[] statsChanged = new int[] {0, 0, 0, 0};
         if (isTriggered("2A")) {
             return statsChanged;
@@ -62,11 +76,12 @@ public class Events {
             Player.say(ca.getSayString()); next();
             statsChanged = ca.statsGetBullied(choice, und);
         }
+        player.setAllStats(statsChanged);
         eventTrigger.add("2A");
         return statsChanged;
     }
 
-    public int[] getEventMetJanitor(ArrayList<String> eventTrigger) {
+    public int[] getEventMetJanitor(Player player) {
         int[] statsChanged = new int[] {0, 0, 0, 0};
         if (isTriggered("2B")) {
             return statsChanged;
@@ -77,11 +92,12 @@ public class Events {
             Player.say(ca.getSayString()); next();
             statsChanged = ca.statsMetJanitor(choice);
         }
+        player.setAllStats(statsChanged);
         eventTrigger.add("2B");
         return statsChanged;
     }
 
-    public int[] getEventFirstDeath(ArrayList<String> eventTrigger) {
+    public int[] getEventFirstDeath(Player player) {
         int[] statsChanged = new int[] {0, 0, 0, 0};                    // COU - UND - ABN - STAMINA
         if (isTriggered("3A")) {
             return statsChanged;
@@ -100,6 +116,7 @@ public class Events {
             Player.say(ca.getSayString()); next();
             statsChanged = ca.statsFirstDeath(choice);
         }
+        player.setAllStats(statsChanged);
         eventTrigger.add("3A");
         return statsChanged;
     }
@@ -117,7 +134,7 @@ public class Events {
         return statsChanged;
     }
 
-    public int[] getEventREvent1(ArrayList<String> eventTrigger) {
+    public int[] getEventREvent1(Player player) {
         int[] statsChanged = new int[] {0, 0, 0, 0};                    // COU - UND - ABN - STAMINA
         if (isTriggered("R1")) {
             return statsChanged;
@@ -128,11 +145,12 @@ public class Events {
             Player.say(ca.getSayString()); next();
             statsChanged = ca.statsEvent1(choice);
         }
+        player.setAllStats(statsChanged);
         eventTrigger.add("R1");
         return statsChanged;
     }
 
-    public int[] getEventREvent2(ArrayList<String> eventTrigger) {
+    public int[] getEventREvent2(Player player) {
         int[] statsChanged = new int[] {0, 0, 0, 0};                    // COU - UND - ABN - STAMINA
         if (isTriggered("R2")) {
             return statsChanged;
@@ -143,11 +161,12 @@ public class Events {
             Player.say(ca.getSayString()); next();
             statsChanged = ca.statsEvent2(choice);
         }
+        player.setAllStats(statsChanged);
         eventTrigger.add("R2");
         return statsChanged;
     }
 
-    public int[] getEventREvent3(ArrayList<String> eventTrigger, Inventory inventory) {
+    public int[] getEventREvent3(Player player, Inventory inventory) {
         int[] statsChanged = new int[] {0, 0, 0, 0};                    // COU - UND - ABN - STAMINA
         if (isTriggered("R3")) {
             return statsChanged;
@@ -158,6 +177,7 @@ public class Events {
             Player.say(ca.getSayString()); next();
             statsChanged = ca.statsEvent3(choice, inventory);
         }
+        player.setAllStats(statsChanged);
         eventTrigger.add("R3");
         return statsChanged;
     }
@@ -187,9 +207,11 @@ public class Events {
     }
 
     public void printEvent(String[] event) {
-        for (String s : event) {
-            Player.say(s); next();
+        for (int i = 0; i < event.length-1; i++) {
+            Player.say(event[i]); next();
         }
+        Player.say(event[event.length-1]);
+
     }
 
     public int takeInput(int upperLim) {

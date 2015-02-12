@@ -3,17 +3,6 @@ package com.company;
 import java.util.*;
 
 public class Dialogue {
-
-    private HashMap<Integer, List<ChoiceAction>> actionFirstNight = new HashMap<Integer, List<ChoiceAction>>();
-    private HashMap<Integer, List<ChoiceAction>> actionFirstDeath = new HashMap<Integer, List<ChoiceAction>>();
-    private HashMap<Integer, List<ChoiceAction>> actionFirstSeeNum_p1 = new HashMap<Integer, List<ChoiceAction>>();
-    private HashMap<Integer, List<ChoiceAction>> actionFirstSeeNum_p2 = new HashMap<Integer, List<ChoiceAction>>();
-    private HashMap<Integer, List<ChoiceAction>> actionREvent1 = new HashMap<Integer, List<ChoiceAction>>();
-    private HashMap<Integer, List<ChoiceAction>> actionREvent2 = new HashMap<Integer, List<ChoiceAction>>();
-    private HashMap<Integer, List<ChoiceAction>> actionREvent3 = new HashMap<Integer, List<ChoiceAction>>();
-    private HashMap<Integer, List<ChoiceAction>> actionGetBullied = new HashMap<Integer, List<ChoiceAction>>();
-    private HashMap<Integer, List<ChoiceAction>> actionMetJanitor = new HashMap<Integer, List<ChoiceAction>>();
-    private HashMap<Integer, List<ChoiceAction>> actionSeeJanitorNumber = new HashMap<Integer, List<ChoiceAction>>();
     /////////////////////////////////// Option Commands + Location Commands
 
     private String generalOpts = "Please choose one action from below. \n \t (1). Move \n \t (2). Explore \n \t (3). Eat food \n \t (4). Study \n \t (5). Check inventory \n \t (6). Rest";
@@ -36,12 +25,6 @@ public class Dialogue {
     private String janitorNote = "I enjoyed the XXXXX days when we were worXXg together in that XXX.\nIt was just a magical substance, and XXXX.\nIt tXXd the daily XXX that we cannot live without into XXXhing so XXX.\nXXX promised that XXX the fate of us but the project got XXXXX due to XXX\n\t\t\t\t\t\t\t56.82.13 | Z \n\t\t\t\t\t\t\t165.168.11 | 3";
 
     /////////////////////////////////// Main Event - First Night
-    private String firstNightChoice0_a = "...\n\tYou slam yourself into the figure, but it just disperse ...\n\tAfter a few times, you find it nowhere to be seen ... It's gone!";
-    private String firstNightChoice0_b = "...\n\tBut your Courage is sure to be needed in this journey!\n\t# Courage went up by 2 #";
-    private String firstNightChoice1_a = "...\n\tYou take some time standing there and look at the figure ...\n\tIt jumps and shakes around you, but no real movement at all ... It is actually wandering away...!";
-    private String firstNightChoice1_b = "\n\tYour Patience and Understanding of situation may be great in this journey\n\t# Understanding went up by 2 #";
-    private String firstNightChoice2_a = "\n\tYou just run away, avoiding any further advancement of the figure...\n\tAfter all, nothing really happened...";
-
     private String[] firstNight = {
         "...!", //0
         ".........!",
@@ -51,6 +34,12 @@ public class Dialogue {
         "Is this a dream? If it is... then why are you feeling such cold ...? And pain, in your head..?",
         "VROOM!... A figure suddenly pops up in the midst of the shade, blacker than even the night itself.",
         "\t @ You decide to...? \n\t(0) Go through it \t (1) Stand there and observe \t (2) Run away", //7
+    };
+        ///////////////// Choice /////////////////
+    private String[] firstNightChoice = {
+    	"...\n\tYou slam yourself into the figure, but it just disperse ...\n\tAfter a few times, you find it nowhere to be seen ... It's gone! \n\tBut your Courage is sure to be needed in this journey!\n\t# Courage went up by 2 #", //Choice 0 
+        "...\n\tYou take some time standing there and look at the figure ...\n\tIt jumps and shakes around you, but no real movement at all ... It is actually wandering away...!\n\tYour Patience and Understanding of situation may be great in this journey\n\t# Understanding went up by 2 #",//Choice 1
+        "...\n\tYou just run away, avoiding any further advancement of the figure...\n\tAfter all, nothing really happened...", // Choice 2
     };
 
     /////////////////////////////////// Main Event - First See Numbers p1
@@ -209,45 +198,7 @@ public class Dialogue {
 
     /////////////////////////////////// Constructor
     public Dialogue() {
-        actionFirstNight.put(0, Arrays.asList(new ChoiceAction[]{new ChoiceAction(firstNightChoice0_a), new ChoiceAction(firstNightChoice0_b)}));
-        actionFirstNight.put(1, Arrays.asList(new ChoiceAction[]{new ChoiceAction(firstNightChoice1_a), new ChoiceAction(firstNightChoice1_b)}));
-        actionFirstNight.put(2, Arrays.asList(new ChoiceAction[]{new ChoiceAction(firstNightChoice2_a)}));
-
-        actionFirstDeath.put(0, Arrays.asList(new ChoiceAction[]{new ChoiceAction(firstDeathChoice0)}));
-        actionFirstDeath.put(1, Arrays.asList(new ChoiceAction[]{new ChoiceAction(firstDeathChoice1)}));
-
-        actionFirstSeeNum_p1.put(0, Arrays.asList(new ChoiceAction[]{new ChoiceAction(firstSeeNumChoice0_a1), new ChoiceAction(firstSeeNumChoice0_b1)}));
-        actionFirstSeeNum_p1.put(1, Arrays.asList(new ChoiceAction[]{new ChoiceAction(firstSeeNumChoice1_a1), new ChoiceAction(firstSeeNumChoice1_b1)}));
-
-        actionFirstSeeNum_p2.put(0, Arrays.asList(new ChoiceAction[]{new ChoiceAction(firstSeeNumChoice0_a2), new ChoiceAction(firstSeeNumChoice0_b2)}));
-        actionFirstSeeNum_p2.put(1, Arrays.asList(new ChoiceAction[]{new ChoiceAction(firstSeeNumChoice1_a2), new ChoiceAction(firstSeeNumChoice1_b2)}));
-
-        actionREvent1.put(0, Arrays.asList(new ChoiceAction[]{new ChoiceAction(rEvent1Choice0)}));
-        actionREvent1.put(1, Arrays.asList(new ChoiceAction[]{new ChoiceAction(rEvent1Choice1)}));
-        actionREvent1.put(2, Arrays.asList(new ChoiceAction[]{new ChoiceAction(rEvent1Choice2)}));
-        actionREvent1.put(3, Arrays.asList(new ChoiceAction[]{new ChoiceAction(rEvent1Choice3)}));
-
-        actionREvent2.put(0, Arrays.asList(new ChoiceAction[]{new ChoiceAction(rEvent2Choice0)}));
-        actionREvent2.put(1, Arrays.asList(new ChoiceAction[]{new ChoiceAction(rEvent2Choice1)}));
-        actionREvent2.put(2, Arrays.asList(new ChoiceAction[]{new ChoiceAction(rEvent2Choice2)}));
-        actionREvent2.put(3, Arrays.asList(new ChoiceAction[]{new ChoiceAction(rEvent2Choice3)}));
-
-        actionREvent3.put(0, Arrays.asList(new ChoiceAction[]{new ChoiceAction(rEvent3Choice0)}));
-        actionREvent3.put(1, Arrays.asList(new ChoiceAction[]{new ChoiceAction(rEvent3Choice1)}));
-        actionREvent3.put(2, Arrays.asList(new ChoiceAction[]{new ChoiceAction(rEvent3Choice2)}));
-
-        actionGetBullied.put(0, Arrays.asList(new ChoiceAction[]{new ChoiceAction(getBulliedChoice0)}));
-        actionGetBullied.put(1, Arrays.asList(new ChoiceAction[]{new ChoiceAction(getBulliedChoice1)}));
-        actionGetBullied.put(2, Arrays.asList(new ChoiceAction[]{new ChoiceAction(getBulliedChoice2)}));
-        actionGetBullied.put(3, Arrays.asList(new ChoiceAction[]{new ChoiceAction(getBulliedChoice3a)}));
-
-        actionMetJanitor.put(0, Arrays.asList(new ChoiceAction[]{new ChoiceAction(metJanitorChoice0)}));
-        actionMetJanitor.put(1, Arrays.asList(new ChoiceAction[]{new ChoiceAction(metJanitorChoice1)}));
-        actionMetJanitor.put(2, Arrays.asList(new ChoiceAction[]{new ChoiceAction(metJanitorChoice2)}));
-
-        actionSeeJanitorNumber.put(0, Arrays.asList(new ChoiceAction[]{new ChoiceAction(seeJanitorNumberChoice0)}));
-        actionSeeJanitorNumber.put(1, Arrays.asList(new ChoiceAction[]{new ChoiceAction(seeJanitorNumberChoice1)}));
-        actionSeeJanitorNumber.put(2, Arrays.asList(new ChoiceAction[]{new ChoiceAction(seeJanitorNumberChoice2)}));
+    	
     }
 
     /////////////////////////////////// Methods
@@ -394,47 +345,12 @@ public class Dialogue {
         return janitorNote;
     }
 
-    public HashMap<Integer, List<ChoiceAction>> getActionFirstNight() {
-        return actionFirstNight;
+    public String getFirstNightChoice(int choice)	{
+    	return this.firstNightChoice[choice];
     }
-
-    public HashMap<Integer, List<ChoiceAction>> getActionFirstSeeNum_p1() {
-        return actionFirstSeeNum_p1;
-    }
-
-    public HashMap<Integer, List<ChoiceAction>> getActionFirstSeeNum_p2() {
-        return actionFirstSeeNum_p2;
-    }
-
-    public HashMap<Integer, List<ChoiceAction>> getActionGetBullied() {
-        return actionGetBullied;
-    }
-
-    public HashMap<Integer, List<ChoiceAction>> getActionMetJanitor() {
-        return actionMetJanitor;
-    }
-
-    public HashMap<Integer, List<ChoiceAction>> getActionSeeJanitorNumber() {
-        return actionSeeJanitorNumber;
-    }
-
+    
     public String getFirstNightEnd() {
-        return "Eventually, the darkness slowly fades away ... But the creepy feeling keeps on and prolongs throughout the night. It was a very haunting dream...";
+        return "\n \tEventually, the darkness slowly fades away ... But the creepy feeling keeps on and prolongs throughout the night. It was a very haunting dream...";
     }
 
-    public HashMap<Integer, List<ChoiceAction>> getActionREvent1() {
-        return actionREvent1;
-    }
-
-    public HashMap<Integer, List<ChoiceAction>> getActionREvent2() {
-        return actionREvent2;
-    }
-
-    public HashMap<Integer, List<ChoiceAction>> getActionREvent3() {
-        return actionREvent3;
-    }
-
-    public HashMap<Integer, List<ChoiceAction>> getActionFirstDeath() {
-        return actionFirstDeath;
-    }
 }

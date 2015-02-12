@@ -5,7 +5,11 @@ package com.company;
 public class ChoiceAction {
     private String sayString;
     private int[] statsChanged = new int[] {0, 0, 0, 0}; // COU - UND - ABN - STAMINA
-
+    
+    public ChoiceAction()	{
+    	
+    }
+    
     public String getSayString() {
         return sayString;
     }
@@ -177,5 +181,3 @@ public class ChoiceAction {
         this.sayString = sayString;
     }
 }
-Status API Training Shop Blog About
-© 2015 GitHub, Inc. Terms Privacy Security Contact

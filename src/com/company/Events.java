@@ -9,23 +9,18 @@ public class Events {
     public static Scanner input = new Scanner(System.in);
     private ArrayList<String> eventTrigger = new ArrayList<String>();
     private Dialogue eventDial = new Dialogue();                    // get the dialogues for events
-
-    public int[] getEventFirstNight(Player player) {
-        int[] statsChanged = new int[]{0, 0, 0, 0};                    // COU - UND - ABN - STAMINA
+    private ChoiceAction doChoiceAction = new ChoiceAction();
+    
+    public void getEventFirstNight(Player player) {               // COU - UND - ABN - STAMINA
         if (isTriggered("0A")) {
-            return statsChanged;
+            return;
         }
         printEvent(eventDial.getFirstNight());
         int choice = takeInput(2);
-        for (ChoiceAction ca : eventDial.getActionFirstNight().get(choice)) {
-            Player.say(ca.getSayString());
-            next();
-            statsChanged = ca.statsFirstNight(choice);
-        }
-        player.setAllStats(statsChanged);
+        Player.say(eventDial.getFirstNightChoice(choice));
+        player.setAllStats(doChoiceAction.statsFirstNight(choice));
         eventTrigger.add("0A");
         Player.say(eventDial.getFirstNightEnd());
-        return statsChanged;
     }
 
     public int[] getEventFirstSeeNumbers(Player player) {

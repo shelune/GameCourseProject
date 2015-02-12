@@ -37,11 +37,26 @@ public class Player {
 
         GAME:                                                   // main loop
         while (gameRun) {
+
             while (dayCount < 22 && playerStamina > 20) {
                 switch (dayCount) {                             // this switch is for night events
                     case 1:
                         events.getEventFirstNight(this);
                         break;
+                    case 7:
+                        if (!events.isTriggered("MT")) {
+                            say("You are unable to solve the mystery of Janitor's death. 14 days later...");
+                            events.setEventTrigger("GAMEOVER");
+                        }
+                        dayCount = 21;
+                        break;
+                    case 21:
+                        if (events.isTriggered("GAMEOVER")) {
+                            say("Everyone is getting crazy around you. You also feel dizzy and painful... You pass out...");
+                            Events.next();
+                            say("GAME OVER!");
+                            System.exit(0);
+                        }
                 }
                 say("\t \t \t \t \t \t \t \t \t \t [DAY : " + dayCount + "]");
                 System.out.println(events.getEventList());
@@ -120,8 +135,12 @@ public class Player {
             say("\t...\n");
         }
         if (playerPos == 1 && dayCount == 2) {
-            events.getEventGetBullied(this, playerUnd);
+            events.getEventGetBullied(this, playerUnd, inventory);
+            Events.next();
             events.getEventMetJanitor(this);
+        }
+        if (playerPos == 1 && dayCount == 3) {
+            events.getEventFirstDeath(this);
         }
         if (playerPos == 4 && dayCount == 5) {
             events.getEventFirstInJanitor(inventory, this);
@@ -272,8 +291,8 @@ public class Player {
         return player;
     }
 
-    public void setPlayerPos(int destination) {
-        this.playerPos = destination;
+    public int getPlayerUnd() {
+        return this.playerUnd;
     }
 
     public static void say(String text) {

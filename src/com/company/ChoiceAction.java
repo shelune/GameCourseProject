@@ -119,25 +119,31 @@ public class ChoiceAction {
         return statsChanged;
     }
 
-    public int[] statsGetBullied(int choice, int und) {
+    public int[] statsGetBullied(int choice, int und, Inventory inventory) {
         switch (choice)	{
             case 0:
                 statsChanged[0] = -1;
                 statsChanged[2] = 1;
                 break;
             case 1:
-                if (und > 10) {
-                    statsChanged[0] = 2;
-                } else {
-                    statsChanged[3] = -100;
-                }
+                statsChanged[0] = 1;
+
                 break;
             case 2:
-                statsChanged[0] = 1;
+                if (und > 14) {
+                    statsChanged[0] = 2;
+                    Player.say("In the end it's not that bad. They listen to your reasons!");
+                } else {
+                    inventory.empty();
+                    Player.say("Ugh! You cannot talk those things out and get mugged by them...");
+                }
                 break;
             case 3:
-                statsChanged[3] = -101;
+                statsChanged[3] = 30;
                 break;
+            case 4:
+                inventory.delInvalidItem();
+                statsChanged[2] = -2;
         }
         return statsChanged;
     }
@@ -151,6 +157,21 @@ public class ChoiceAction {
                 break;
             case 2:
                 statsChanged[1] = -1;
+                break;
+        }
+        return statsChanged;
+    }
+
+    public int[] statsSeeJanitorNumber(int choice, Inventory inventory) {
+        switch (choice) {
+            case 0:
+                statsChanged[0] = 1;
+                statsChanged[2] = 2;
+                break;
+            case 1:
+                inventory.addItem(new Item("Cake", "Recovers 20 Stamina", 10, 1));
+                break;
+            case 2:
                 break;
         }
         return statsChanged;

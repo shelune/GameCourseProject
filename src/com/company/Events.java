@@ -65,16 +65,21 @@ public class Events {
         eventTrigger.add("1B");
     }
 
-    public int[] getEventGetBullied(Player player, int und) {
+    public int[] getEventGetBullied(Player player, int und, Inventory inventory) {
         int[] statsChanged = new int[] {0, 0, 0, 0};
         if (isTriggered("2A")) {
             return statsChanged;
         }
         printEvent(eventDial.getEventGetBullied());
         int choice = takeInput(3);
+        if (choice == 3 && inventory.hasItem("Jacket") != null) {
+            choice = 4;
+            eventTrigger.add("NINJA");
+            inventory.hasItem("Jacket").consume();
+        }
         for (ChoiceAction ca : eventDial.getActionGetBullied().get(choice)) {
             Player.say(ca.getSayString()); next();
-            statsChanged = ca.statsGetBullied(choice, und);
+            statsChanged = ca.statsGetBullied(choice, und, inventory);
         }
         player.setAllStats(statsChanged);
         eventTrigger.add("2A");
@@ -94,6 +99,23 @@ public class Events {
         }
         player.setAllStats(statsChanged);
         eventTrigger.add("2B");
+        return statsChanged;
+    }
+
+    public int[] getEventSeeJanitorNumber(Player player, Inventory inventory) {
+        int[] statsChanged = new int[]{0, 0, 0, 0}; // COU - UND - ABN - STAMINA
+        if (isTriggered("2C")) {
+            return statsChanged;
+        }
+        printEvent(eventDial.getSeeJanitorNumber());
+        int choice = takeInput(2);
+        for (ChoiceAction ca : eventDial.getActionSeeJanitorNumber().get(choice)) {
+            Player.say(ca.getSayString());
+            next();
+            statsChanged = ca.statsSeeJanitorNumber(choice, inventory);
+        }
+        player.setAllStats(statsChanged);
+        eventTrigger.add("2C");
         return statsChanged;
     }
 
@@ -123,14 +145,14 @@ public class Events {
 
     public int[] getEventFirstInJanitor(Inventory inventory, Player player) {
         int[] statsChanged = new int[] {0, 0, 0, 0};
-        if (isTriggered("5A")) {
+        if (isTriggered("5C")) {
             return statsChanged;
         }
         printEvent(eventDial.getFirstInJanitor());
         Item note = new Item("Small Note", "A note with barely readable text", eventDial.getJanitorNote());
         inventory.addItem(note);
-        note.puzzle(this, player);
-        eventTrigger.add("5A");
+        note.puzzle(this, player, inventory);
+        eventTrigger.add("5C");
         return statsChanged;
     }
 

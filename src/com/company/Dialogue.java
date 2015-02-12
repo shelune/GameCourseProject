@@ -13,6 +13,7 @@ public class Dialogue {
     private HashMap<Integer, List<ChoiceAction>> actionREvent3 = new HashMap<Integer, List<ChoiceAction>>();
     private HashMap<Integer, List<ChoiceAction>> actionGetBullied = new HashMap<Integer, List<ChoiceAction>>();
     private HashMap<Integer, List<ChoiceAction>> actionMetJanitor = new HashMap<Integer, List<ChoiceAction>>();
+    private HashMap<Integer, List<ChoiceAction>> actionSeeJanitorNumber = new HashMap<Integer, List<ChoiceAction>>();
     /////////////////////////////////// Option Commands + Location Commands
 
     private String generalOpts = "Please choose one action from below. \n \t (1). Move \n \t (2). Explore \n \t (3). Eat food \n \t (4). Study \n \t (5). Check inventory \n \t (6). Rest";
@@ -54,7 +55,7 @@ public class Dialogue {
             "\t @ You decide to...? \n\t(0) Go through it \t (1) Stand there and observe \t (2) Run away", //7
     };
 
-    /////////////////////////////////// Main Event - First See Numbers p1
+    /////////////////////////////////// Main Event 1A - First See Numbers p1
 
     private String firstSeeNumChoice0_a1 = "Rekt sees you with very confusing eyes. He thinks you haven't got yourself awake yet.";
     private String firstSeeNumChoice0_b1 = "You just prove your awkwardness within 5 seconds. Good fuqing job!\n\t# Abnormality went up by 2 #";
@@ -71,7 +72,7 @@ public class Dialogue {
             "\tYou decide to...? \n \t(0) Ask about the number \t (1) Tell your dream last night", //6 . OPTIONS
     };
 
-    /////////////////////////////////// Main Event - First See Numbers p2
+    /////////////////////////////////// Main Event 1A - First See Numbers p2
 
     private String firstSeeNumChoice0_a2 = "You take in a big breath and continue walking. But you feel like your weirdness just gets to another level...";
     private String firstSeeNumChoice0_b2 = "\t# Abnormality went up by 2 #";
@@ -85,7 +86,7 @@ public class Dialogue {
             "You talk to yourself : 'Maybe I am still not that awake yet...'. So you decide to: \n \t(0) Calm yourself down and keep on \t (1) Ask Rekt to slap you hard in the face\n", //14 . OPTIONS
     };
 
-    /////////////////////////////////// Main Event - After Class 1st day
+    /////////////////////////////////// Main Event 1B - After Class 1st day
 
     private String[] afterClass1st = {
             "It has been such a hard day for you. You are still messed up by the sight in the morning",
@@ -95,11 +96,11 @@ public class Dialogue {
             "'WAIT DUDE!! You forgot my Finnish homework!'",
             "'You promised to do that for me, remember?!', Rekt shouts so loud from behind.",
             "'When did I promise that stupid thing?!', you let out a heavy sigh.",
-            "'Homework 1' Obtained!",
+            "['Homework 1' Obtained!]",
             "Alright now it's really time to head home!",
     };
 
-    /////////////////////////////////// Main Event - Get Bullied
+    /////////////////////////////////// Main Event 2A - Get Bullied
     private String getBulliedChoice0 = "Running to the nearest public place, with 3 other guys tailing right behind! Nooo..!";
     private String getBulliedChoice1 = "You throw out a punch, just to know that you are totally overwhelmed.\nThey kick at your stomach fiercely... At this rate you're gonna be like the hero saving the princess, but without the princess part!";
     private String getBulliedChoice2 = "You try to talk things into them... Let's see how things go.";
@@ -114,7 +115,7 @@ public class Dialogue {
             "\t(0) Run. Run away. It's not that protagonist is immortal.\n\t(1) Fight your ass back. You'll get beaten up anyway, so let your dignity intact!\n\t(2) Let's negotiate. Your words fight better than your flimsy fists\n\t(3) Distract them. Sneak out!",
     };
 
-    /////////////////////////////////// First Met Janitor
+    /////////////////////////////////// Main Event 2B - First Met Janitor
     private String metJanitorChoice0 = "'Glad I came on time, eh?', he smiles kindly and introduces himself to be the school's janitor. He has been working here for several years.";
     private String metJanitorChoice1 = "'What a bold boy!', he replies with a bit of smirking face. Still, he introduces himself to be the school's janitor. He has been working here for several years.";
     private String metJanitorChoice2 = "He introduces himself to be the school's janitor. Has been working here for several years.";
@@ -127,7 +128,20 @@ public class Dialogue {
             "\t(0) Gosh they were almost murdering me!\n\t(1) Of course not! I was just about to teach them a lesson.\n\t(2) I'm fine but who are you by the way?",
     };
 
-    /////////////////////////////////// First Death Janitor
+    /////////////////////////////////// Main Event 2C - See Janitor's number
+    private String seeJanitorNumberChoice0 = "The janitor smirks ‘Have you got punched so hard that you see numbers instead of stars now?!’… Yeah again… Why even surprised?";
+    private String seeJanitorNumberChoice1 = "’Are you hungry now, son?’, the janitor expresses his worry for you.\n‘Go home and take a break, I also need to see an old friend now.\nCannot let the joy of the old pass by, but here, have my cake!”. He even gives you a cake!";
+    private String seeJanitorNumberChoice2 = "’Yeah you look pale, son. Have a bite on this cake, will you? I’m coming home to see an old friend now so catch ya later!’.\nThe janitor is so nice.";
+
+    private String[] seeJanitorNumber = {
+            "‘Shifffff’, another flash kicks in. You look around. Nothing. Against the expectations, this time, there’s no number. This is a bit weird… ",
+            "Or it’s not. You see the number now, but not on everyone’s heads. ",
+            "There is just that number ‘1’ on top of the person in front of you – the Janitor. ",
+            "‘What is this?’, you think to yourself, ‘How come that number gets down to 1 after just 1 day?!’. ",
+            "You decide to… \n\t(0) Ask the janitor about the number (not again…) \n\t(1) Keep on the conversation. \n\t(2) Say goodbye to the Janitor and come home for a rest now! ",};
+
+
+    /////////////////////////////////// Main Event 3A - First Death Janitor
     private String firstDeathChoice0 = "...\tRekt smiles eagerly, 'That's my dude! Alright this evening we will pay him a visit! Don't be late!'...\n \t# Courage went up by 2 #\t# Understanding went up by 1 #...\n \t +++ NEW AREA OPENED : JANITOR'S HOUSE +++";
     private String firstDeathChoice1 = "...\tRekt knocks on your shoulder, 'What the hell dude?! He was fighting off the bullies for you, remember?! You're coming with me!'...\n \t# Courage went down by 1 #\t# Understanding went down by 1 #...\n \t +++ NEW AREA OPENED : JANITOR'S HOUSE +++";
     
@@ -154,16 +168,28 @@ public class Dialogue {
             "...\tWhat will you do now, going with him?\n \t(0) Nod and agree \t (1) Nope, stay away from the dead", // options . 8
     };
 
-    /////////////////////////////////// First time Inside Janitor's
+    /////////////////////////////////// Main Event 3B - At Janitor's
+    private String[] atJanitors = {
+            "After a while, you and Rekt eventually reach the Janitor’s house.",
+            "It is situated quite far from the school, backing right at the forest.",
+            "This place is giving chill, dude!’, Rekt seems not so settled about this place.",
+            "It is quite a small house with several small statues at front.",
+            "Clearly it has been locked away after the owner’s death. You two approach the door, but seemingly there’s no way to get in.",
+            "That is, unless you find the key,... or something like that. Where could it be anyway?!",
+            "Although you want to stay for a little while, it's getting dark so better head home now.",
+    };
+
+
+    /////////////////////////////////// Main Event 5C - First time Inside Janitor's
     private String[] firstInJanitor = {
             "Finally you break into his house. It is much bigger when you look from inside. Still, the creepy feeling somewhere...",
             "In the middle of the living room is the place they found him dead. The reason is, as mentioned, unknown.",
-            "However, you have something tingling that keeps telling you this is not a suicide or whatnot. Yesterday he didn't show any sign of mental instability.",
-            "It really chills your spine when you think of the number 1 yesterday. Could it be...?",
+            "However, you have something tingling that keeps telling you this is not a suicide or whatnot. He even wanted to see a friend yesterday, why would he suicide?!.",
+            "It really chills your spine when you think of the number 1 yesterday. Could it because of that...?",
             "Right when you are confused, Rekt pats your shoulder to show you a little note.",
             "'Hey dude! Look at this! It has been stumbled beneath the table right here! Maybe the police has overlooked it.', seems like Rekt really cares about this person.",
             "The note itself is old and scratchy... But you can read some most visibile lines on it.",
-            "'Janitor's Note' Obtained!",
+            "['Janitor's Note' Obtained!]",
             "You carefully read the note... It is really hard to read those scratched letters, so all you can read is...",
     };
     
@@ -171,7 +197,7 @@ public class Dialogue {
     private String rEvent1Choice0 = "You get ultra panic and get everyoneâ€™s attentionsâ€¦ At least you got into her eyes!"; //5
     private	String rEvent1Choice1 = "She thinks you are looking at something behind herâ€¦ You barely got away";
     private String rEvent1Choice2 = "She is absolutely baffled by your actions. What are you doing at the middle of the class!";
-    private String rEvent1Choice3 = "Wait whatâ€¦ where to run?!?";
+    private String rEvent1Choice3 = "Wait what?! where to run?!?";
     
     private String[] rEvent1	= {
             "Your class is going on as usual. But not anymore when you notice that...",
@@ -184,18 +210,18 @@ public class Dialogue {
     /////////////////////////////////// R.event2
     private String rEvent2Choice0 = "She scolds you for your ignorance, but at least she is not coming to grab you.";
     private String rEvent2Choice1 = "Rest for the day as firefighters come (You come home to see a firetruck in front of your doorâ€¦ Oh gosh noooo!)";
-    private String rEvent2Choice2 = "Nothing happened, you donâ€™t have sisters (Are you forgetting about your being the only child?!";
-    private String rEvent2Choice3 = "Are you freaking texting your mom youâ€™re busy after she calls you 56768 times? I also like to live dangerously.";
+    private String rEvent2Choice2 = "Nothing happened, you don't have sisters (Are you forgetting about your being the only child?!";
+    private String rEvent2Choice3 = "Are you freaking texting your mom you're busy after she calls you 56768 times? I also like to live dangerously.";
     
     private String[] rEvent2 = {
     		"Ring ring! Your mom is calling.",
-    		"During all the chaos you have forgotten to go through your daily â€œdid you burn the house, yet?â€� check, several times.",
-    		"She is probably freaking out and ready to call the cops for a missing report. \n \t(0) Answer the call and hope she won't lecture you, too much. \n \t(1) Ignore it and hope she wonâ€�t call the firefighters. \n \t(2) Call your sister to save you from Mom's Fury. \n \t(3) Text your mom â€œI'm busy.â€�. Actually, never mind, don't do that. No, wait. Don't! ", //options 3
+    		"During all the chaos you have forgotten to go through your daily 'did you burn the house, yet' check, several times.",
+    		"She is probably freaking out and ready to call the cops for a missing report. \n \t(0) Answer the call and hope she won't lecture you, too much. \n \t(1) Ignore it and hope she wonâ€�t call the fire fighters. \n \t(2) Call your sister to save you from Mom's Fury. \n \t(3) Text your mom 'I'm busy.'. Actually, never mind, don't do that. No, wait. Don't! ", //options 3
     };
 
     /////////////////////////////////// R.event3
     private String rEvent3Choice0 = "You come for the school quite late and miss the class. \n\t# UND went down by 4 #";
-    private String rEvent3Choice1 = "You barely make it to the class and take the quiz.\nAlso you don't really remember whose the bike was... So better just keep it for now eh?\n\t# COU went up by 2 #\n\t# 'Bicycle' Obtained #";
+    private String rEvent3Choice1 = "You barely make it to the class and take the quiz.\nAlso you don't really remember whose the bike was... So better just keep it for now eh?\n\t# COU went up by 2 #\n\t['Bicycle' Obtained]";
     private String rEvent3Choice2 = "Not a single f*** was given that day, so you enjoy staying home reading some books.\n\t# UND went down by 4 #";
 
     private String[] rEvent3 = {
@@ -240,10 +266,15 @@ public class Dialogue {
         actionGetBullied.put(1, Arrays.asList(new ChoiceAction[] {new ChoiceAction(getBulliedChoice1)}));
         actionGetBullied.put(2, Arrays.asList(new ChoiceAction[] {new ChoiceAction(getBulliedChoice2)}));
         actionGetBullied.put(3, Arrays.asList(new ChoiceAction[] {new ChoiceAction(getBulliedChoice3a)}));
+        actionGetBullied.put(4, Arrays.asList(new ChoiceAction[] {new ChoiceAction(getBulliedChoice3b)}));
 
         actionMetJanitor.put(0, Arrays.asList(new ChoiceAction[] {new ChoiceAction(metJanitorChoice0)}));
         actionMetJanitor.put(1, Arrays.asList(new ChoiceAction[] {new ChoiceAction(metJanitorChoice1)}));
         actionMetJanitor.put(2, Arrays.asList(new ChoiceAction[] {new ChoiceAction(metJanitorChoice2)}));
+
+        actionSeeJanitorNumber.put(0, Arrays.asList(new ChoiceAction[]{new ChoiceAction(seeJanitorNumberChoice0)}));
+        actionSeeJanitorNumber.put(1, Arrays.asList(new ChoiceAction[]{new ChoiceAction(seeJanitorNumberChoice1)}));
+        actionSeeJanitorNumber.put(2, Arrays.asList(new ChoiceAction[]{new ChoiceAction(seeJanitorNumberChoice2)}));
     }
 
     /////////////////////////////////// Methods
@@ -367,6 +398,14 @@ public class Dialogue {
         return this.metJanitor;
     }
 
+    public String[] getSeeJanitorNumber() {
+        return this.seeJanitorNumber;
+    }
+
+    public String[] getAtJanitors() {
+        return this.atJanitors;
+    }
+
     public String[] getFirstInJanitor() {
         return this.firstInJanitor;
     }
@@ -408,8 +447,12 @@ public class Dialogue {
         return actionMetJanitor;
     }
 
-    public String getFirstNightEnd() {
-        return "Eventually, the darkness slowly fades away ... But the creepy feeling keeps on and prolongs throughout the night. It was a very haunting dream...";
+    public HashMap<Integer, List<ChoiceAction>> getActionSeeJanitorNumber() {
+        return actionSeeJanitorNumber;
+    }
+
+    public HashMap<Integer, List<ChoiceAction>> getActionFirstDeath()	{
+        return actionFirstDeath;
     }
 
     public HashMap<Integer, List<ChoiceAction>> getActionREvent1()	{
@@ -424,7 +467,7 @@ public class Dialogue {
         return actionREvent3;
     }
 
-    public HashMap<Integer, List<ChoiceAction>> getActionFirstDeath()	{
-        return actionFirstDeath;
+    public String getFirstNightEnd() {
+        return "Eventually, the darkness slowly fades away ... But the creepy feeling keeps on and prolongs throughout the night. It was a very haunting dream...";
     }
 }

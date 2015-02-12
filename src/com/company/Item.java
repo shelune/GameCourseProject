@@ -84,12 +84,12 @@ public class Item {
         return this.clue;
     }
 
-    public void puzzle(Events events, Player player) {
+    public void puzzle(Events events, Player player, Inventory inventory) {
         Events.next();
         if (!keyItem) {
             player.setPlayerStamina(60);
         } else {
-            if (itemName.equalsIgnoreCase("small note")) {
+            if (itemName.equalsIgnoreCase("small note")) {                  // puzzle for the Small Note (Janitors)
                 Player.say(getItemClue());
                 Player.say("What do you these numbers at the end of the note to be?\n\t(0) An IP address\n\t(1) A location\n\t(2) Some phone numbers\n\t(3) Words in a book");
                 int i = takeInput(3);
@@ -106,7 +106,7 @@ public class Item {
                         break;
                 }
             }
-            if (itemName.equalsIgnoreCase("finnish homework")) {
+            if (itemName.equalsIgnoreCase("finnish homework")) {            // puzzle for the Finnish Homework (1stDayAfterClass)
                 Player.say("What are the correct meanings of the following words?");
                 Player.say("WORDS : Tuuli | Tuli | Tulli\n\t(0) Wind | Fire | Customs\n\t(1) Fire | Wind | Customs\n\t(2) Customs | Fire | Wind\n\t(3) Fire | Customs | Wind");
                 int i = takeInput(3);
@@ -122,10 +122,25 @@ public class Item {
                         break;
                 }
             }
+            if (itemName.equalsIgnoreCase("statue")) {                      // puzzle for the Statue (Janitor's)
+                int undReq = 20;
+                if (player.getPlayerUnd() < undReq) {
+                    Player.say("This statue is weird... Probably you need more Understanding to check up on it!");
+                    return;
+                }
+                Player.say("This crack seems to be patched very recently, but you need some tools to open it.");
+                if (inventory.hasItem("Small Hammer") != null) {
+                    Player.say("With the small hammer, you make a dent onto the statue. You see something...");
+                    Item janiKey = new Item("Old Key", "An rusty key that can open some kind of doors");
+                    inventory.addItem(janiKey);
+                    Player.say("['Old Key' OBTAINED]");
+                    this.consume();
+                    solved();
+                } else {
+                    Player.say("However, right now you don't seem to have the right tool.");
+                }
+            }
         }
-    }
-
-    public void puzzle(Events events, Player player, Inventory inventory) {
     }
 
     public void solved() {

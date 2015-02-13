@@ -59,7 +59,7 @@ public class Place {
                 Collections.addAll(temp, calculator);
                 break;
             case 4:
-                Item statue = new Item("Status", "A small statue with a small crack on it", "KEY INSIDE");
+                Item statue = new Item("Statue", "A small statue with a small crack on it", "KEY INSIDE");
                 Collections.addAll(temp, statue);
                 break;
 

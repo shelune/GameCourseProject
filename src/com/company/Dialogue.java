@@ -78,7 +78,6 @@ public class Dialogue {
             "Running to the nearest public place, with 3 other guys tailing right behind! Nooo..!",
             "You throw out a punch, just to know that you are totally overwhelmed.\nThey kick at your stomach fiercely... At this rate you're gonna be like the hero saving the princess, but without the princess part!",
             "You try to talk things into them... Let's see how things go.",
-            "Wait what are you gonna distract them with?!\nWith your brilliant mind, you take out your jacket and fling them away, then run. Magnificient!",
     };
     private String[] getBullied = {
             "It is another long day for you. What a relief you don't get to see those numbers again.",
@@ -112,7 +111,7 @@ public class Dialogue {
 
     private String[] seeJanitorNumberChoice = {
             "The janitor smirks ‘Have you got punched so hard that you see numbers instead of stars now?!’… Yeah again… Why even surprised?",
-            "’Are you hungry now, son?’, the janitor expresses his worry for you.\n‘Go home and take a break, I also need to see an old friend now.\nCannot let the joy of the old pass by, but here, have my cake!”. He even gives you a cake!",
+            "’Are you hungry now, son?’, the janitor expresses his worry for you.\n‘Go home and take a break, I also need to see an old friend now. But before I go, have my cake, don't get yourself hungry eh!'. He even gives you a cake!",
             "’Yeah you look pale, son. Have a bite on this cake, will you? I’m coming home to see an old friend now so catch ya later!’.\nThe janitor is so nice.",
     };
 
@@ -140,6 +139,17 @@ public class Dialogue {
     private String[] firstDeathChoice = {
             "...\tRekt smiles eagerly, 'That's my dude! Alright this evening we will pay him a visit! Don't be late!'...\n \t# Courage went up by 2 #\t# Understanding went up by 1 #...\n \t +++ NEW AREA OPENED : JANITOR'S HOUSE +++",
             "...\tRekt knocks on your shoulder, 'What the hell dude?! He was fighting off the bullies for you, remember?! You're coming with me!'...\n \t# Courage went down by 1 #\t# Understanding went down by 1 #...\n \t +++ NEW AREA OPENED : JANITOR'S HOUSE +++",
+    };
+
+    /////////////////////////////////// 3B - First At Janitor's
+    private String[] firstAtJanitors = {
+            "After a while, you and Rekt eventually reach the Janitor’s house.",
+            "It is situated quite far from the school, backing right at the forest.",
+            "'This place is giving chill, dude!', Rekt seems not so welcomed by this place.",
+            "It is quite a small house with several small strange-looking statues at front.",
+            "Clearly it has been locked away after the owner’s death. You two approach the door, but seemingly there’s no way to get in.",
+            "Unless you get the keys… or something else",
+            "Let’s go back for now",
     };
 
     /////////////////////////////////// 5C - First time Inside Janitor's
@@ -202,36 +212,36 @@ public class Dialogue {
     }
 
     /////////////////////////////////// Methods
-    public String goSomewhere(int position, ArrayList<String> events) {
+    public String goSomewhere(int position, Events events) {
         String fromPlace = "Where do you want to head to?\n";
         switch (position) {
             case 0:
                 fromPlace += toHome + toClassA;
-                if (events.contains("MT")) {
+                if (events.isTriggered("MT")) {
                     fromPlace += toMountain;
                 }
-                if (events.contains("JN")) {
+                if (events.isTriggered("JN")) {
                     fromPlace += toJanitor;
                 }
-                if (events.contains("VL")) {
+                if (events.isTriggered("VL")) {
                     fromPlace += toTeacher;
                 }
-                if (events.contains("TT")) {
+                if (events.isTriggered("TT")) {
                     fromPlace += toTattoo;
                 }
-                if (events.contains("PL")) {
+                if (events.isTriggered("PL")) {
                     fromPlace += toPolice;
                 }
                 break;
             case 1:
                 fromPlace += toHome + toClassA;
-                if (events.contains("CB")) {
+                if (events.isTriggered("CB")) {
                     fromPlace += toClassB;
                 }
                 break;
             case 2:
                 fromPlace += toClassA + toClassB;
-                if (events.contains("JN")) {
+                if (events.isTriggered("JN")) {
                     fromPlace += toJanitor;
                 }
                 break;
@@ -281,9 +291,25 @@ public class Dialogue {
     public String[] getFirstNight() {
         return this.firstNight;
     }
+
+    public String[] getFirstSeeNumbers_p1() {
+        return this.firstSeeNumbers_p1;
+    }
+
+    public String[] getFirstSeeNumbers_p2() {
+        return this.firstSeeNumbers_p2;
+    }
     public String[] getAfterClass1st() {
         return this.afterClass1st;
     }
+
+    public String[] getEventGetBullied() {
+        return this.getBullied;
+    }
+    public String[] getFirstMetJanitor() {
+        return this.metJanitor;
+    }
+
     public String[] getFirstDeath() {
         return this.firstDeath;
     }
@@ -293,18 +319,11 @@ public class Dialogue {
     public String[] getFirstDeath_p1() {
         return this.firstDeath_p1;
     }
-    public String[] getFirstSeeNumbers_p1() {
-        return this.firstSeeNumbers_p1;
+
+    public String[] getFirstAtJanitors() {
+        return this.firstAtJanitors;
     }
-    public String[] getFirstSeeNumbers_p2() {
-        return this.firstSeeNumbers_p2;
-    }
-    public String[] getEventGetBullied() {
-        return this.getBullied;
-    }
-    public String[] getFirstMetJanitor() {
-        return this.metJanitor;
-    }
+
     public String[] getFirstInJanitor() {
         return this.firstInJanitor;
     }
@@ -334,7 +353,11 @@ public class Dialogue {
         return this.firstSeeNumChoice_p2[choice];
     }
     public String getBulliedChoice(int choice) {
-        return this.getBulliedChoice[choice];
+        if (choice < 3) {
+            return this.getBulliedChoice[choice];
+        } else {
+            return "";
+        }
     }
 
     public String getMetJanitorChoice(int choice) {
@@ -343,6 +366,10 @@ public class Dialogue {
 
     public String getSeeJanitorNumChoice(int choice) {
         return seeJanitorNumberChoice[choice];
+    }
+
+    public String getFirstDeathChoice(int choice) {
+        return this.firstDeathChoice[choice];
     }
 
     public String getREvent1Choice(int choice) {
@@ -355,8 +382,5 @@ public class Dialogue {
 
     public String getREvent3Choice(int choice) {
         return rEvent3Choice[choice];
-    }
-    public String getFirstNightEnd() {
-        return "\n \tEventually, the darkness slowly fades away ... But the creepy feeling keeps on and prolongs throughout the night. It was a very haunting dream...";
     }
 }

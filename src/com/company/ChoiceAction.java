@@ -143,10 +143,12 @@ public class ChoiceAction {
                 break;
             case 3:
                 statsChanged[3] = 30;
+                Player.say("Wait what are you gonna distract them with?!");
                 break;
             case 4:
                 inventory.delInvalidItem();
                 statsChanged[2] = -2;
+                Player.say("With your brilliant mind, you take out your jacket and fling them away, then run. Magnificient!");
         }
         return statsChanged;
     }
@@ -172,9 +174,12 @@ public class ChoiceAction {
                 statsChanged[2] = 2;
                 break;
             case 1:
-                inventory.addItem(new Item("Cake", "Recovers 20 Stamina", 10, 1));
+                inventory.addItem(new Item("Cake", "Recovers 20 Stamina", -10, 1));
+                Player.say("[Cake] Obtained!");
                 break;
             case 2:
+                inventory.addItem(new Item("Cake", "Recovers 20 Stamina", -10, 1));
+                Player.say("[Cake] Obtained!");
                 break;
         }
         return statsChanged;

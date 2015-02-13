@@ -17,7 +17,9 @@ public class Events {
         Player.say(eventDial.getFirstNightChoice(choice));
         player.setAllStats(doChoiceAction.statsFirstNight(choice));
         eventTrigger.add("0A");
+        eventTrigger.add("DAYDREAMER");
         Player.say("Eventually, the darkness slowly fades away ... But the creepy feeling keeps on and prolongs throughout the night. It was a very haunting dream...");
+        next();
     }
     public void getEventFirstSeeNumbers(Player player) {
         ChoiceAction doChoiceAction = new ChoiceAction();
@@ -33,6 +35,7 @@ public class Events {
         Player.say(eventDial.getFirstSeeNumChoice_p2(choice));
         player.setAllStats(doChoiceAction.statsFirstSeeNum_p2(choice));
         eventTrigger.add("1A");
+        next();
     }
     public void getEventAfterClass1st(Player player, Inventory inventory) {
         if (isTriggered("1B")) {
@@ -43,6 +46,8 @@ public class Events {
         Item homework1 = new Item("Finnish Homework", "Rekt's weekend homework", "ASSIGNMENT");
         inventory.addItem(homework1);
         eventTrigger.add("1B");
+        eventTrigger.add("CB");
+        next();
     }
     public void getEventGetBullied(Player player, int und, Inventory inventory) {
         ChoiceAction doChoiceAction = new ChoiceAction();
@@ -59,6 +64,7 @@ public class Events {
             }
         }
         Player.say(eventDial.getBulliedChoice(choice));
+        next();
         player.setAllStats(doChoiceAction.statsGetBullied(choice, und, inventory));
         eventTrigger.add("2A");
     }
@@ -73,6 +79,7 @@ public class Events {
         Player.say(eventDial.getMetJanitorChoice(choice));
         player.setAllStats(doChoiceAction.statsMetJanitor(choice));
         eventTrigger.add("2B");
+        next();
     }
     public void getEventFirstDeath(Player player) {
         ChoiceAction doChoiceAction = new ChoiceAction();
@@ -89,10 +96,24 @@ public class Events {
                 break;
         }
         int choice = takeInput(1);
+        Player.say(eventDial.getFirstDeathChoice(choice));
         player.setAllStats(doChoiceAction.statsFirstDeath(choice));
         eventTrigger.add("3A");
         eventTrigger.add("JN");
+        next();
     }
+
+    public void getEventFirstAtJanitors(Player player) {
+        if (isTriggered("3B")) {
+            return;
+        }
+        printEvent(eventDial.getFirstAtJanitors());
+        eventTrigger.add("3B");
+        player.setPlayerPos(0);
+        player.setPlayerStamina(30);
+        next();
+    }
+
     public void getEventFirstInJanitor(Inventory inventory, Player player) {
         if (isTriggered("5C")) {
             return;
@@ -102,6 +123,7 @@ public class Events {
         inventory.addItem(note);
         note.puzzle(this, player, inventory);
         eventTrigger.add("5C");
+        next();
     }
     public void getEventSeeJanitorNumber(Player player, Inventory inventory) {
         ChoiceAction doChoiceAction = new ChoiceAction();
@@ -113,6 +135,7 @@ public class Events {
         Player.say(eventDial.getSeeJanitorNumChoice(choice));
         player.setAllStats(doChoiceAction.statsSeeJanitorNumber(choice, inventory));
         eventTrigger.add("2C");
+        next();
     }
     public void getEventREvent1(Player player) {
         ChoiceAction doChoiceAction = new ChoiceAction();
@@ -124,6 +147,7 @@ public class Events {
         Player.say(eventDial.getREvent1Choice(choice));
         player.setAllStats(doChoiceAction.statsEvent1(choice));
         eventTrigger.add("R1");
+        next();
     }
     public void getEventREvent2(Player player) {
         ChoiceAction doChoiceAction = new ChoiceAction();
@@ -135,6 +159,7 @@ public class Events {
         Player.say(eventDial.getREvent2Choice(choice));
         player.setAllStats(doChoiceAction.statsEvent2(choice));
         eventTrigger.add("R2");
+        next();
     }
     public void getEventREvent3(Player player, Inventory inventory) {
         ChoiceAction doChoiceAction = new ChoiceAction();
@@ -146,6 +171,7 @@ public class Events {
         Player.say(eventDial.getREvent3Choice(choice));
         player.setAllStats(doChoiceAction.statsFirstNight(choice));
         eventTrigger.add("R3");
+        next();
     }
     public void setEventTrigger(String event) {
         this.eventTrigger.add(event);
@@ -162,6 +188,7 @@ public class Events {
     public ArrayList<String> getEventList() {
         return this.eventTrigger;
     }
+
     public static void next() {
         input.nextLine();
     }

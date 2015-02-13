@@ -93,7 +93,7 @@ public class Item {
                 doSmallNote(player, events);
             }
             if (itemName.equalsIgnoreCase("finnish homework")) {            // puzzle for the Finnish Homework (1stDayAfterClass)
-                doFinnishHomework(player);
+                doFinnishHomework(player, events);
             }
             if (itemName.equalsIgnoreCase("statue")) {                      // puzzle for the Statue (Janitor's)
                 doStatue(player, inventory);
@@ -123,7 +123,7 @@ public class Item {
         }
     }
 
-    public void doFinnishHomework(Player player) {
+    public void doFinnishHomework(Player player, Events event) {
         Player.say("What are the correct meanings of the following words?");
         Player.say("WORDS : Tuuli | Tuli | Tulli\n\t(0) Wind | Fire | Customs\n\t(1) Fire | Wind | Customs\n\t(2) Customs | Fire | Wind\n\t(3) Fire | Customs | Wind");
         int i = takeInput(3);
@@ -131,6 +131,7 @@ public class Item {
             case 0:
                 solved();
                 Player.say("Seems to be the right answer! You can give Rekt this with certainty!");
+                event.setEventTrigger("FINNISHLOVER");
                 this.consume();
                 break;
             default:

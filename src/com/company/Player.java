@@ -114,7 +114,7 @@ public class Player {
             }
         }
     }
-    public void move() {
+    public void move() {                                        // press 1
         if (playerPos == 1 && dayCount == 1 && events.isTriggered("TC")) {
             events.getEventAfterClass1st(this, inventory);
         }
@@ -138,16 +138,21 @@ public class Player {
             events.getEventGetBullied(this, playerUnd, inventory);
             Events.next();
             events.getEventMetJanitor(this);
+            Events.next();
+            events.getEventSeeJanitorNumber(this, inventory);
         }
         if (playerPos == 1 && dayCount == 3) {
             events.getEventFirstDeath(this);
+        }
+        if (playerPos == 4 && dayCount == 3) {
+            
         }
         if (playerPos == 4 && dayCount == 5) {
             events.getEventFirstInJanitor(inventory, this);
         }
     }
 
-    public void explore() {
+    public void explore() {                                         // press 2
         ArrayList<Item> itemList = map.showItems(playerPos);
         if (itemList.size() > 0) {
             takeItems(itemList);
@@ -155,7 +160,7 @@ public class Player {
         return;
     }
 
-    public void eat() {
+    public void eat() {                                             // press 3
         int foodIndex = inventory.searchFood();
         if (foodIndex != -1) {
             if (playerStamina == 100) {

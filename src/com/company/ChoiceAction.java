@@ -6,6 +6,9 @@ public class ChoiceAction {
     private String sayString;
     private int[] statsChanged = new int[] {0, 0, 0, 0}; // COU - UND - ABN - STAMINA
 
+    public ChoiceAction() {
+
+    }
     public String getSayString() {
         return sayString;
     }
@@ -23,7 +26,7 @@ public class ChoiceAction {
         }
         return statsChanged;
     }
-    
+
     public int[] statsFirstDeath(int choice)	{
     	switch (choice) {
         case 0:
@@ -37,7 +40,7 @@ public class ChoiceAction {
     	}
     	return statsChanged;
     }
-    	
+
     public int[] statsFirstSeeNum_p1(int choice) {
         switch (choice) {
             case 0:
@@ -61,7 +64,7 @@ public class ChoiceAction {
         }
         return statsChanged;
     }
-    
+
     public int[] statsEvent1(int choice) {
     	switch (choice)	{
     		case 0:
@@ -82,7 +85,7 @@ public class ChoiceAction {
     	}
     	return statsChanged;
     }
-    
+
     public int[] statsEvent2(int choice) {
     	switch (choice)	{
     		case 0:
@@ -176,7 +179,7 @@ public class ChoiceAction {
         }
         return statsChanged;
     }
-    
+
     public ChoiceAction(String sayString) {
         super();
         this.sayString = sayString;

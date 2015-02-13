@@ -9,10 +9,11 @@ public class Events {
     public static Scanner input = new Scanner(System.in);
     private ArrayList<String> eventTrigger = new ArrayList<String>();
     private Dialogue eventDial = new Dialogue();                    // get the dialogues for events
-    private ChoiceAction doChoiceAction = new ChoiceAction();
+    //private ChoiceAction doChoiceAction = new ChoiceAction();
     
     public void getEventFirstNight(Player player) {               // COU - UND - ABN - STAMINA
-        if (isTriggered("0A")) {
+        ChoiceAction doChoiceAction = new ChoiceAction();
+    	if (isTriggered("0A")) {
             return;
         }
         printEvent(eventDial.getFirstNight());
@@ -20,38 +21,26 @@ public class Events {
         Player.say(eventDial.getFirstNightChoice(choice));
         player.setAllStats(doChoiceAction.statsFirstNight(choice));
         eventTrigger.add("0A");
-        Player.say(eventDial.getFirstNightEnd());
+        Player.say("Eventually, the darkness slowly fades away ... But the creepy feeling keeps on and prolongs throughout the night. It was a very haunting dream...");
     }
 
-    public int[] getEventFirstSeeNumbers(Player player) {
-        int[] statsChanged = new int[]{0, 0, 0, 0};                    // COU - UND - ABN - STAMINA
+    public void getEventFirstSeeNumbers(Player player) {
+    	ChoiceAction doChoiceAction = new ChoiceAction();
         if (eventTrigger.contains("1A")) {
-            return statsChanged;
+            return;
         }
-        int i;
         printEvent(eventDial.getFirstSeeNumbers_p1());
         int choice = takeInput(1);
-        for (ChoiceAction ca : eventDial.getActionFirstSeeNum_p1().get(choice)) {
-            Player.say(ca.getSayString());
-            next();
-            statsChanged = ca.statsFirstSeeNum_p1(choice);
-        }
-        player.setAllStats(statsChanged);
+        Player.say(eventDial.getFirstSeeNumChoice_p1(choice));
+        player.setAllStats(doChoiceAction.statsFirstSeeNum_p1(choice));
         printEvent(eventDial.getFirstSeeNumbers_p2());
         choice = takeInput(1);
-        for (ChoiceAction ca : eventDial.getActionFirstSeeNum_p2().get(choice)) {
-            Player.say(ca.getSayString());
-            next();
-            statsChanged = ca.statsFirstSeeNum_p2(choice);
-        }
-        player.setAllStats(statsChanged);
-        player.setAllStats(statsChanged);
+        Player.say(eventDial.getFirstSeeNumChoice_p2(choice));
+        player.setAllStats(doChoiceAction.statsFirstSeeNum_p2(choice));
         eventTrigger.add("1A");
-        return statsChanged;
     }
 
     public void getEventAfterClass1st(Player player, Inventory inventory) {
-        int[] statsChanged = new int[]{0, 0, 0, 0};
         if (isTriggered("1B")) {
             return;
         }
@@ -62,21 +51,16 @@ public class Events {
         eventTrigger.add("1B");
     }
 
-    public int[] getEventGetBullied(Player player, int und) {
-        int[] statsChanged = new int[]{0, 0, 0, 0};
-        if (isTriggered("2A")) {
-            return statsChanged;
+    public void getEventGetBullied(Player player, int und) {
+        ChoiceAction doChoiceAction = new ChoiceAction();
+    	if (isTriggered("2A")) {
+            return;
         }
         printEvent(eventDial.getEventGetBullied());
         int choice = takeInput(3);
-        for (ChoiceAction ca : eventDial.getActionGetBullied().get(choice)) {
-            Player.say(ca.getSayString());
-            next();
-            statsChanged = ca.statsGetBullied(choice, und);
-        }
-        player.setAllStats(statsChanged);
+        Player.say(eventDial.getBulliedChoice(choice));
+        player.setAllStats(doChoiceAction.statsGetBullied(choice, und));
         eventTrigger.add("2A");
-        return statsChanged;
     }
 
     public int[] getEventMetJanitor(Player player) {

@@ -43,10 +43,10 @@ public class Dialogue {
     };
 
     /////////////////////////////////// Main Event - First See Numbers p1
-    private String firstSeeNumChoice0_a1 = "Rekt sees you with very confusing eyes. He thinks you haven't got yourself awake yet.";
-    private String firstSeeNumChoice0_b1 = "You just prove your awkwardness within 5 seconds. Good fuqing job!\n\t# Abnormality went up by 2 #";
-    private String firstSeeNumChoice1_a1 = "He laughs it off then proceeds to tell one of his humble dream where he slays Death himself.";
-    private String firstSeeNumChoice1_b1 = "Seems like your story is not a big deal to your best dude at all, huh?";
+    private String[] firstSeeNumChoice_p1 =	{ 
+    "Rekt sees you with very confusing eyes. He thinks you haven't got yourself awake yet.\nYou just prove your awkwardness within 5 seconds. Good fuqing job!\n\t# Abnormality went up by 2 #",
+    "He laughs it off then proceeds to tell one of his humble dream where he slays Death himself.\nSeems like your story is not a big deal to your best dude at all, huh?",
+};
 
     private String[] firstSeeNumbers_p1 = {
         "You walk outside to see Rekt a.k.a your buddy standing right beside your post.", //0
@@ -59,11 +59,11 @@ public class Dialogue {
     };
 
     /////////////////////////////////// Main Event - First See Numbers p2
-    private String firstSeeNumChoice0_a2 = "You take in a big breath and continue walking. But you feel like your weirdness just gets to another level...";
-    private String firstSeeNumChoice0_b2 = "\t# Abnormality went up by 2 #";
-    private String firstSeeNumChoice1_a2 = "You tell Rekt cautiously : 'It's like I'm still sleepy'. Immediately, he swings his big palm into your face.\n\tSwear to God you can even see whirling stars now, but at least you don't get suspected.";
-    private String firstSeeNumChoice1_b2 = "\t# Abnormality went down by 1 #\n\t# Stamina went down by A LOT #";
-
+    private String[] firstSeeNumChoice_p2 = {
+    "You take in a big breath and continue walking. But you feel like your weirdness just gets to another level...\n\t# Abnormality went up by 2 #",
+    "You tell Rekt cautiously : 'It's like I'm still sleepy'. Immediately, he swings his big palm into your face.\n\tSwear to God you can even see whirling stars now, but at least you don't get suspected.\n\t# Abnormality went down by 1 #\n\t# Stamina went down by A LOT #",
+    };
+    
     private String[] firstSeeNumbers_p2 = {
         "With no further delay, you and Rekt rush to school as it is a bit late already\nBut it is like your nightmare never ends!... There are the numbers '21' floating on EVERYONE on the street!",
         "WHAT THE HECK IS GOING ON?!!",
@@ -84,11 +84,12 @@ public class Dialogue {
         "Alright now it's really time to head home!",};
 
     /////////////////////////////////// Main Event - Get Bullied
-    private String getBulliedChoice0 = "Running to the nearest public place, with 3 other guys tailing right behind! Nooo..!";
-    private String getBulliedChoice1 = "You throw out a punch, just to know that you are totally overwhelmed.\nThey kick at your stomach fiercely... At this rate you're gonna be like the hero saving the princess, but without the princess part!";
-    private String getBulliedChoice2 = "You try to talk things into them... Let's see how things go.";
-    private String getBulliedChoice3a = "Wait what are you gonna distract them with?!";
-    private String getBulliedChoice3b = "With your brilliant mind, you take out your jacket and fling them away, then run. Magnificient!";
+    private String[] getBulliedChoice = {
+    "Running to the nearest public place, with 3 other guys tailing right behind! Nooo..!",
+    "You throw out a punch, just to know that you are totally overwhelmed.\nThey kick at your stomach fiercely... At this rate you're gonna be like the hero saving the princess, but without the princess part!",
+    "You try to talk things into them... Let's see how things go.",
+    "Wait what are you gonna distract them with?!\nWith your brilliant mind, you take out your jacket and fling them away, then run. Magnificient!",
+    };
 
     private String[] getBullied = {
         "It is another long day for you. What a relief you don't get to see those numbers again.",
@@ -349,8 +350,16 @@ public class Dialogue {
     	return this.firstNightChoice[choice];
     }
     
-    public String getFirstNightEnd() {
-        return "\n \tEventually, the darkness slowly fades away ... But the creepy feeling keeps on and prolongs throughout the night. It was a very haunting dream...";
+    public String getFirstSeeNumChoice_p1(int choice)	{
+    	return this.firstSeeNumChoice_p1[choice];
     }
-
+    
+    public String getFirstSeeNumChoice_p2(int choice)	{
+    	return this.firstSeeNumChoice_p2[choice];
+    }
+    
+    public String getBulliedChoice(int choice)			{
+    	return this.getBulliedChoice[choice];
+    }
+    
 }

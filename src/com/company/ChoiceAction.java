@@ -56,7 +56,7 @@ public class ChoiceAction {
     public int[] statsFirstSeeNum_p2(int choice) {
         switch (choice) {
             case 0:
-                statsChanged[2] = 1;
+                statsChanged[2] = 2;
                 break;
             case 1:
                 statsChanged[2] = -1;

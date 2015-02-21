@@ -98,6 +98,9 @@ public class Item {
             if (itemName.equalsIgnoreCase("statue")) {                      // puzzle for the Statue (Janitor's)
                 doStatue(player, inventory);
             }
+            if (itemName.equalsIgnoreCase("pass card")) {                      // puzzle for the Pass Card (nothing actually)
+                doStatue(player, inventory);
+            }
         }
     }
 
@@ -132,6 +135,7 @@ public class Item {
                 solved();
                 Player.say("Seems to be the right answer! You can give Rekt this with certainty!");
                 event.setEventTrigger("FINNISHLOVER");
+                player.setPlayerUnd(4);
                 this.consume();
                 break;
             default:
@@ -156,7 +160,20 @@ public class Item {
             this.consume();
             solved();
         } else {
-            Player.say("However, right now you don't seem to have the right tool.");
+            Player.say("However, now you don't seem to have the right tool.");
+        }
+    }
+
+    public void doPassCard(Inventory inventory, Events events) {
+        if (events.isTriggered("LB")) {
+            return;
+        }
+        Player.say("The card doesn't have name or information on it. But the numbers on it really seem familiar to you.\n\t\t56.82.13 | 165.168.11 | 04.05.06");
+        if (inventory.hasItem("Phone") != null) {
+            Player.say("Using the phone, you're able to pinpoint the place. It lies near the mountain!\n +++ LAB ACCESS +++");
+            events.setEventTrigger("LB");
+        } else {
+            Player.say("It looks like some geographic points, but you need something with GPS to pinpoint the exact place.");
         }
     }
 

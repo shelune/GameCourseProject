@@ -10,19 +10,17 @@ public class Map {
     private HashMap<Integer, Place> map = new HashMap<Integer, Place>();
     Scanner input = new Scanner(System.in);
 
-    private Place teacher = new Place(5, "Mr.Cherr's", "Your chemistry teacher's house. It looks nice and clean", "VL");
-    private Place tattoo = new Place(6, "Mr.Tate's", "A famous tattooist's in your area. It has some weird graffiti on the walls.", "TT");
-    private Place police = new Place(7, "Police station", "A place for laws and jails. Wonder if you will get in there.", "PL");
-    private Place river = new Place(8, "River", "Your area's main water source. It feels fresh being here.", "RV");
-
-    // unused places, can be modified
-
     public Map() {
         map.put(0, addHome());
         map.put(1, addClassA());
         map.put(2, addClassB());
         map.put(3, addMountain());
         map.put(4, addJanitor());
+        map.put(5, addTattoo());
+        map.put(6, addLab());
+        map.put(7, addTeacher());
+        map.put(8, addPolice());
+        map.put(9, addRiver());
     }
 
     public Place getPlace(int x) {
@@ -81,7 +79,7 @@ public class Map {
     public Place addHome() {
         Place home = new Place (0, "Home", "This is your own home", "HM");
         home.setItems();
-        Collections.addAll(home.getAccessTo(), "Home", "ClassA", "Mountain", "Mr.Jani's", "Mr.Cherr's", "Police station");
+        Collections.addAll(home.getAccessTo(), "Home", "ClassA", "Mountain", "Janitor's", "Mr.Cherr's", "Police station");
         return home;
     }
 
@@ -94,22 +92,58 @@ public class Map {
 
     public Place addClassB() {
         Place classB = new Place(2, "ClassB", "This is your buddy's class", "CB");
-        Collections.addAll(classB.getAccessTo(), "ClassB", "ClassA", "Mr.Jani's");
+        Collections.addAll(classB.getAccessTo(), "ClassB", "ClassA", "Janitor's");
+        classB.setItems();
         return classB;
     }
 
     public Place addMountain() {
         Place mountain = new Place(3, "Mountain", "This is the mountain near your school", "MT");
-        Collections.addAll(mountain.getAccessTo(), "Home", "River", "Mountain", "Police station");
+        Collections.addAll(mountain.getAccessTo(), "Home", "River", "Mountain");
         return mountain;
     }
 
     public Place addJanitor() {
         //janitor.addAccessTo("Home");
-        Place janitor = new Place(4, "Mr.Jani's", "This is your school janitor's house. It feels creepy somehow", "JN");
+        Place janitor = new Place(4, "Janitor's", "This is your school janitor's house. It feels creepy somehow", "JN");
         Collections.addAll(janitor.getAccessTo(), "Home", "ClassB");
         janitor.setItems();
         return janitor;
+    }
+
+    public Place addTattoo() {
+        Place tattoo = new Place(5, "Mr.Tate's", "A famous tattooist's in your area. It has some weird graffiti on the walls.", "TT");
+        Collections.addAll(tattoo.getAccessTo(), "Home", "Tattoo");
+        tattoo.setItems();
+        return tattoo;
+    }
+
+    public Place addLab() {
+        Place lab = new Place(6, "Lab", "A abandoned lab situationed at the side of the mountain", "LB");
+        Collections.addAll(lab.getAccessTo(), "Home", "ClassB");
+        lab.setItems();
+        return lab;
+    }
+
+    public Place addTeacher() {
+        Place teacher = new Place(7, "Mr.Cherr's", "Your chemistry teacher's house. It looks nice and clean", "VL");
+        Collections.addAll(teacher.getAccessTo(), "Home", "Teacher");
+        teacher.setItems();
+        return teacher;
+    }
+
+    public Place addPolice() {
+        Place police = new Place(8, "Police station", "A place for laws and jails. Wonder if you will get in there.", "PL");
+        Collections.addAll(police.getAccessTo(), "Home", "Police station");
+        police.setItems();
+        return police;
+    }
+
+    public Place addRiver() {
+        Place river = new Place(9, "River", "Your area's main water source. It feels fresh being here.", "RV");
+        Collections.addAll(river.getAccessTo(), "Mountain", "River");
+        river.setItems();
+        return river;
     }
 
     public static void say(String text) {

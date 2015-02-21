@@ -37,7 +37,6 @@ public class Player {
 
         GAME:                                                   // main loop
         while (gameRun) {
-
             while (dayCount < 22 && playerStamina > 20) {
                 switch (dayCount) {                             // this switch is for night events
                     case 1:
@@ -50,13 +49,10 @@ public class Player {
                         }
                         dayCount = 21;
                         break;
-                    case 21:
-                        if (events.isTriggered("GAMEOVER")) {
-                            say("Everyone is getting crazy around you. You also feel dizzy and painful... You pass out...");
-                            Events.next();
-                            say("GAME OVER!");
-                            System.exit(0);
-                        }
+
+                }
+                if (events.isTriggered("GAMEOVER")) {
+                    getGameOver();
                 }
                 say("\t \t \t \t \t \t \t \t \t \t [DAY : " + dayCount + "]");
                 System.out.println(events.getEventList());
@@ -83,47 +79,37 @@ public class Player {
     }
 
     public void actions() {
-        int choice = -1;
-        while (choice > 6 || choice < 0) {
-            try {
-                say(dialogue.getGeneralOpts());
-                choice = input.nextInt();
-            }
-            catch (InputMismatchException e) {
+        say(dialogue.getGeneralOpts());
+        int choice = events.takeInput(6);
+        switch (choice) {
+            case 1:                                                     // Go to places
+                events.getEventFirstSeeNumbers(this);                   // event 1A
+                move();
                 Events.next();
-            }
-            switch (choice) {
-                case 1:                                                     // Go to places
-                    events.getEventFirstSeeNumbers(this);                   // event 1A
-                    move();
-                    Events.next();
-                    break;
-                case 2:                                                     // Check area
-                    explore();
-                    Events.next();
-                    //
-                    break;
-                case 3:                                                     // Recover Stamina (if have food)
-                    eat();
-                    Events.next();
-                    break;
-                case 4:                                                     // Study
-                    study();
-                    Events.next();
-                    break;
-                case 5:                                                      // Get inventory
-                    showInventory();
-                    Events.next();
-                    break;
-                case 6:                                                      // Rest
-                    rest();
-                    break;
-                case 0:
-                    dayCount = 5;
-                    events.setEventTrigger("JN");
-                    events.setEventTrigger("TC");
-                    break;
-            }
+                break;
+            case 2:                                                     // Check area
+                explore();
+                Events.next();
+                //
+                break;
+            case 3:                                                     // Recover Stamina (if have food)
+                eat();
+                Events.next();
+                break;
+            case 4:                                                     // Study
+                study();
+                Events.next();
+                break;
+            case 5:                                                      // Get inventory
+                showInventory();
+                Events.next();
+                break;
+            case 6:                                                      // Rest
+                rest();
+                break;
+            case 0:
+                events.getSeeWomanNumber(this, inventory);
+                break;
         }
     }
     public void move() {                                        // press 1
@@ -172,7 +158,6 @@ public class Player {
         if (itemList.size() > 0) {
             takeItems(itemList);
         }
-        return;
     }
 
     public void eat() {                                             // press 3
@@ -265,10 +250,10 @@ public class Player {
             if (item == itemList.get(take)) {
                 if (item.isFood() || !inventory.hasItem(item)) {
                     say(item.getItemName() + " taken.");
-                    toRemove.add(item);
+                    if (!item.getItemName().equalsIgnoreCase("bones")) {
+                        toRemove.add(item);
+                    }
                     inventory.addItem(item);
-                } else {
-                    say("Should not get too many of this.");
                 }
             }
         }
@@ -315,12 +300,23 @@ public class Player {
         return this.playerUnd;
     }
 
+    public int getPlayerCrg() {
+        return this.playerCrg;
+    }
+
     public void printAchievements() {
+        say("ACHIEVEMENTS: ");
         for (String e : events.getEventList()) {
             if (e.length() > 4) {
-                System.out.print(e);
+                System.out.println(" | " + e);
             }
         }
+    }
+
+    public void getGameOver() {
+        say("GAME OVER!");
+        printAchievements();
+        System.exit(0);
     }
 
     public static void say(String text) {

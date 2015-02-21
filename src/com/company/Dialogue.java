@@ -1,5 +1,5 @@
 package com.company;
-import java.util.*;
+import java.util.Random;
 public class Dialogue {
     /////////////////////////////////// Option Commands + Location Commands
     private String generalOpts = "Please choose one action from below. \n \t (1). Move \n \t (2). Explore \n \t (3). Eat food \n \t (4). Study \n \t (5). Check inventory \n \t (6). Rest";
@@ -10,10 +10,11 @@ public class Dialogue {
     private String toClassB = "\t (2) Your buddy's classroom";
     private String toMountain = "\t (3) Mountain";
     private String toJanitor = "\t (4) Jani the Janitor's";
-    private String toTeacher = "\t (5) Your chemisty teacher's";
-    private String toTattoo = "\t (6) Tate the Tattooist's";
-    private String toPolice = "\t (7) Police station";
-    private String toRiver = "\t (8) River";
+    private String toTattoo = "\t (5) Tate the Tattooist's";
+    private String toLab = "\t (6) Lab";
+    private String toTeacher = "\t (7) Your chemisty teacher's";
+    private String toPolice = "\t (8) Police station";
+    private String toRiver = "\t (9) River";
     /////////////////////////////////// Notices / Warnings / Statements
     private String endDay = "You're tired and decide to get a rest.\n\t# Stamina reverted to 100 #\nA new day has begun";
     private String notAccess = "CANNOT ACCESS THIS AREA!";
@@ -152,7 +153,7 @@ public class Dialogue {
             "Let’s go back for now",
     };
 
-    /////////////////////////////////// 5C - First time Inside Janitor's
+    /////////////////////////////////// 5B - First time Inside Janitor's
     private String[] firstInJanitor = {
             "Finally you break into his house. It is much bigger when you look from inside. Still, the creepy feeling somewhere...",
             "In the middle of the living room is the place they found him dead. The reason is, as mentioned, unknown.",
@@ -163,6 +164,112 @@ public class Dialogue {
             "The note itself is old and scratchy... But you can read some most visibile lines on it.",
             "'Janitor's Note' Obtained!",
             "You carefully read the note... It is really hard to read those scratched letters, so all you can read is...",};
+
+    /////////////////////////////////// 9A - Infrontof Tattooist's
+    private String[] frontOfTattoo = {
+            "Upon arriving at Mr.Tate’s house, you are totally taken surprised by a big bad dog standing there.",
+            "Last time it wasn’t even existed!",
+            "Anyway, it would be impossible to take a look into his house without getting rid of the dog.",
+            "You need to find a way to divert it somehow.",
+    };
+
+    /////////////////////////////////// 9B - Infrontof Tattooist's Puzzle
+    private String[] frontOfTattooPuzzle = {
+            "The dog is casting its nasty leer onto you.",
+            "If you go in any further, it may probably rush out and bite your head off.",
+            "How could it be distracted now?",
+    };
+
+    /////////////////////////////////// 10A - Inside Tattooist's
+    private String[] insideTattoo = {
+            "You come into the victim’s room.",
+            "This is where he lied. This is where they found him.",
+            "According to the folks he lost his sanity as they came in.",
+            "You notice his eye-line and his hands were pointing at the shelf far away.",
+            "Did he want to tell something before the death came?",
+            "Check the bookshelf?\n \t(0) Yes \t (1) No"
+    };
+
+    private String[] insideTattooChoice = {
+            "You come close to the shelf and notice something with strange shape there",
+            "You don't want to touch strange stuff for now... May be dangerous",
+    };
+
+    /////////////////////////////////// 10B/C - Tattoo's Puzzle
+    private String[] tattooPuzzle = {
+            "There is a little box with a 4-digit passcode and a tiny text carved on top of it, saying 'Look behind you'.",
+            "You turn around and see an exotic calendar hung on the wall",
+            "You wonder what the connection is... ",
+            "Insert password here : XXXX",
+    };
+
+    /////////////////////////////////// 12A - First time see the lab
+    private String[] frontOfLab = {
+            "Taking the small sideway from the mountain, you manage to reach a strange lab, far away from the city",
+            "But the way into the lab is not easy, as there is a torrenting river stopping you cold",
+            "You need something to repair the bridge, or find something to latch onto the other side...",
+    };
+
+    /////////////////////////////////// 14A - Hang out
+    private String[] hangOut = {
+            "It’s Sunday again, after a long week you’ve had for yourself.",
+            "Rekt and you are taking a walk into the streets again.",
+            "You don’t know if this is actually good or bad for you, but heck, let’s enjoy your day off.",
+    };
+
+    /////////////////////////////////// 14B - Hang out
+    private String[] seeWomanNumber = {
+            "After a few joyful hours with Rekt, you two slowly walk home.",
+            "As you approach the first victim’s house, you suddenly feel it.",
+            "The flash. It is there again.",
+            "Instinctively, you turn your head around to see if there are any numbers.",
+            "There is no such thing this time… Then you heard something, the ringtone from Mr.Tate’s place.",
+            "The peculiar ringtone reminding you of something so sad, it’s here again.",
+            "Where is it coming from...",
+            "*Shrifff* A woman runs past you, almost knocking you over. That ringtone comes from the phone on her hand, you see it now",
+            "But you see another thing, it is the number 1 floating and drifting right with her head.",
+    };
+
+    private String[] seeWomanLowCrg = {
+            "You are a tad scared that the woman may be some kind of killer or something really dangerous.",
+            "You and Rekt slowly go for her trail and finally sees her departing with a strange man.",
+            "It seems that they have traded something.",
+    };
+
+    private String[] seeWomanHighCrg = {
+            "You decide to...?\n \t(0) Chase after her and ask her for more information \n \t(1) Sit down and rest, the flash after effect is still on\n \t(2) Calmly follow her and not expose yourself",
+    };
+
+    private String[] seeWomanChoice = {
+            "The woman is scared of your actions and carefully tread away. You cannot follow her from there on and head home with Rekt afterwards.",
+            "You wait for your head to be normal again, then slowly follow her trail. It appears that you came a bit too late as she is parting with a strange man.",
+            "You tell Rekt to stay back and carefully follow her movements. It appears that she’s meeting someone.",
+    };
+
+    /////////////////////////////////// 14C - Follow the man
+    private String[] followMan = {
+            "As the woman is nowhere to be found, you can only track down the man meeting with her.",
+            "He’s heading towards the mountain, and actually he’s entering the lab.",
+            "You decide to...\n \t(0) Go into the lab as well and investigate the man\n \t(1) Wait for him to leave the lab and you enter it",
+    };
+
+    private String[] followManChoice = {
+            "You courageously enter the lab and prepare to ask the man for his identity and his involvement with the lab.\nUnfortunately, the man is so brutal and kills you immediately.",
+            "As he leaves the lab, you carefully sneaks in with the Pass Card and gets the newly placed bottle he leaves behind. It can be investigated later.\n[Potion X] Obtained!",
+    };
+
+    private String[] followManNext = {
+            "You see the woman is having a conversation with a man in black.",
+            "She looks quite disturbed by the way she is acting now.",
+            "In the end, she gives the man a small bottle and leaves very quickly.",
+            "You decide to...?\n \t(0) Follow the woman\n \t(1) Follow the strange man",
+    };
+
+    private String[] followWoman = {
+            "The woman walks a bit faster than before. She takes so many right and left turns, but you barely keep up with the pace",
+            "Right when you reach your teacher’s place, she takes a abrupt turn and disappear into the blocks… ",
+            "Where is she now?",
+    };
 
     /////////////////////////////////// R1 - R.event1
     private String[] rEvent1 = {
@@ -247,9 +354,30 @@ public class Dialogue {
                 break;
             case 3:
                 fromPlace += toHome + toMountain;
+                if (events.isTriggered("LB")) {
+                    fromPlace += toLab;
+                }
+                if (events.isTriggered("RV")) {
+                    fromPlace += toRiver;
+                }
                 break;
             case 4:
                 fromPlace += toHome + toJanitor;
+                break;
+            case 5:
+                fromPlace += toHome + toTattoo;
+                break;
+            case 6:
+                fromPlace += toMountain + toLab;
+                break;
+            case 7:
+                fromPlace += toHome + toTeacher;
+                break;
+            case 8:
+                fromPlace += toHome + toPolice;
+                break;
+            case 9:
+                fromPlace += toMountain + toRiver;
                 break;
         }
         return fromPlace;
@@ -330,6 +458,54 @@ public class Dialogue {
     public String[] getSeeJanitorNumber() {
         return this.seeJanitorNumber;
     }
+
+    public String[] getInsideTattoo() {
+        return this.insideTattoo;
+    }
+
+    public String[] getTattooPuzzle() {
+        return this.tattooPuzzle;
+    }
+
+    public String[] getFrontOfTattoo() {
+        return this.frontOfTattoo;
+    }
+
+    public String[] getFrontOfTattooPuzzle() {
+        return this.frontOfTattooPuzzle;
+    }
+
+    public String[] getFrontOfLab() {
+        return this.frontOfLab;
+    }
+
+    public String[] getHangOut() {
+        return this.hangOut;
+    }
+
+    public String[] getSeeWomanNumber() {
+        return this.seeWomanNumber;
+    }
+
+    public String[] getSeeWomanNumberLowCrg() {
+        return this.seeWomanLowCrg;
+    }
+
+    public String[] getSeeWomanNumberHiCrg() {
+        return this.seeWomanHighCrg;
+    }
+
+    public String[] getFollowMan() {
+        return this.followMan;
+    }
+
+    public String[] getFollowManNext() {
+        return this.followManNext;
+    }
+
+    public String[] getFollowWoman() {
+        return this.followWoman;
+    }
     public String[] getREvent1() {
         return this.rEvent1;
     }
@@ -370,6 +546,14 @@ public class Dialogue {
 
     public String getFirstDeathChoice(int choice) {
         return this.firstDeathChoice[choice];
+    }
+
+    public String getInsideTattooChoice(int choice) {
+        return this.insideTattooChoice[choice];
+    }
+
+    public String getFollowManChoice(int choice) {
+        return this.followManChoice[choice];
     }
 
     public String getREvent1Choice(int choice) {

@@ -16,8 +16,6 @@ public class Inventory {
         } else {
             if (!inventory.contains(item)) {
                 inventory.add(item);
-            } else {
-                return;
             }
         }
     }

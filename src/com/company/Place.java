@@ -58,9 +58,16 @@ public class Place {
                 Item calculator = new Item("Calculator", "A mechanical calculator for complex problems");
                 Collections.addAll(temp, calculator);
                 break;
+            case 2:
+                Item toolbox = new Item("Toolbox", "A small toolbox that holds every tool needed for woodcraft");
+                Collections.addAll(temp, toolbox);
+                break;
+            case 3:
+                break;
             case 4:
                 Item statue = new Item("Statue", "A small statue with a small crack on it", "KEY INSIDE");
-                Collections.addAll(temp, statue);
+                Item bones = new Item("Bones", "Dogs enjoy this so much");
+                Collections.addAll(temp, statue, bones);
                 break;
 
         }

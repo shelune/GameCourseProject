@@ -185,6 +185,43 @@ public class ChoiceAction {
         return statsChanged;
     }
 
+    public int[] statsSeeWomanHiCrg(int choice, Player player, Events events) {
+        switch (choice) {
+            case 0:
+                statsChanged[0] = 2;
+                statsChanged[2] = 2;
+                player.rest();
+                break;
+            case 1:
+                statsChanged[0] = -2;
+                statsChanged[2] = -1;
+                events.setEventTrigger("14B1");
+                break;
+            case 2:
+                statsChanged[0] = 1;
+                statsChanged[1] = 2;
+                statsChanged[2] = -2;
+                events.setEventTrigger("14B2");
+                break;
+        }
+        return statsChanged;
+    }
+
+    public int[] statsFollowMan(int choice, Events events, Inventory inventory) {
+        switch (choice) {
+            case 0:
+                statsChanged[0] = 3;
+                events.setEventTrigger("GAMEOVER");
+                break;
+            case 1:
+                statsChanged[0] = -1;
+                statsChanged[1] = 2;
+                inventory.addItem(new Item("Potion X", "A weird looking bottle with a purple substance inside."));
+                break;
+        }
+        return statsChanged;
+    }
+
     public ChoiceAction(String sayString) {
         super();
         this.sayString = sayString;

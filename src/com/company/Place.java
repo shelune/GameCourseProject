@@ -3,11 +3,7 @@ package com.company;
 import java.util.ArrayList;
 import java.util.Collections;
 
-/**
- * Created by ASUS on 29-Jan-15.
- */
 public class Place {
-    private Dialogue dialogue = new Dialogue();
 
     private int placeNumber;
     private String placeName;

@@ -20,7 +20,6 @@ public class Player {
     private int playerPos = 0;
     private int playerPosTemp = 0;
     private int staminaPerMove = 8 + rand.nextInt(12);          // stamina cost when moving around the map
-    private int[] statsChanged = new int[] {0, 0, 0, 0};
 
     private int dayCount = 1;                                   // DAY COUNT!!!!
 
@@ -291,8 +290,7 @@ public class Player {
         String name = input.nextLine();
         say("What is your title__? (e.g The Great Dictator or smt)");
         String description = input.nextLine();
-        Player player = new Player(name, description, 100);
-        return player;
+        return new Player(name, description, 100);
     }
 
     public int getPlayerUnd() {

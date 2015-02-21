@@ -2,10 +2,6 @@ package com.company;
 
 import java.util.*;
 
-
-/**
- * Created by ASUS on 29-Jan-15.
- */
 public class Map {
     private HashMap<Integer, Place> map = new HashMap<Integer, Place>();
     Scanner input = new Scanner(System.in);

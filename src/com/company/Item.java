@@ -38,10 +38,6 @@ public class Item {
         this.itemCount = 1;
     }
 
-    public String getItemType() {
-        return this.itemType;
-    }
-
     public String getItemDescription() {
         return this.itemDescription;
     }

@@ -1,16 +1,10 @@
 package com.company;
-/**
- * Created by ASUS on 05-Feb-15.
- */
+
 public class ChoiceAction {
-    private String sayString;
     private int[] statsChanged = new int[] {0, 0, 0, 0}; // COU - UND - ABN - STAMINA
 
     public ChoiceAction() {
 
-    }
-    public String getSayString() {
-        return sayString;
     }
 
     public int[] statsFirstNight(int choice) {
@@ -225,10 +219,5 @@ public class ChoiceAction {
     public void actionFollowWoman(Player player, Events events) {
         player.setPlayerPos(7);
         events.setEventTrigger("VL");
-    }
-
-    public ChoiceAction(String sayString) {
-        super();
-        this.sayString = sayString;
     }
 }

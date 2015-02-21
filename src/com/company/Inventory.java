@@ -13,12 +13,6 @@ public class Inventory {
         }
     }
 
-    public void addItem(Item item, int num) {
-        for (int i = 0; i < num; i++) {
-            addItem(item);
-        }
-    }
-
     public void use(Item item) {
         if (item.getItemCount() > 1) {
             item.consume();
@@ -56,10 +50,6 @@ public class Inventory {
             }
         }
         return -1;
-    }
-
-    public boolean hasItem(Item item) {
-        return inventory.contains(item);
     }
 
     public Item hasItem(String name) {

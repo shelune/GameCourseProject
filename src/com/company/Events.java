@@ -362,7 +362,7 @@ public class Events {
         printEvent(eventDial.getREvent3());
         int choice = takeInput(2);
         Player.say(eventDial.getREvent3Choice(choice));
-        player.setAllStats(doChoiceAction.statsFirstNight(choice));
+        player.setAllStats(doChoiceAction.statsEvent3(choice, inventory));
         setEventTrigger("R3");
         next();
     }

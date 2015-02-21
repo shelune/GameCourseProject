@@ -17,7 +17,6 @@ public class Dialogue {
     private String toRiver = "\t (9) River";
     /////////////////////////////////// Notices / Warnings / Statements
     private String endDay = "You're tired and decide to get a rest.\n\t# Stamina reverted to 100 #\nA new day has begun";
-    private String notAccess = "CANNOT ACCESS THIS AREA!";
     private String stillFull = "You are still full! You shouldn't eat!";
     private String janitorNote = "I enjoyed the XXXXX days when we were worXXg together in that XXX.\nIt was just a magical substance, and XXXX.\nIt tXXd the daily XXX that we cannot live without into XXXhing so XXX.\nXXX promised that XXX the fate of us but the project got XXXXX due to XXX\n\t\t\t\t\t\t\t56.82.13 | Z \n\t\t\t\t\t\t\t165.168.11 | 3";
     /////////////////////////////////// Main Event - First Night

@@ -64,13 +64,13 @@ public class Map {
     }
 
     public ArrayList<Item> showItems(int pos) {
-        say("Items in this area: ");
+        Player.say("Items in this area: ");
         ArrayList<com.company.Item> itemList = getPlace(pos).getItemList();
         if (itemList.size() < 1) {
-            say("EMPTY AREA!");
+            Player.say("EMPTY AREA!");
         } else {
             for (int i = 0; i < itemList.size(); i++) {
-                say("(" + i + ") " + itemList.get(i).getItemName() + "\t| " + itemList.get(i).getItemDescription());
+                Player.say("(" + i + ") " + itemList.get(i).getItemName() + "\t| " + itemList.get(i).getItemDescription());
             }
         }
         return itemList;
@@ -144,9 +144,5 @@ public class Map {
         Collections.addAll(river.getAccessTo(), "Mountain", "River");
         river.setItems();
         return river;
-    }
-
-    public static void say(String text) {
-        System.out.println(text);
     }
 }

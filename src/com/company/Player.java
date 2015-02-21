@@ -14,7 +14,7 @@ public class Player {
     private String playerName;
     private String playerDescription;
     private int playerStamina;                                  // STAMINA (literally health)
-    private int playerCrg = 10;                                 // COURAGE
+    private int playerCrg = 40;                                 // COURAGE
     private int playerUnd = 10;                                 // UNDERSTANDING
     private int playerAbn = 10;                                 // ABNORMALITY
     private int playerPos = 0;
@@ -28,7 +28,7 @@ public class Player {
         this.playerName = name;
         this.playerDescription = description;
         this.playerStamina = stamina;
-        Collections.addAll(events.getEventList(), "HM", "CA");  // give player access to Home and ClassA
+        Collections.addAll(events.getEventList(), "HM", "CA", "JN");  // give player access to Home and ClassA
     }
 
     public void start() {
@@ -38,6 +38,9 @@ public class Player {
         GAME:                                                   // main loop
         while (gameRun) {
             while (dayCount < 22 && playerStamina > 20) {
+                if (events.isTriggered("GAMEOVER")) {
+                    getGameOver();
+                }
                 switch (dayCount) {                             // this switch is for night events
                     case 1:
                         events.getEventFirstNight(this);
@@ -50,9 +53,6 @@ public class Player {
                         dayCount = 21;
                         break;
 
-                }
-                if (events.isTriggered("GAMEOVER")) {
-                    getGameOver();
                 }
                 say("\t \t \t \t \t \t \t \t \t \t [DAY : " + dayCount + "]");
                 System.out.println(events.getEventList());
@@ -108,7 +108,8 @@ public class Player {
                 rest();
                 break;
             case 0:
-                events.getSeeWomanNumber(this, inventory);
+                events.getFrontOfTattoo();
+                events.getFrontOfTattooPuzzle(inventory);
                 break;
         }
     }
@@ -248,13 +249,11 @@ public class Player {
         ArrayList toRemove = new ArrayList();
         for (Item item : itemList) {
             if (item == itemList.get(take)) {
-                if (item.isFood() || !inventory.hasItem(item)) {
-                    say(item.getItemName() + " taken.");
-                    if (!item.getItemName().equalsIgnoreCase("bones")) {
-                        toRemove.add(item);
-                    }
-                    inventory.addItem(item);
+                say(item.getItemName() + " taken.");
+                if (!item.getItemName().equalsIgnoreCase("bones")) {
+                    toRemove.add(item);
                 }
+                inventory.addItem(item);
             }
         }
         itemList.removeAll(toRemove);
@@ -315,6 +314,9 @@ public class Player {
 
     public void getGameOver() {
         say("GAME OVER!");
+        if (events.isTriggered("21A")) {
+            say("CONGRATULATIONS ON FINISHING THE GAME!");
+        }
         printAchievements();
         System.exit(0);
     }

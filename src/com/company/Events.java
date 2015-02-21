@@ -2,12 +2,11 @@ package com.company;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
+
 public class Events {
     public static Scanner input = new Scanner(System.in);
+    private Random rand = new Random();
     private ArrayList<String> eventTrigger = new ArrayList<String>();
     private Dialogue eventDial = new Dialogue(); // get the dialogues for events
     //private ChoiceAction doChoiceAction = new ChoiceAction();
@@ -158,16 +157,18 @@ public class Events {
             return;
         }
         printEvent(eventDial.getFrontOfTattooPuzzle());
-        int feedCount = 0;
-        Item bone = inventory.hasItem("Bone");
+        Item bone = inventory.hasItem("Bones");
         if (bone != null) {
             bone.consume();
-            if (feedCount < 3) {
+            if (bone.getItemCount() < 2) {
                 Player.say("You fed the dog some bones, but they were consumed too quickly.");
-                feedCount++;
+                bone.consume();
             } else {
                 Player.say("Having eaten all the bones, the dog now is too full and starts to sleep.\nYou can sneak past it now.");
                 setEventTrigger("9B");
+                for (int i = 0; i < bone.getItemCount(); i++) {
+                    bone.consume();
+                }
             }
         }
         next();
@@ -274,6 +275,7 @@ public class Events {
                 choice = takeInput(1);
                 if (choice == 0) {
                     printEvent(eventDial.getFollowWoman());
+                    doChoiceAction.actionFollowWoman(player, this);
                     setEventTrigger("14D");
                 } else {
                     getFollowMan(player, inventory);
@@ -299,6 +301,31 @@ public class Events {
         player.setAllStats(doChoiceAction.statsFollowMan(choice, this, inventory));
         Player.say(eventDial.getFollowManChoice(choice));
         setEventTrigger("14C");
+    }
+
+    public void getFinalEvent() {
+        if (isTriggered("21A")) {
+            return;
+        }
+        if (!isTriggered("RESCUER")) {
+            printEvent(eventDial.getFinalEvent());
+            int choice = takeInput(1);
+            int correct = rand.nextInt(1);
+            if (choice == correct) {
+                printEvent(eventDial.getFinalEventChoiceCorrect());
+                setEventTrigger("21A");
+                setEventTrigger("HERO");
+            } else {
+                printEvent(eventDial.getFinalEventChoiceWrong());
+                setEventTrigger("21A");
+                setEventTrigger("ZERO");
+            }
+        } else {
+            printEvent(eventDial.getFinalEventAlter());
+            setEventTrigger("21A");
+            setEventTrigger("HERO");
+        }
+        next();
     }
 
     public void getEventREvent1(Player player) {

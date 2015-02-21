@@ -246,7 +246,7 @@ public class Dialogue {
             "You tell Rekt to stay back and carefully follow her movements. It appears that she’s meeting someone.",
     };
 
-    /////////////////////////////////// 14C - Follow the man
+    /////////////////////////////////// 14C / D - Follow the man
     private String[] followMan = {
             "As the woman is nowhere to be found, you can only track down the man meeting with her.",
             "He’s heading towards the mountain, and actually he’s entering the lab.",
@@ -269,6 +269,36 @@ public class Dialogue {
             "The woman walks a bit faster than before. She takes so many right and left turns, but you barely keep up with the pace",
             "Right when you reach your teacher’s place, she takes a abrupt turn and disappear into the blocks… ",
             "Where is she now?",
+            "\t \t +++ NEW AREA OPENED : TEACHER'S HOUSE +++"
+    };
+
+    /////////////////////////////////// 21A - Final Event
+    private String[] finalEvent = {
+            "Now all you’re facing is the choice between being a hero and a zero.",
+            "You have to choose between the 2 potions, one being the lifesaver, the other worsening the effect.",
+            "You decide to choose…?\n \t(0) Potion 1 \n \t (1) Potion 2",
+    };
+
+    private String[] finalEventAlter = {
+            "Now all you’re facing is the choice between being a hero and a zero.",
+            "You have to choose between the 2 potions, one being the lifesaver, the other worsening the effect.",
+            "However, with the tip from Mr.Cherr's wife, you manage to choose the right bottle and pour it into the river!",
+            "You pour the supposedly antidote into the water. Now all you do is drink the water itself to check the result.",
+            "...",
+            "And you didn’t die! You just saved the whole town! Good job!\n",
+    };
+
+    private String[] finalEventChoiceCorrect = {
+            "You pour the supposedly antidote into the water. Now all you do is drink the water itself to check the result.",
+            "...",
+            "And you didn’t die! You just saved the whole town! Good job!\n",
+    };
+
+    private String[] finalEventChoiceWrong = {
+            "You pour the supposedly antidote into the water. Now all you do is drink the water itself to check the result.",
+            "...",
+            "You feel the burn deep down from the belly.",
+            "You feel your sanity losing itself. You just die...",
     };
 
     /////////////////////////////////// R1 - R.event1
@@ -505,6 +535,22 @@ public class Dialogue {
 
     public String[] getFollowWoman() {
         return this.followWoman;
+    }
+
+    public String[] getFinalEvent() {
+        return this.finalEvent;
+    }
+
+    public String[] getFinalEventAlter() {
+        return this.finalEventAlter;
+    }
+
+    public String[] getFinalEventChoiceCorrect() {
+        return this.finalEventChoiceCorrect;
+    }
+
+    public String[] getFinalEventChoiceWrong() {
+        return this.finalEventChoiceWrong;
     }
     public String[] getREvent1() {
         return this.rEvent1;

@@ -222,6 +222,11 @@ public class ChoiceAction {
         return statsChanged;
     }
 
+    public void actionFollowWoman(Player player, Events events) {
+        player.setPlayerPos(7);
+        events.setEventTrigger("VL");
+    }
+
     public ChoiceAction(String sayString) {
         super();
         this.sayString = sayString;

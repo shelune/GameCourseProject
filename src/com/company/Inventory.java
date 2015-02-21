@@ -6,17 +6,10 @@ public class Inventory {
     private ArrayList<Item> inventory = new ArrayList <Item>();
 
     public void addItem(Item item) {
-        String itemType = item.getItemType();
-        if (itemType.equals("Food")) {
-            if (inventory.contains(item)) {
-                item.addItemCount();
-            } else {
-                inventory.add(item);
-            }
+        if (inventory.contains(item)) {
+            item.addItemCount();
         } else {
-            if (!inventory.contains(item)) {
-                inventory.add(item);
-            }
+            inventory.add(item);
         }
     }
 
@@ -40,10 +33,14 @@ public class Inventory {
 
     public void delInvalidItem() {
         ArrayList toRemove = new ArrayList();
+        int length = inventory.size();
         for (Item i : inventory) {
             if (i.getItemCount() == 0) {
                 toRemove.add(i);
             }
+        }
+        if (length > 7) {
+            toRemove.add(inventory.get(0));
         }
         inventory.removeAll(toRemove);
     }

@@ -37,22 +37,49 @@ public class Player {
 
         GAME:                                                   // main loop
         while (gameRun) {
+
             while (dayCount < 22 && playerStamina > 20) {
                 switch (dayCount) {                             // this switch is for night events
                     case 1:
                         events.getEventFirstNight(this);
                         break;
+                    case 7:
+                        if (!events.isTriggered("MT")) {
+                            say("You are unable to solve the mystery of Janitor's death. 14 days later...");
+                            events.setEventTrigger("GAMEOVER");
+                        }
+                        dayCount = 21;
+                        break;
+                    case 21:
+                        if (events.isTriggered("GAMEOVER")) {
+                            say("Everyone is getting crazy around you. You also feel dizzy and painful... You pass out...");
+                            Events.next();
+                            say("GAME OVER!");
+                            System.exit(0);
+                        }
                 }
                 say("\t \t \t \t \t \t \t \t \t \t [DAY : " + dayCount + "]");
                 System.out.println(events.getEventList());
                 printPlayerStamina();
                 printAllStats();
                 map.printPlace(playerPos);
-                input.nextLine();                               // print all player's info
+                input.nextLine();
+                notice();
                 actions();                                      // all actions available
             }
             rest();
         }
+    }
+
+    public void notice() {
+        switch (dayCount) {
+            case 4:
+                if (!events.isTriggered("MT")) {
+                    say("Probably you want to visit the Janitor's house today after class.");
+                }
+                break;
+        }
+
     }
 
     public void actions() {
@@ -92,19 +119,22 @@ public class Player {
                     rest();
                     break;
                 case 0:
-                    dayCount = 5;
-                    events.setEventTrigger("JN");
-                    events.setEventTrigger("TC");
+                	//events.setEventTrigger("8A");
+                    events.getEvent15B(this);
                     break;
             }
         }
     }
-    public void move() {
+    public void move() {                                        // press 1
         if (playerPos == 1 && dayCount == 1 && events.isTriggered("TC")) {
             events.getEventAfterClass1st(this, inventory);
         }
-        say(dialogue.goSomewhere(playerPos, events.getEventList()));
-        playerPosTemp = map.move(playerPos, events.getEventList());
+        say(dialogue.goSomewhere(playerPos, events));
+        playerPosTemp = map.move(playerPos, events);
+        if (playerPosTemp != 1 && !events.isTriggered("TC")) {
+            say("But school is waiting right now!");
+            return;
+        }
         if (playerPosTemp != playerPos) {
             setPlayerStamina(staminaPerMove);                   // check if go or stay, then cost stamina
             playerPos = playerPosTemp;
@@ -120,15 +150,23 @@ public class Player {
             say("\t...\n");
         }
         if (playerPos == 1 && dayCount == 2) {
-            events.getEventGetBullied(this, playerUnd);
+            events.getEventGetBullied(this, playerUnd, inventory);
             events.getEventMetJanitor(this);
+            events.getEventSeeJanitorNumber(this, inventory);
+            // events.setEventTrigger("JN");
         }
-        if (playerPos == 4 && dayCount == 5) {
+        if (playerPos == 1 && dayCount == 3) {
+            events.getEventFirstDeath(this);
+        }
+        if (playerPos == 4 && dayCount == 3) {
+            events.getEventFirstAtJanitors(this);
+        }
+        if (playerPos == 4 && dayCount == 5 && inventory.hasItem("Old Key") != null) {
             events.getEventFirstInJanitor(inventory, this);
         }
     }
 
-    public void explore() {
+    public void explore() {                                         // press 2
         ArrayList<Item> itemList = map.showItems(playerPos);
         if (itemList.size() > 0) {
             takeItems(itemList);
@@ -136,7 +174,7 @@ public class Player {
         return;
     }
 
-    public void eat() {
+    public void eat() {                                             // press 3
         int foodIndex = inventory.searchFood();
         if (foodIndex != -1) {
             if (playerStamina == 100) {
@@ -155,7 +193,7 @@ public class Player {
     public void study() {
         if (dayCount % 7 != 0) {
             if (!events.isTriggered("TC")) {
-                say("School is waiting right now! No time for studying!");
+                say("School is waiting right now!");
             } else {
                 if (rand.nextInt(2) == 1) {
                     say("You review your stuff.\n\t# Understanding went up by 2 #");
@@ -244,8 +282,8 @@ public class Player {
         this.playerUnd += und;
     }
 
-    public void setPlayerAbn(int abn) {
-        this.playerCrg += abn;
+    public void setPlayerPos(int pos) {
+        this.playerPos = pos;
     }
 
     public void setAllStats(int[] statsChanged) {
@@ -272,8 +310,16 @@ public class Player {
         return player;
     }
 
-    public void setPlayerPos(int destination) {
-        this.playerPos = destination;
+    public int getPlayerUnd() {
+        return this.playerUnd;
+    }
+
+    public void printAchievements() {
+        for (String e : events.getEventList()) {
+            if (e.length() > 4) {
+                System.out.print(e);
+            }
+        }
     }
 
     public static void say(String text) {

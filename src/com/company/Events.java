@@ -410,12 +410,90 @@ public class Events {
         next();
     }
 
-    public void getEvent16A(Player player) {
+    public void getEvent16A(Player player, Inventory inventory) {
         if (isTriggered("16A")) {
             return;
         }
         printEvent(eventDial.getGetArrested());
         setEventTrigger("16A");
+        if (player.getPlayerAbn() > 14) {
+            inventory.empty();
+            inventory.addItem(new Item("Small Hammer", "A tiny hammer you used to play when you were young"));
+            inventory.addItem(new Item("Phone", "Used to call someone"));
+        } else {
+            inventory.empty();
+        }
+        setEventTrigger("ARRESTED");
+        next();
+    }
+
+    public void getInJail(Player player, Inventory inventory) {
+        ChoiceAction doChoiceAction = new ChoiceAction();
+        if (isTriggered("17A")) {
+            return;
+        }
+        printEvent(eventDial.getFirstInJanitor());
+        int choice = takeInput(1);
+        player.setAllStats(doChoiceAction.statsInJail(choice, player, inventory));
+        setEventTrigger("17A");
+        next();
+    }
+
+    public void getFinalLab(Player player, Inventory inventory) {
+        if (isTriggered("19A")) {
+            return;
+        }
+        printEvent(eventDial.getFinalLab());
+        int choice = takeInput(1);
+        Player.say(eventDial.getFinalLabChoice(choice));
+        if (player.getPlayerCrg() > 24) {
+            Item brick = inventory.hasItem("Brick");
+            if (brick != null) {
+                brick.consume();
+                Player.say("You use your planet-shattering brick onto the window nearby and crash it into the room.");
+                printEvent(eventDial.getFinalLabRescued());
+                setEventTrigger("RESCUED");
+                next();
+                getRiverDiscovered();
+            } else {
+                Player.say("You want to save her but have no tool to do that.\n You bypass the room to check the lab's surrounding...");
+                getRiverDiscovered();
+            }
+        } else {
+            getRiverDiscovered();
+        }
+        setEventTrigger("19A");
+        next();
+    }
+
+    public void getRiverDiscovered() {
+        printEvent(eventDial.getRiverDiscovered());
+        setEventTrigger("RV");
+    }
+
+    public void getFinalMorning(Player player) {
+        ChoiceAction doChoiceAction = new ChoiceAction();
+        if (isTriggered("20A")) {
+            return;
+        }
+        printEvent(eventDial.getFinalMorning());
+        int choice = takeInput(1);
+        Player.say(eventDial.getFinalMorningChoice(choice));
+        player.setAllStats(doChoiceAction.statsFinalMorning(choice));
+        setEventTrigger("20A");
+        next();
+    }
+
+    public void getFinalToSchool (Player player) {
+        ChoiceAction doChoiceAction = new ChoiceAction();
+        if (isTriggered("20B")) {
+            return;
+        }
+        printEvent(eventDial.getFinalToSchool());
+        int choice = takeInput(1);
+        Player.say(eventDial.getFinalToSchoolChoice(choice));
+        player.setAllStats(doChoiceAction.statsFinalToSchool(choice));
+        setEventTrigger("20B");
         next();
     }
 

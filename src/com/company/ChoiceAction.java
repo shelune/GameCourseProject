@@ -300,4 +300,53 @@ public class ChoiceAction {
         }
         return statsChanged;
     }
+
+    public int[] statsInJail(int choice, Player player, Inventory inventory) {
+        switch (choice) {
+            case 0:
+                statsChanged[0] = 2;
+                statsChanged[2] = 2;
+                Item sHammer = inventory.hasItem("Small Hammer");
+                if (inventory.hasItem("Small Hammer") != null) {
+                    sHammer.consume();
+                    inventory.addItem(new Item("Brick", "A craggy but sturdy brick, can be thrown at b!tches for permanent damage"));
+                    Player.say("With the small hammer, you eventually take out the brick. But the hammer is also done fore. This brick could be in use for later.\n [Brick] Obtained");
+                } else {
+                    Player.say("You try and try but the brick is still stuck onto the wall, you can’t take it with proper tool");
+                }
+                break;
+            case 1:
+                statsChanged[1] = 1;
+                Player.say("If someone catches you, it may spell disaster for you.");
+                break;
+        }
+        return statsChanged;
+    }
+
+    public int[] statsFinalMorning(int choice) {
+        switch (choice) {
+            case 0:
+                statsChanged[1] = -2;
+                statsChanged[3] = 25;
+                break;
+            case 1:
+                statsChanged[1] = -1;
+                break;
+        }
+        return statsChanged;
+    }
+
+    public int[] statsFinalToSchool(int choice) {
+        switch (choice) {
+            case 0:
+                statsChanged[0] = 2;
+                statsChanged[1] = 2;
+                break;
+            case 1:
+                statsChanged[1] = -1;
+                statsChanged[2] = -2;
+                break;
+        }
+        return statsChanged;
+    }
 }

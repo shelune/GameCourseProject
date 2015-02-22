@@ -217,7 +217,9 @@ public class Player {
             Events.next();
             return;
         }
-        playerPos = 0;
+        if (!events.isTriggered("ARRESTED")) {
+            playerPos = 0;
+        }
         setPlayerStamina(-1);
         events.clearEventTrigger("TC");
         say(dialogue.getEndDay());
@@ -299,6 +301,10 @@ public class Player {
 
     public int getPlayerCrg() {
         return this.playerCrg;
+    }
+
+    public int getPlayerAbn() {
+        return this.playerAbn;
     }
 
     public void printAchievements() {

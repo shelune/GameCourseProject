@@ -389,7 +389,69 @@ public class Dialogue {
     };
     /////////////////////////////////// 17A - Within Jail
     private String[] inJail = {
-            ""
+            "Now you are at the darkest place ever. You are not allowed to move anywhere...",
+            "This is so terrifying.",
+            "You notice a small craggy brick popping out over your head. This jail has got really old. ",
+            "Do you want to poke this oldass brick out…?\n \t(0) Poke it out! Poke it out!\n \t (1) Better leave it there.",
+    };
+
+    /////////////////////////////////// 19A - Final Lab Visit & River Discovered
+    private String[] finalLab = {
+            "You arrive at the Lab.",
+            "It seems a bit ‘used’ today, so someone must have entered it quite frequently for the past few days.",
+            "That proves to be true as at the end of the lab corridor, you see now the door used to be wide opened is locked hard now.",
+            "You decide to…?\n \t (0) Try to open it. Worth a try? \n \t (1) Bypass it. You need to check the lab now.",
+    };
+
+    private String[] finalLabChoice = {
+            "You hear the sound of a person inside that... That’s a woman!\n However, you need to find a way to break into that, otherwise no way you can hear what she is saying",
+            "You decide not to touch the scary locked-door and proceed forward. Who knows what monster is hiding behind the door?!",
+    };
+
+    private String[] finalLabRescued = {
+            "There is a woman crumbling in the corner of the room.",
+            "However, she just jumps out of the window and runs, as if she were haunted by something.",
+            "Unable to track down the woman, you leave the room and resume to check the lab's surrounding.",
+    };
+
+    private String[] riverDiscovered = {
+            "After a while you find out a small passage at the corner of the lab leading directly to the river.",
+            "However, it’s getting dark again so you’d better head home for now.",
+            "A number ‘2’ vaguely floats in front of your eyes….",
+            "+++ NEW AREA OPENED : RIVER +++",
+    };
+
+    /////////////////////////////////// 20A - Final Morning
+    private String[] finalMorning = {
+            "You wake up in the morning with a unbearable headache.",
+            "There’s no flash here though, so this may be a normal one.",
+            "You decide to...?\n \t (0) Forget about it and go to school anyway \n \t (1) Take some aspirin first",
+    };
+
+    private String[] finalMorningChoice = {
+            "You just keep yourself up and ignore the pain. It's just so painful...",
+            "You take in some aspirin, but the headache doesn’t wane. You go to school anyway.",
+    };
+
+    /////////////////////////////////// 20B - Final To School
+    private String[] finalToSchool = {
+            "Opening the door, you have another flash.",
+            "‘What’s with this morning?!’, you mutter.",
+            "The headache was just the tip of the iceberg.",
+            "You see the number 1. You see it.",
+            "Everywhere.",
+            "You forget how to blink. This scene is just too terrifying.",
+            "Something is happening the next day and that is definitely gonna kill everyone here.",
+            "What to do now, you even have an exam today. Shall you skip it...?\n \t (0) Yeah! Skip it! Everyone is dying here, duh?! \n \t (1) It’s just 1 morning and you have the whole day to yourself anyway",
+    };
+
+    private String[] finalToSchoolChoice = {
+            "You decide to leave the exam aside and focus on saving everyone!",
+            "Education is more important. You can solve the problem later on with your superb mind.",
+    };
+
+    private String[] finalClues = {
+
     };
 
     /////////////////////////////////// 21A - Final Event
@@ -689,6 +751,37 @@ public class Dialogue {
         return this.followWoman;
     }
 
+    public String[] getGetArrested() {
+        return this.getArrested;
+    }
+
+    public String[] getInJail() {
+        return this.inJail;
+    }
+
+    public String[] getFinalLab() {
+        return this.finalLab;
+    }
+
+    public String[] getFinalLabRescued() {
+        return this.finalLabRescued;
+    }
+
+    public String[] getRiverDiscovered() {
+        return this.riverDiscovered;
+    }
+
+    public String[] getFinalMorning() {
+        return this.finalMorning;
+    }
+
+    public String[] getFinalToSchool() {
+        return this.finalToSchool;
+    }
+
+    public String[] getFinalClues() {
+        return this.finalClues;
+    }
     public String[] getFinalEvent() {
         return this.finalEvent;
     }
@@ -705,9 +798,6 @@ public class Dialogue {
         return this.finalEventChoiceWrong;
     }
 
-    public String[] getGetArrested() {
-        return this.getArrested;
-    }
     public String[] getREvent1() {
         return this.rEvent1;
     }
@@ -768,6 +858,18 @@ public class Dialogue {
 
     public String getFollowManChoice(int choice) {
         return this.followManChoice[choice];
+    }
+
+    public String getFinalLabChoice(int choice) {
+        return this.finalLabChoice[choice];
+    }
+
+    public String getFinalMorningChoice(int choice) {
+        return this.finalMorningChoice[choice];
+    }
+
+    public String getFinalToSchoolChoice(int choice) {
+        return this.finalToSchoolChoice[choice];
     }
 
     public String getREvent1Choice(int choice) {

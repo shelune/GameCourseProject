@@ -152,6 +152,18 @@ public class Dialogue {
             "Let’s go back for now",
     };
 
+    /////////////////////////////////// 5A
+    private String[] event5A = {
+            "This small statue catches your eyes. It doesn’t have that much dust covering like other statues, if at all.",
+            "Probably that means… \n\t(0) This special statue has a dust-proof layer. It must be expensive!\n\t(1) It can move itself! Let’s look for some secret passage once it’s moved!\n\t(2) It has been touched regularly. Someone probably has been doing something with it.",
+    };
+
+    private String[] event5AChoice	= {
+            "‘Why are you holding such a cheap stuff for so long dude?!’, Rekt doesn’t agree with you on that, then.",
+            "You spend quite a lot of time searching for hidden way into the house, but in vain. So tired already…",
+            "It seems like the statue has been meddled with recently, but for what?",
+    };
+
     /////////////////////////////////// 5B - First time Inside Janitor's
     private String[] firstInJanitor = {
             "Finally you break into his house. It is much bigger when you look from inside. Still, the creepy feeling somewhere...",
@@ -163,6 +175,68 @@ public class Dialogue {
             "The note itself is old and scratchy... But you can read some most visibile lines on it.",
             "'Janitor's Note' Obtained!",
             "You carefully read the note... It is really hard to read those scratched letters, so all you can read is...",};
+
+    /////////////////////////////////// 7A
+    private String[] event7A = {
+            "It’s Sunday, but you don’t really feel happy as usual.",
+            "A person was dead a few days ago, and you feel like you somehow were involved in that.",
+            "The numbers, they gotta have something to do with that!...",
+            "‘Hey dude, are you home? I got this lovely place to go!’, Rekt shouts from below.",
+            "His volume… you can never ignore his loud voice. Where does he want to go to now?",
+            "‘You know, I have always wanted to have a tattoo! Now for the thrilling events awaiting us, I wanna get it for once. Check this place out!’.",
+            "Oh, so it is for the tattoo. He seems not to have calmed down at all after that night, so you’d better accompany him for some time.",
+            "+++ NEW AREA OPENED : TATTOOIST’s HOUSE +++"
+    };
+
+    /////////////////////////////////// 7B
+    private String[] event7B = {
+            "After 15 minutes of walking, you two finally reach the destination.",
+            "It is an exotic tattoo shop, at the corner of the street, quite near the janitor’s house actually.",
+            "‘Mr.Tate’, you can read it from the board in the front, seems to be the owner of this shop.",
+            "You and Rekt step in, the bell rings, but not after a while does Mr.Tate show up and greet. ‘Sorry I was having a guest! You want a tattoo?’.",
+            "While Rekt is busy describing the tattoo, you… \n\t(0) Go further inside and take a look.\n\t(1) ‘Guest? Has he left yet?’\n\t(2) Just wait outside until Rekt is done"
+    };
+
+    private String[] event7BChoice = {
+            "Before you make a move, Mr.Tate already gets his arm by you and forbid any further movement. ‘Why don’t you take a seat and wait for your friend, lad?’, he seemingly doesn’t want you to enter his shop. ",
+            "‘It should not be of your concern, right? Let’s make this quick and nice’, Mr.Tate doesn’t want to mention his guest.",
+            ""
+    };
+
+    /////////////////////////////////// 7C
+    private String[] event7C = {
+            "‘That ringtone is so like the one I heard a while ago. What is its name, Mr.Tate?’, you ask.",
+            "‘Oh, it’s not mine, it’s his phone, and yes, that ringtone is quite unique’.",
+            "So his guest is probably someone you know, but who…",
+            "Before you can even make the wildest guest, Mr.Tate has already finished the tattoo. ",
+            "You don’t even get what it is, but guess what, Rekt likes it!",
+            "‘Thank you so much, Mr.’, Rekt nods and nods.",
+            "Suddenly, the ringtone is on again, but this time you don’t even bother to ask more about it… The flash has kicked in.",
+            "Rekt has nothing. Pedestrians have nothing. But the person standing right in front of you does.",
+            "There’s a vague, wavy number ‘1’ floating right on top of Mr.Tate’s head. And the phone keeps ringing. Ugh, your head hurts so much.",
+            "‘We’re going home now. My friend here seems to have waited for too long’, Rekt leads the way.",
+            "No! ‘I can’t leave now. I need to ask him…’ then everything goes black for you.",
+            "Wake up at home and rest.",
+    };
+
+    /////////////////////////////////// 8A
+    private String[] event8A = {
+            "Afterall, the class is over. Actually today, it never bothered you.",
+            "What did was the number on the head of that tattooist. Why him? And what does it mean…?",
+            "You really want to come over his place to check out.",
+            "‘Shall I ask Rekt to come with me, I wonder?’, you think to yourself.\n\t(0) Why not? He has been a great asset.\n\t(1) Nah. This is just your stuff so better go by yourself.",
+    };
+
+    /////////////////////////////////// 8B
+    private String[] event8B = {
+            "You have the feeling that something bad actually happened… ",
+            "To your fear, a bunch of people are gathering in front of Mr.Tate’s shop.",
+            "They seem pretty unsettled and scared.",
+            "‘Oh god I can’t believe he just died like that!’",
+            "‘What was the cause? Did he just go crazy and smash his head onto the shelf?’",
+            "‘I don’t know, I mean, he was completely normal last evening when I saw him!’",
+            "You want to go inside to ask it out.\n\t(0) Ask the crowd, it’s enough for you.\n\t(1) Split the crowd and go straight into the house"
+    };
 
     /////////////////////////////////// 9A - Infrontof Tattooist's
     private String[] frontOfTattoo = {
@@ -271,7 +345,34 @@ public class Dialogue {
             "\t \t +++ NEW AREA OPENED : TEACHER'S HOUSE +++"
     };
 
-    /////////////////////////////////// 16A - Getting Arressted
+    /////////////////////////////////// 15A
+    private String[] event15A = {
+            "You come to class quite early today. ",
+            "To your surprise, your form teacher doesn’t show up. Everyone is confused about this, it seems. ",
+            "The man who takes charge of your class doesn’t come to school late for even once, and now he’s absent.",
+            "There must have been some serious incident.",
+            "You decide to visit his house this afternoon",
+            "+++ NEW AREA OPENED : TEACHER's HOUSE",
+    };
+
+    /////////////////////////////////// 15B
+    private String[] event15B = {
+            "*Ring ding ding*. *Ring ding ding*.",
+            "You have been pressing the door bell for five minutes and no response whatsoever.",
+            "Was your teacher…?",
+            "No, the person yesterday was definitely a woman, not a firm man.",
+            "But what did she have to do at your teacher’s place…?",
+            "Suddenly the door opens, Mr.Cherr, the man of the class, shows up with an extremely desperate face.",
+            "You have never seen him like this…\n\t(0) ‘What’s wrong Mr.Cherr? We misseed you at class today…’\n\t(1) ‘Are you being assaulted or threated by someone?’\n\t(2) ‘Yo Mr.Cherr, ya’ know it’s irresponsible of you to leave us like that right?’",
+    };
+
+    private String[] event15BChoice = {
+            "Mr.Cherr looks away, with a cannot-be-worse face. He apologizes deeply and asks you to return. He guarantees his return tomorrow.",
+            "The miserable face of Mr.Cherr gets lifted up by a bit.\n‘How would you know that?’ He shakes your shoulder a bit hard.\n‘My wife just got kidnapped yesterday. I haven’t seen her since the afternoon. Then this morning comes with a note…’.\nHe gives you a note that has ‘Gubbidy Bubbidy To Your Wife, Your Work Has Earned Its Worth’.\nHe must have been devastated by this…",
+            "Mr.Cherr looks at you with uncannily weird eyes… He may be thinking that you’re crazy.\nAnyway, you manage to get his attention. Let’s come inside and talk about his situation\n‘Are you being assaulted or threated by someone?’\nThe miserable face of Mr.Cherr gets lifted up by a bit.\n‘How would you know that?’ He shakes your shoulder a bit hard.\n‘My wife just got kidnapped yesterday. I haven’t seen her since the afternoon. Then this morning comes with a note…’.\nHe gives you a note that has ‘Gubbidy Bubbidy To Your Wife, Your Work Has Earned Its Worth’.\nHe must have been devastated by this…",
+    };
+
+    /////////////////////////////////// 16A - Getting Arrested
     private String[] getArrested = {
             "*Thump* *Thump* *Thump*",
             "Someone is banging at the door.",
@@ -285,6 +386,10 @@ public class Dialogue {
             "Taken to the interrogation room, you are faced with 2 other officers asking you millions of things.",
             " ‘Gosh, what have I done?! Shouldn’t have visited him!’.",
             "'And why has he disappeared as well?! I didn't see any number on his head!",
+    };
+    /////////////////////////////////// 17A - Within Jail
+    private String[] inJail = {
+            ""
     };
 
     /////////////////////////////////// 21A - Final Event
@@ -504,6 +609,38 @@ public class Dialogue {
         return this.seeJanitorNumber;
     }
 
+    public String[] getEvent5A()	{
+        return event5A;
+    }
+
+    public String[] getEvent7A()	{
+        return event7A;
+    }
+
+    public String[] getEvent7B()	{
+        return event7B;
+    }
+
+    public String[] getEvent7C()	{
+        return event7C;
+    }
+
+    public String[] getEvent8A()	{
+        return event8A;
+    }
+
+    public String[] getEvent8B()	{
+        return event8B;
+    }
+
+    public String[] getEvent15A()	{
+        return event15A;
+    }
+
+    public String[] getEvent15B()	{
+        return event15B;
+    }
+
     public String[] getInsideTattoo() {
         return this.insideTattoo;
     }
@@ -611,6 +748,18 @@ public class Dialogue {
 
     public String getFirstDeathChoice(int choice) {
         return this.firstDeathChoice[choice];
+    }
+
+    public String getEvent5AChoice(int choice)	{
+        return this.event5AChoice[choice];
+    }
+
+    public String getEvent7BChoice(int choice)	{
+        return this.event7BChoice[choice];
+    }
+
+    public String getEvent15BChoice(int choice)	{
+        return this.event15BChoice[choice];
     }
 
     public String getInsideTattooChoice(int choice) {

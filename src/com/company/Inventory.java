@@ -41,11 +41,17 @@ public class Inventory {
     }
 
     public void delInvalidItem() {
+        ArrayList toRemove = new ArrayList();
         for (Item i : inventory) {
             if (i.getItemCount() == 0) {
-                inventory.remove(i);
+                toRemove.add(i);
             }
         }
+        inventory.removeAll(toRemove);
+    }
+
+    public void empty() {
+        inventory.clear();
     }
 
     public int searchFood() {
@@ -61,13 +67,13 @@ public class Inventory {
         return inventory.contains(item);
     }
 
-    public boolean hasItem(String name) {
+    public Item hasItem(String name) {
         for (Item i : inventory) {
             if (i.getItemName().equalsIgnoreCase(name)) {
-
+                return i;
             }
         }
-        return false;
+        return null;
     }
 
     public Item searchKeyItem() {

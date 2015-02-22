@@ -116,7 +116,7 @@ public class Events {
         Player.say(eventDial.getFirstDeathChoice(choice));
         player.setAllStats(doChoiceAction.statsFirstDeath(choice));
         setEventTrigger("3A");
-        setEventTrigger("JN");
+        setEventTrigger("JN");                                                  // Janitor
         next();
     }
 
@@ -131,16 +131,100 @@ public class Events {
         next();
     }
 
+	public void getEvent5A(Player player, Inventory inventory) {
+		ChoiceAction doChoiceAction = new ChoiceAction();
+		if (!isTriggered("5A") && inventory.hasItem("Statue") != null) {
+			printEvent(eventDial.getEvent5A());
+			int choice = takeInput(2);
+			Player.say(eventDial.getEvent5AChoice(choice));
+			player.setAllStats(doChoiceAction.statsEvent5A(choice));
+			Player.say("Anyway, you have no idea what to do with the statue yet, so just keep it for later.");
+			setEventTrigger("5A");
+			next();
+		} else {
+			return;
+		}
+	}
+
     public void getEventFirstInJanitor(Inventory inventory, Player player) {
         if (isTriggered("5B")) {
             return;
         }
+        Item oldKey = inventory.hasItem("Old Key");
+        oldKey.consume();
         printEvent(eventDial.getFirstInJanitor());
         Item note = new Item("Small Note", "A note with barely readable text", eventDial.getJanitorNote());
         inventory.addItem(note);
         note.puzzle(this, player, inventory);
         setEventTrigger("5B");
         next();
+    }
+
+    public void getEvent7A(Player player) {
+        ChoiceAction doChoiceAction = new ChoiceAction();
+        if (isTriggered("7A")) {
+            return;
+        }
+        printEvent(eventDial.getEvent7A());
+        setEventTrigger("7A");
+        setEventTrigger("TT");                                                  // Tattooist's opened
+        next();
+    }
+
+    public void getEvent7B(Player player) {
+        ChoiceAction doChoiceAction = new ChoiceAction();
+        if (!isTriggered("7B") && isTriggered("5A")) {
+            printEvent(eventDial.getEvent7B());
+            int choice = takeInput(2);
+            Player.say(eventDial.getEvent7BChoice(choice));
+            player.setAllStats(doChoiceAction.statsEvent7B(choice));
+            Player.say("While you are waiting, a phone rings from inside the store. Its sound… It’s so peculiar, yet a bit similar. You have the feeling that you heard this somewhere…");
+            setEventTrigger("7B");
+            next();
+        }
+    }
+
+    public void getEvent7C(Player player) {
+        if (isTriggered("7C")) {
+            return;
+        }
+        printEvent(eventDial.getEvent7C());
+        setEventTrigger("7C");
+        next();
+    }
+
+    public void getEvent8A(Player player) {
+        ChoiceAction doChoiceAction = new ChoiceAction();
+        if (isTriggered("8A")) {
+            return;
+        }
+        printEvent(eventDial.getEvent8A());
+        int choice = takeInput(1);
+        if (choice == 0) {
+            setEventTrigger("SIDEKICK");
+        }
+        player.setAllStats(doChoiceAction.statsEvent8A(choice));
+        Player.say("Let’s come to that Tattooist’s place now, shall we?");
+        setEventTrigger("8A");
+        next();
+    }
+
+    public void getEvent8B(Player player) {
+        ChoiceAction doChoiceAction = new ChoiceAction();
+        if (!isTriggered("8B") && isTriggered("8A")) {
+            printEvent(eventDial.getEvent8B());
+            int options=1;
+            if (isTriggered("SIDEKICK")) {
+                Player.say("\t(2) Ask your friend to do so");
+                options=2;
+            }
+            int choice = takeInput(options);
+            player.setAllStats(doChoiceAction.statsEvent8B(choice));
+            setEventTrigger("8B");
+            next();
+        } else {
+            return;
+        }
     }
 
     public void getFrontOfTattoo() {
@@ -301,6 +385,38 @@ public class Events {
         player.setAllStats(doChoiceAction.statsFollowMan(choice, this, inventory));
         Player.say(eventDial.getFollowManChoice(choice));
         setEventTrigger("14C");
+    }
+
+    public void getEvent15A(Player player)	{
+        if (isTriggered("15A"))	{
+            return;
+        }
+        printEvent(eventDial.getEvent15A());
+        setEventTrigger("15A");
+        setEventTrigger("VL");                                                  // OPEN TEACHER'S PLACE
+        next();
+    }
+
+    public void getEvent15B(Player player) {
+        ChoiceAction doChoiceAction = new ChoiceAction();
+        if (isTriggered("15B")) {
+            return;
+        }
+        printEvent(eventDial.getEvent15B());
+        int choice = takeInput(2);
+        Player.say(eventDial.getEvent15BChoice(choice));
+        player.setAllStats(doChoiceAction.statsEvent15B(choice));
+        setEventTrigger("15B");
+        next();
+    }
+
+    public void getEvent16A(Player player) {
+        if (isTriggered("16A")) {
+            return;
+        }
+        printEvent(eventDial.getGetArrested());
+        setEventTrigger("16A");
+        next();
     }
 
     public void getFinalEvent() {

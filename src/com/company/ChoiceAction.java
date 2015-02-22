@@ -179,23 +179,83 @@ public class ChoiceAction {
         return statsChanged;
     }
 
-    public int[] statsSeeWomanHiCrg(int choice, Player player, Events events) {
+    public int[] statsEvent5A(int choice) {
         switch (choice) {
             case 0:
-                statsChanged[0] = 2;
-                statsChanged[2] = 2;
-                player.rest();
+                statsChanged[1] = -1;
+                statsChanged[3] = 20;
                 break;
             case 1:
-                statsChanged[0] = -2;
-                statsChanged[2] = -1;
-                events.setEventTrigger("14B1");
+                statsChanged[1] = -1;
+                statsChanged[2] = +2;
+                statsChanged[3] = 30;
                 break;
             case 2:
+                statsChanged[1] = 1;
+                break;
+        }
+        return statsChanged;
+    }
+
+    public int[] statsEvent7B(int choice) {
+        switch (choice) {
+            case 0:
                 statsChanged[0] = 1;
+                statsChanged[2] = 3;
+                break;
+            case 1:
+                statsChanged[2] = 3;
+                break;
+            case 2:
                 statsChanged[1] = 2;
-                statsChanged[2] = -2;
-                events.setEventTrigger("14B2");
+                break;
+        }
+        return statsChanged;
+    }
+
+	public int[] statsEvent8A(int choice) {
+		switch (choice) {
+		case 0:
+			statsChanged[0] = 1;
+			break;
+		case 1:
+			statsChanged[0] = 1;
+			statsChanged[2] = 2;
+			break;
+		}
+		return statsChanged;
+	}
+
+	public int[] statsEvent8B(int choice) {
+		switch (choice) {
+		case 0:
+			statsChanged[1] = 1;
+			statsChanged[2] = 2;
+			statsChanged[3] = 20;
+			break;
+		case 1:
+			statsChanged[0] = 2;
+			statsChanged[2] = 2;
+			statsChanged[3] = 20;
+			break;
+		case 2:
+            statsChanged[2] = -2;
+            break;
+        }
+        return statsChanged;
+    }
+
+    public int[] statsEvent15B(int choice) {
+        switch (choice) {
+            case 0:
+                System.exit(0);
+                break;
+            case 1:
+                statsChanged[1] = 1;
+                break;
+            case 2:
+                statsChanged[0] = 2;
+                statsChanged[2] = 2;
                 break;
         }
         return statsChanged;
@@ -219,5 +279,25 @@ public class ChoiceAction {
     public void actionFollowWoman(Player player, Events events) {
         player.setPlayerPos(7);
         events.setEventTrigger("VL");
+    }
+
+    public int[] statsSeeWomanHiCrg(int choice, Player player, Events events) {
+        switch (choice) {
+            case 0:
+                statsChanged[0] = 2;
+                statsChanged[2] = 2;
+                player.rest();
+                break;
+            case 1:
+                statsChanged[0] = -2;
+                statsChanged[2] = -1;
+                events.setEventTrigger("14B1");
+                break;
+            case 2:
+                statsChanged[0] = 1;
+                statsChanged[1] = 2;
+                break;
+        }
+        return statsChanged;
     }
 }

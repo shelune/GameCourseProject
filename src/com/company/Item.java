@@ -95,7 +95,7 @@ public class Item {
                 doStatue(player, inventory);
             }
             if (itemName.equalsIgnoreCase("pass card")) {                      // puzzle for the Pass Card (nothing actually)
-                doStatue(player, inventory);
+                doPassCard(inventory, events);
             }
         }
     }
@@ -110,9 +110,9 @@ public class Item {
         int i = takeInput(3);
         switch (i) {
             case 1:
-                events.setEventTrigger("MT");
                 Player.say("How brilliant! If you switch the note side down, it would be \n\t56.82.13 N | 165.168.11 W\nObviously some kind of geography stuff with latitude and longitude.");
                 Player.say("...\t +++ NEW AREA OPENED : MOUNTAIN +++");
+                events.setEventTrigger("MT");
                 solved();
                 break;
             default:
@@ -166,7 +166,7 @@ public class Item {
         }
         Player.say("The card doesn't have name or information on it. But the numbers on it really seem familiar to you.\n\t\t56.82.13 | 165.168.11 | 04.05.06");
         if (inventory.hasItem("Phone") != null) {
-            Player.say("Using the phone, you're able to pinpoint the place. It lies near the mountain!\n +++ LAB ACCESS +++");
+            Player.say("Using the phone, you're able to pinpoint the place. It lies near the mountain!\n +++ NEW AREA OPENED : LAB +++");
             events.setEventTrigger("LB");
         } else {
             Player.say("It looks like some geographic points, but you need something with GPS to pinpoint the exact place.");

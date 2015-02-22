@@ -36,15 +36,15 @@ public class Map {
         return disPlace.canAccessTo(datPlace.getPlaceName());
     }
 
-    public boolean isAccessible(ArrayList<String> eventsTrigger, int accessCode) {  // check if place is unlocked
-        return eventsTrigger.contains(map.get(accessCode).getAccessCode());
+    public boolean isAccessible(Events events, int accessCode) {  // check if place is unlocked
+        return events.isTriggered(map.get(accessCode).getAccessCode());
     }
 
     public void printPlace(int x) {
         System.out.println(getPlace(x));
     }
 
-    public int move(int playerPos, ArrayList<String> eventsTrigger) {               // check everything then move player
+    public int move(int playerPos, Events events) {               // check everything then move player
         int destination = -1;
         while (destination >= map.size() || destination < 0) {
             try {
@@ -55,7 +55,7 @@ public class Map {
                 input.nextLine();
             }
         }
-        if (isReachable(playerPos, destination) && isAccessible(eventsTrigger, destination)) {
+        if (isReachable(playerPos, destination) && isAccessible(events, destination)) {
             playerPos = destination;
             printPlace(playerPos);
             return playerPos;
@@ -94,7 +94,7 @@ public class Map {
 
     public Place addClassB() {
         Place classB = new Place(2, "ClassB", "This is your buddy's class", "CB");
-        Collections.addAll(classB.getAccessTo(), "ClassB", "ClassA");
+        Collections.addAll(classB.getAccessTo(), "ClassB", "ClassA", "Mr.Jani's");
         return classB;
     }
 
@@ -108,6 +108,7 @@ public class Map {
         //janitor.addAccessTo("Home");
         Place janitor = new Place(4, "Mr.Jani's", "This is your school janitor's house. It feels creepy somehow", "JN");
         Collections.addAll(janitor.getAccessTo(), "Home", "ClassB");
+        janitor.setItems();
         return janitor;
     }
 

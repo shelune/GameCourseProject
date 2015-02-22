@@ -49,16 +49,17 @@ public class Place {
         switch (placeNumber) {
             case 0:
                 // Item apple = new Item("Apple", "Recovers 10 Stamina", 10, 1);
+                Item sHammer = new Item("Small Hammer", "A tiny hammer you used to play when you were young");
                 Item phone = new Item("Phone", "Used to call someone");
-                Item magnifier = new Item("Magnifier", "Used to see tiny things");
-                Collections.addAll(temp, phone, magnifier);
+                Item jacket = new Item("Jacket", "Your school jacket. Quite large for your body");
+                Collections.addAll(temp, phone, jacket, sHammer);
                 break;
             case 1:
                 Item calculator = new Item("Calculator", "A mechanical calculator for complex problems");
                 Collections.addAll(temp, calculator);
                 break;
             case 4:
-                Item statue = new Item("Status", "A small statue with a small crack on it", "KEY INSIDE");
+                Item statue = new Item("Statue", "A small statue with a small crack on it", "KEY INSIDE");
                 Collections.addAll(temp, statue);
                 break;
 

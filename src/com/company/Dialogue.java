@@ -271,6 +271,22 @@ public class Dialogue {
             "\t \t +++ NEW AREA OPENED : TEACHER'S HOUSE +++"
     };
 
+    /////////////////////////////////// 16A - Getting Arressted
+    private String[] getArrested = {
+            "*Thump* *Thump* *Thump*",
+            "Someone is banging at the door.",
+            "‘Who can be here this early?!’, Rekt comes to check it out.",
+            "Standing there were 2 officers with a paper ‘Where’s is he? We are here for the person whose name is",     /// NEED PLAYER'S NAME
+            "A person was reported to be missing this morning and he was seen at the victim’s place yesterday’.",
+            "‘What are you talking about? Who was kidnapped?’, cluelessly you ask.",
+            "One officer flashes off a paper with a very familiar face on it, ‘Mr.Cherr’s is currently nowhere to be found, and some people report that you were visiting him yesterday afternoon.",
+            "'Please come with us', his face shrinks.",
+            "... Now you are at the police station, or in some kind of jail.",
+            "Taken to the interrogation room, you are faced with 2 other officers asking you millions of things.",
+            " ‘Gosh, what have I done?! Shouldn’t have visited him!’.",
+            "'And why has he disappeared as well?! I didn't see any number on his head!",
+    };
+
     /////////////////////////////////// 21A - Final Event
     private String[] finalEvent = {
             "Now all you’re facing is the choice between being a hero and a zero.",
@@ -550,6 +566,10 @@ public class Dialogue {
 
     public String[] getFinalEventChoiceWrong() {
         return this.finalEventChoiceWrong;
+    }
+
+    public String[] getGetArrested() {
+        return this.getArrested;
     }
     public String[] getREvent1() {
         return this.rEvent1;

@@ -372,6 +372,16 @@ public class Dialogue {
             "Mr.Cherr looks at you with uncannily weird eyes… He may be thinking that you’re crazy.\nAnyway, you manage to get his attention. Let’s come inside and talk about his situation\n‘Are you being assaulted or threated by someone?’\nThe miserable face of Mr.Cherr gets lifted up by a bit.\n‘How would you know that?’ He shakes your shoulder a bit hard.\n‘My wife just got kidnapped yesterday. I haven’t seen her since the afternoon. Then this morning comes with a note…’.\nHe gives you a note that has ‘Gubbidy Bubbidy To Your Wife, Your Work Has Earned Its Worth’.\nHe must have been devastated by this…",
     };
 
+    /////////////////////////////////// 15E - Give Potion to Rekt
+    private String[] givePotion = {
+            "What a fortune, Rekt is still in class.",
+            "You ask him about the bottles acquired the other day.",
+            "Rekt’s face gets darkened once you show him the potions.",
+            ". ‘This stuff is serious, dude! This smell is so particular, I can’t even forget it. Must be some kind of extreme toxic or whatnot, but what’s the difference between them…’",
+            "For that cause, Rekt drags you to his house and spends the night studying the two bottles.",
+            "You just fall alseep meanwhile, too tired after a whole day.",
+    };
+
     /////////////////////////////////// 16A - Getting Arrested
     private String[] getArrested = {
             "*Thump* *Thump* *Thump*",
@@ -450,12 +460,72 @@ public class Dialogue {
             "Education is more important. You can solve the problem later on with your superb mind.",
     };
 
+    /////////////////////////////////// 20C - Final Clues
     private String[] finalClues = {
+             "Note the clues you have until now.",
+            "\t - The note you get from the janitor.",
+            "\t - The disappearing of Mr.Cherr and his wife.",
+            "\t - The peculiar ringtone you heard some days ago.",
+            "\t - The substances you have in your pocket.",
+            "What place do you want to investigate now...?\n \t (0) Mr.Tate's \n \t (1) Mountain \n \t (2) Lab \n \t (3) Mr.Cherr's \n \t (4) Class B",
+    };
 
+    private String[] finalCluesChoice = {
+            "You come to check the intended place, but nothing was found. You come back to the starting point.",
+            "It should be this place. You have the feeling that Mr.Cherr's house is holding something.",
+    };
+
+    /////////////////////////////////// 20D - Final At Cherr's place
+    private String[] finalAtCherr = {
+            "You come into the house, a bit surprised to find out that the house was never locked.",
+            "What surprised you even more is the dead body of a woman, laid in the middle of the dining room.",
+            "This woman looks like the one you saw on the other day, and if so, is Mr.Cherr’s wife.",
+            "You knee down on her and see a paper crumbled into her hand...",
+            "‘RIVER’. It reads so. With a lot of blood splattered around it.",
+    };
+
+    private String[] finalAtCherrRescued = {
+            "You come into the house, a bit surprised to find out that the house was never locked.",
+            "What surprised you even more is a woman shivering at the corner of the room, with a terrified expression and messed-up hair.",
+            "She looks so empty. Do you...\n \t (0) Come to talk to her \n \t (1) Approach her carefully",
+    };
+
+    private String[] talkWoman = {
+            "‘My husband is totally insane…’, she still shivers",
+            "You calm her down with your charisma.",
+            "‘He’s going to kill everyone…’.",
+            "You think she’s still nervous.",
+            "‘You have to listen to me! If you don’t come to the river now and stop him, everyone is going to die tomorrow’.",
+            "That's when you stop doubting her mentality... So it’s true that the number is telling you something, for real. ",
+            "You don’t know if this woman is speaking the truth, but you need to come to the RIVER, as soon as possible.",
+            "Also, you get the [Potion Note] from her. Maybe this can help you soon.",
+            "[Potion Note] Obtained.",
+    };
+
+    private String[] approachWoman = {
+            "The woman dare not speak a word and keep trembling like crazy.",
+            "You notice a crumbled piece of paper inside her palm.",
+            "Carefully, you take it out. The paper reads ‘RIVER’.",
+    };
+
+    /////////////////////////////////// 20E - Final Showdown
+    private String[] finalShowdown = {
+            "Now you see the very figure of the man standing near the source of the river flowing directly to your place.",
+            "It’s no one but your very own chemistry teacher, Mr.Cherr.",
+            "So it’s him who killed the Janitor and Mr.Tate",
+            "And it’s him as well planning to annihilate the whole town. ",
+            "You’ve got to stop this.",
+    };
+
+    private String[] finalShowdownChoice = {
+            "With all your courage, you walk up to Mr.Cherr and knock him down with ease.",
+            "With all your brilliance, you walk up to Mr.Cherr and simply talk him out of poisoning the whole town.",
+            "With all your SWAG, you walk up to Mr.Cherr and give him such a weird dance that he is completely confused and forgets what to do.",
     };
 
     /////////////////////////////////// 21A - Final Event
     private String[] finalEvent = {
+            "But the poison has already been poured down into the river.",
             "Now all you’re facing is the choice between being a hero and a zero.",
             "You have to choose between the 2 potions, one being the lifesaver, the other worsening the effect.",
             "You decide to choose…?\n \t(0) Potion 1 \n \t (1) Potion 2",
@@ -751,6 +821,10 @@ public class Dialogue {
         return this.followWoman;
     }
 
+    public String[] getGivePotion() {
+        return this.givePotion;
+    }
+
     public String[] getGetArrested() {
         return this.getArrested;
     }
@@ -782,6 +856,27 @@ public class Dialogue {
     public String[] getFinalClues() {
         return this.finalClues;
     }
+
+    public String[] getFinalAtCherr() {
+        return this.finalAtCherr;
+    }
+
+    public String[] getFinalAtCherrRescued() {
+        return this.finalAtCherrRescued;
+    }
+
+    public String[] getTalkWoman() {
+        return this.talkWoman;
+    }
+
+    public String[] getApproachWoman() {
+        return this.approachWoman;
+    }
+
+    public String[] getFinalShowdown() {
+        return this.finalShowdown;
+    }
+
     public String[] getFinalEvent() {
         return this.finalEvent;
     }
@@ -870,6 +965,14 @@ public class Dialogue {
 
     public String getFinalToSchoolChoice(int choice) {
         return this.finalToSchoolChoice[choice];
+    }
+
+    public String getFinalCluesChoice(int choice) {
+        return this.finalCluesChoice[choice];
+    }
+
+    public String getFinalShowdownChoice(int choice) {
+        return this.finalShowdownChoice[choice];
     }
 
     public String getREvent1Choice(int choice) {

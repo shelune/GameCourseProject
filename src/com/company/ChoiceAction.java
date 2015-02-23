@@ -1,6 +1,7 @@
 package com.company;
 
 public class ChoiceAction {
+    private Dialogue dialogue = new Dialogue();
     private int[] statsChanged = new int[] {0, 0, 0, 0}; // COU - UND - ABN - STAMINA
 
     public ChoiceAction() {
@@ -336,11 +337,12 @@ public class ChoiceAction {
         return statsChanged;
     }
 
-    public int[] statsFinalToSchool(int choice) {
+    public int[] statsFinalToSchool(int choice, Player player, Events events) {
         switch (choice) {
             case 0:
                 statsChanged[0] = 2;
                 statsChanged[1] = 2;
+                player.setPlayerPos(0);
                 break;
             case 1:
                 statsChanged[1] = -1;
@@ -348,5 +350,49 @@ public class ChoiceAction {
                 break;
         }
         return statsChanged;
+    }
+
+    public int[] statsFinalClues(int choice, Player player) {
+        switch (choice) {
+            case 3:
+                Player.say(dialogue.getFinalCluesChoice(1));
+                player.setPlayerPos(7);
+                break;
+            default:
+                statsChanged[3] = 25;
+                player.setPlayerPos(0);
+                Player.say(dialogue.getFinalCluesChoice(0));
+                break;
+        }
+        return statsChanged;
+    }
+
+    public void actionFinalAtCherr(int choice, Inventory inventory, Player player, Events events) {
+        switch (choice) {
+            case 0:
+                if (player.getPlayerUnd() > 24) {
+                    events.printEvent(dialogue.getTalkWoman());
+                    inventory.addItem(new Item("Potion Note", "A note used to distinguish two potions."));
+                } else {
+                    events.printEvent(dialogue.getApproachWoman());
+                }
+                break;
+            case 1:
+                events.printEvent(dialogue.getApproachWoman());
+                break;
+        }
+    }
+
+    public void actionFinalShowdown(Player player) {
+        int statMax = Math.max(Math.max(player.getPlayerAbn(), player.getPlayerCrg()), player.getPlayerUnd());
+        if (statMax == player.getPlayerAbn()) {
+            Player.say(dialogue.getFinalShowdownChoice(2));
+        }
+        if (statMax == player.getPlayerCrg()) {
+            Player.say(dialogue.getFinalShowdownChoice(0));
+        }
+        else {
+            Player.say(dialogue.getFinalShowdownChoice(1));
+        }
     }
 }

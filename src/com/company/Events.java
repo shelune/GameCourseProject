@@ -324,9 +324,8 @@ public class Events {
             Player.say("The tool box has everything you need to fix the bridge.\nBut it takes you so long that you grow tired and decide to go home for a rest");
             player.rest();
             setEventTrigger("12A");
-        } else {
-            return;
         }
+        next();
     }
 
     public void getHangOut(Player player) {
@@ -410,6 +409,15 @@ public class Events {
         next();
     }
 
+    public void getGivePotion() {
+        if (isTriggered("15E")) {
+            return;
+        }
+        printEvent(eventDial.getGivePotion());
+        setEventTrigger("15E");
+        next();
+    }
+
     public void getEvent16A(Player player, Inventory inventory) {
         if (isTriggered("16A")) {
             return;
@@ -432,7 +440,7 @@ public class Events {
         if (isTriggered("17A")) {
             return;
         }
-        printEvent(eventDial.getFirstInJanitor());
+        printEvent(eventDial.getInJail());
         int choice = takeInput(1);
         player.setAllStats(doChoiceAction.statsInJail(choice, player, inventory));
         setEventTrigger("17A");
@@ -492,8 +500,47 @@ public class Events {
         printEvent(eventDial.getFinalToSchool());
         int choice = takeInput(1);
         Player.say(eventDial.getFinalToSchoolChoice(choice));
-        player.setAllStats(doChoiceAction.statsFinalToSchool(choice));
+        player.setAllStats(doChoiceAction.statsFinalToSchool(choice, player, this));
         setEventTrigger("20B");
+        next();
+    }
+
+    public void getFinalClues(Player player) {
+        ChoiceAction doChoiceAction = new ChoiceAction();
+        if (isTriggered("20C")) {
+            return;
+        }
+        printEvent(eventDial.getFinalClues());
+        int choice = takeInput(4);
+        player.setAllStats(doChoiceAction.statsFinalClues(choice, player));
+        setEventTrigger("20C");
+        next();
+    }
+
+    public void getFinalAtCherr(Player player, Inventory inventory) {
+        ChoiceAction doChoiceAction = new ChoiceAction();
+        if (isTriggered("20D")) {
+            return;
+        }
+        if (isTriggered("RESCUED")) {
+            printEvent(eventDial.getFinalAtCherrRescued());
+            int choice = takeInput(1);
+            doChoiceAction.actionFinalAtCherr(choice, inventory, player, this);
+        } else {
+            printEvent(eventDial.getFinalAtCherr());
+        }
+        setEventTrigger("20D");
+        next();
+    }
+
+    public void getFinalShowdown(Player player) {
+        ChoiceAction doChoiceAction = new ChoiceAction();
+        if (isTriggered("20E")) {
+            return;
+        }
+        printEvent(eventDial.getFinalShowdown());
+        doChoiceAction.actionFinalShowdown(player);
+        setEventTrigger("20E");
         next();
     }
 

@@ -95,14 +95,14 @@ public class Map {
 
     public Place addMountain() {
         Place mountain = new Place(3, "Mountain", "This is the mountain near your school", "MT");
-        Collections.addAll(mountain.getAccessTo(), "Home", "River", "Mountain");
+        Collections.addAll(mountain.getAccessTo(), "Home", "River", "Mountain", "Lab");
         return mountain;
     }
 
     public Place addJanitor() {
         //janitor.addAccessTo("Home");
         Place janitor = new Place(4, "Janitor's", "This is your school janitor's house. It feels creepy somehow", "JN");
-        Collections.addAll(janitor.getAccessTo(), "Home", "ClassB");
+        Collections.addAll(janitor.getAccessTo(), "Home", "ClassB", "Janitor's");
         janitor.setItems();
         return janitor;
     }
@@ -116,7 +116,7 @@ public class Map {
 
     public Place addLab() {
         Place lab = new Place(6, "Lab", "A abandoned lab situationed at the side of the mountain", "LB");
-        Collections.addAll(lab.getAccessTo(), "Home", "ClassB");
+        Collections.addAll(lab.getAccessTo(), "Mountain", "Lab");
         lab.setItems();
         return lab;
     }

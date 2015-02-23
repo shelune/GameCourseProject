@@ -14,7 +14,7 @@ public class Player {
     private String playerName;
     private String playerDescription;
     private int playerStamina;                                  // STAMINA (literally health)
-    private int playerCrg = 40;                                 // COURAGE
+    private int playerCrg = 10;                                 // COURAGE
     private int playerUnd = 10;                                 // UNDERSTANDING
     private int playerAbn = 10;                                 // ABNORMALITY
     private int playerPos = 0;
@@ -27,7 +27,7 @@ public class Player {
         this.playerName = name;
         this.playerDescription = description;
         this.playerStamina = stamina;
-        Collections.addAll(events.getEventList(), "HM", "CA", "JN");  // give player access to Home and ClassA
+        Collections.addAll(events.getEventList(), "HM", "CA");  // give player access to Home and ClassA
     }
 
     public void start() {
@@ -87,6 +87,7 @@ public class Player {
                     events.getHangOut(this);
                     events.getSeeWomanNumber(this, inventory);
                 }
+
                 move();
                 Events.next();
                 break;
@@ -119,6 +120,11 @@ public class Player {
     public void move() {                                        // press 1
         if (playerPos == 1 && dayCount == 1 && events.isTriggered("TC")) {
             events.getEventAfterClass1st(this, inventory);
+        }
+        if (dayCount == 20) {
+            events.getFinalMorning(this);
+            events.getFinalToSchool(this);
+
         }
         say(dialogue.goSomewhere(playerPos, events));
         playerPosTemp = map.move(playerPos, events);
@@ -181,6 +187,28 @@ public class Player {
         }
         if (dayCount == 17) {
             events.getInJail(this, inventory);
+        }
+        if (dayCount == 18) {
+            events.getEvent18A(this, inventory);
+        }
+        if (dayCount == 19) {
+            if (events.isTriggered("ARRESTED")) {
+                say("The police suddenly shows up and drags you back to the jail... Seems like you haven't erased your trace.");
+                setPlayerPos(8);
+                events.setEventTrigger("GAMEOVER");
+            } else {
+                events.getFinalLab(this, inventory);
+            }
+        }
+        if (dayCount == 20) {
+            events.getFinalClues(this);
+        }
+        if (playerPos == 7 && dayCount == 20) {
+            events.getFinalAtCherr(this, inventory);
+            events.getFinalShowdown(this);
+        }
+        if (playerPos == 9 && events.isTriggered("20E")) {
+            events.getFinalEvent();
         }
     }
 
@@ -292,6 +320,10 @@ public class Player {
             }
         }
         itemList.removeAll(toRemove);
+    }
+
+    public void setDayCount(int day) {
+        dayCount = day;
     }
 
     public void setPlayerCrg(int courage) {

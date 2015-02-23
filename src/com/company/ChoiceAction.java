@@ -262,6 +262,21 @@ public class ChoiceAction {
         return statsChanged;
     }
 
+    public int[] statsEvent18A(int choice, Player player, Inventory inventory) {
+        switch (choice) {
+            case 0:
+            	statsChanged[0] = 2;
+                statsChanged[2] = -1;
+                player.setDayCount(21);
+                break;
+            case 1:
+            	inventory.addItem(new Item("Potion 1", "Potion 1"));
+            	inventory.addItem(new Item("Potion 2", "Potion 2"));
+                break;
+        }
+        return statsChanged;
+    }
+
     public int[] statsFollowMan(int choice, Events events, Inventory inventory) {
         switch (choice) {
             case 0:

@@ -371,6 +371,34 @@ public class Dialogue {
             "Mr.Cherr looks at you with uncannily weird eyes… He may be thinking that you’re crazy.\nAnyway, you manage to get his attention. Let’s come inside and talk about his situation\n‘Are you being assaulted or threated by someone?’\nThe miserable face of Mr.Cherr gets lifted up by a bit.\n‘How would you know that?’ He shakes your shoulder a bit hard.\n‘My wife just got kidnapped yesterday. I haven’t seen her since the afternoon. Then this morning comes with a note…’.\nHe gives you a note that has ‘Gubbidy Bubbidy To Your Wife, Your Work Has Earned Its Worth’.\nHe must have been devastated by this…",
     };
 
+    /////////////////////////////////// 15C
+    private String[] event15C = {
+            "You spend a whole afternoon trying to calm your teacher down.",
+            "Now it is clear that the guest at the tattooist’s was Mr.Cherr’s wife.",
+            "What was she doing there? Why both of them had to die?",
+            "‘Actually the woman is kidnapped, not yet dead so there’s still chance…’, you think to yourself.",
+            "But it is getting late already so you decide to say goodbye to your teacher.",
+            "Before you do so, you notice the strange bottle under the guest table.",
+            "It looks almost exactly the same as the ‘Potion’ you found the other day. What should you do…?\n\t(0) Sneak the bottle to yourself. It may be the clue.\n\t(1) Just leave it. It’s not your property.",
+    };
+
+    private String[] event15CChoice = {
+            "The bottle reads ‘Potion O’. It looks the same as the bottle from yesterday, but from the label, you can see it something completely different.",
+            "Mr.Cherr sees you off his house. Come home and rest.",
+    };
+
+    /////////////////////////////////// 15D
+    private String[] event15D = {
+            "As Mr.Cherr takes you to the door, you see his face now getting more and more miserable.",
+            "Was the conversation not enough to get his mood up? You have the feeling that he may commit suicide any moment now!",
+            "You decide to…\n\t(0) Just say goodbye and leave him to his own appliances.\n\t(1) Stay back and spend dinner with him, it may help him somehow.",
+    };
+
+    private String[] event15DChoice = {
+            "Having left the house, your attention now turns to the bottle.\nPerhaps someone with great knowledge can help you with this.\nMaybe your own teacher…? Or your friend Rekt..?",
+            "You spent the whole evening at Mr.Cherr’s place as well.\nAfter all he looks quite glad to have you there.\nWhat a long day, and you decide to go home for a rest."
+    };
+
     /////////////////////////////////// 15E - Give Potion to Rekt
     private String[] givePotion = {
             "What a fortune, Rekt is still in class.",
@@ -402,6 +430,30 @@ public class Dialogue {
             "This is so terrifying.",
             "You notice a small craggy brick popping out over your head. This jail has got really old. ",
             "Do you want to poke this oldass brick out…?\n \t(0) Poke it out! Poke it out!\n \t (1) Better leave it there.",
+    };
+
+    /////////////////////////////////// 18A
+    private String[] event18A = {
+            "It’s kinda late in the afternoon, as you can feel it.",
+            "*Clang* You hear someone is coming.",
+            "The dark figure… You had this dream again, oh no!",
+            "‘You happy to see me, dude?’. What a familiar voice this time, though.",
+            "Rekt has come to save the day. How did he have the keys?",
+            "‘Save the questions. We got serious problems here.",
+            "The bottles you gave me days ago, they were probably what caused the death of Mr.Tate and our janitor.",
+            "The symptoms and effects all fit in’. Rekt seems a bit scared. What are you doing now…?\n\t(0) Get out of here first. You don’t want to stay in the jail any longer.\n\t(1) Ask Rekt for more information.",
+    };
+
+    private String[] event18AChoice = {
+            "You managed to escape the jail, but the next day the police come again and drag you back to the station.\nYou are not allowed to get out of jail and your friend cannot bail you out a second time...",
+            "‘The bottle is the one responsible for their death, I think. It leaves no trace when diluting in water, while the other neutralizes it’.\nHe further explains his fear, ‘But these things are just samples… Someone must have perfected and mass-produced them, so we must find the place to check this out. By the way, in the process I removed the labels and forgot to put them back…’\nBefore that, however, you need to delete your case file at this station, otherwise the police will still find out about this and capture you again!\n>>> Obtained ‘Potion 1’ and ‘Potion 2’.",
+    };
+
+    private String[] deleteCase = {
+            "Spending a good few minutes, you discover the safe containing all the case files.",
+            "You need to find your case in there... What was the number of it again?",
+            "As far as your memory goes, your case number is something answering the question of life, the universe and everything...",
+            "Let's pick the case file : XX",
     };
 
     /////////////////////////////////// 19A - Final Lab Visit & River Discovered
@@ -772,6 +824,18 @@ public class Dialogue {
         return event15B;
     }
 
+    public String[] getEvent15C()	{
+    	return event15C;
+    }
+
+    public String[] getEvent15D()	{
+    	return event15D;
+    }
+
+    public String[] getEvent18A()	{
+    	return event18A;
+    }
+
     public String[] getInsideTattoo() {
         return this.insideTattoo;
     }
@@ -872,6 +936,10 @@ public class Dialogue {
         return this.approachWoman;
     }
 
+    public String[] getDeleteCase() {
+        return this.deleteCase;
+    }
+
     public String[] getFinalShowdown() {
         return this.finalShowdown;
     }
@@ -944,6 +1012,18 @@ public class Dialogue {
 
     public String getEvent15BChoice(int choice)	{
         return this.event15BChoice[choice];
+    }
+
+    public String getEvent15CChoice(int choice)	{
+        return this.event15CChoice[choice];
+    }
+
+    public String getEvent15DChoice(int choice)	{
+        return this.event15DChoice[choice];
+    }
+
+    public String getEvent18AChoice(int choice)	{
+        return this.event18AChoice[choice];
     }
 
     public String getInsideTattooChoice(int choice) {

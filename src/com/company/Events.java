@@ -410,6 +410,36 @@ public class Events {
         next();
     }
 
+    public void getEvent15C(Player player) {
+        ChoiceAction doChoiceAction = new ChoiceAction();
+        if (isTriggered("15C")) {
+            return;
+        }
+        printEvent(eventDial.getEvent15C());
+        int choice = takeInput(1);
+        Player.say(eventDial.getEvent15CChoice(choice));
+        setEventTrigger("15C");
+        next();
+        if (choice==1)	{
+            setEventTrigger("GAMEOVER");
+        }
+    }
+
+    public void getEvent15D(Player player) {
+        ChoiceAction doChoiceAction = new ChoiceAction();
+        if (isTriggered("15D")) {
+            return;
+        }
+        printEvent(eventDial.getEvent15D());
+        int choice = takeInput(1);
+        Player.say(eventDial.getEvent15DChoice(choice));
+        setEventTrigger("15D");
+        next();
+        if (choice==1)	{
+            setEventTrigger("GAMEOVER");
+        }
+    }
+
     public void getGivePotion() {
         if (isTriggered("15E")) {
             return;
@@ -447,6 +477,37 @@ public class Events {
         player.setAllStats(doChoiceAction.statsInJail(choice, player, inventory));
         setEventTrigger("17A");
         next();
+    }
+
+    public void getEvent18A(Player player, Inventory inventory) {
+        ChoiceAction doChoiceAction = new ChoiceAction();
+        if (isTriggered("18A")) {
+            return;
+        }
+        printEvent(eventDial.getEvent18A());
+        int choice = takeInput(1);
+        Player.say(eventDial.getEvent18AChoice(choice));
+        player.setAllStats(doChoiceAction.statsEvent18A(choice, player, inventory));
+        setEventTrigger("18A");
+        next();
+    }
+
+    public void getDeleteCase(Player player) {
+        printEvent(eventDial.getDeleteCase());
+        int correct = 42;
+        int guess = takeInput(99);
+        int guessCount;
+        for (guessCount = 0; guessCount < 3; guessCount++) {
+            if (guess == correct) {
+                Player.say("Yes! You found the case! Delete it and you're free as ever!");
+                eventTrigger.remove("ARRESTED");
+                return;
+            } else {
+                guessCount++;
+                Player.say("It seems not to be your case. You keep searching...");
+            }
+        }
+        Player.say("Ugh! It's getting more dangerous. Rekt hushes you to get out now!");
     }
 
     public void getFinalLab(Player player, Inventory inventory) {

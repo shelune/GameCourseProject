@@ -216,7 +216,6 @@ public class Dialogue {
             "There’s a vague, wavy number ‘1’ floating right on top of Mr.Tate’s head. And the phone keeps ringing. Ugh, your head hurts so much.",
             "‘We’re going home now. My friend here seems to have waited for too long’, Rekt leads the way.",
             "No! ‘I can’t leave now. I need to ask him…’ then everything goes black for you.",
-            "Wake up at home and rest.",
     };
 
     /////////////////////////////////// 8A
@@ -240,8 +239,8 @@ public class Dialogue {
 
     /////////////////////////////////// 9A - Infrontof Tattooist's
     private String[] frontOfTattoo = {
-            "Upon arriving at Mr.Tate’s house, you are totally taken surprised by a big bad dog standing there.",
-            "Last time it wasn’t even existed!",
+            "Upon entering Mr.Tate’s this time, you are totally taken surprised by a big bad dog standing there.",
+            "Last time it wasn’t even existed! It should just be a cat, cats are much cuter...",
             "Anyway, it would be impossible to take a look into his house without getting rid of the dog.",
             "You need to find a way to divert it somehow.",
     };

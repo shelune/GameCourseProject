@@ -83,6 +83,10 @@ public class Player {
         switch (choice) {
             case 1:                                                     // Go to places
                 events.getEventFirstSeeNumbers(this);                   // event 1A
+                if (dayCount == 14) {
+                    events.getHangOut(this);
+                    events.getSeeWomanNumber(this, inventory);
+                }
                 move();
                 Events.next();
                 break;
@@ -118,7 +122,7 @@ public class Player {
         }
         say(dialogue.goSomewhere(playerPos, events));
         playerPosTemp = map.move(playerPos, events);
-        if (playerPosTemp != 1 && !events.isTriggered("TC")) {
+        if (playerPosTemp != 1 && !events.isTriggered("TC") && dayCount % 7 != 0) {
             say("But school is waiting right now!");
             return;
         }
@@ -150,6 +154,33 @@ public class Player {
         }
         if (playerPos == 4 && dayCount == 5 && inventory.hasItem("Old Key") != null) {
             events.getEventFirstInJanitor(inventory, this);
+        }
+        if (playerPos == 0 && dayCount == 7) {
+            events.getEvent7A(this);
+            events.getEvent7B(this);
+            events.getEvent7C(this);
+        }
+        if (playerPos == 1 && dayCount == 8) {
+            events.getEvent8A(this);
+        }
+        if (playerPos == 5 && dayCount == 8) {
+            events.getEvent8B(this);
+        }
+        if (playerPos == 5 && events.isTriggered("8B")) {
+            events.getFrontOfTattoo();
+            events.getFrontOfTattooPuzzle(inventory);
+        }
+        if (playerPos == 5 && events.isTriggered("9B")) {
+            events.getInsideTattoo(inventory, this);
+        }
+        if (playerPos == 6) {
+            events.getFrontOfLab(inventory, this);
+        }
+        if (dayCount == 16) {
+            events.getEvent16A(this, inventory);
+        }
+        if (dayCount == 17) {
+            events.getInJail(this, inventory);
         }
     }
 
@@ -253,6 +284,9 @@ public class Player {
                 say(item.getItemName() + " taken.");
                 if (!item.getItemName().equalsIgnoreCase("bones")) {
                     toRemove.add(item);
+                }
+                if (item.getItemName().equalsIgnoreCase(("statue"))) {
+                    events.getEvent5A(this);
                 }
                 inventory.addItem(item);
             }

@@ -131,9 +131,9 @@ public class Events {
         next();
     }
 
-	public void getEvent5A(Player player, Inventory inventory) {
+	public void getEvent5A(Player player) {
 		ChoiceAction doChoiceAction = new ChoiceAction();
-		if (!isTriggered("5A") && inventory.hasItem("Statue") != null) {
+		if (!isTriggered("5A")) {
 			printEvent(eventDial.getEvent5A());
 			int choice = takeInput(2);
 			Player.say(eventDial.getEvent5AChoice(choice));
@@ -180,6 +180,7 @@ public class Events {
             player.setAllStats(doChoiceAction.statsEvent7B(choice));
             Player.say("While you are waiting, a phone rings from inside the store. Its sound… It’s so peculiar, yet a bit similar. You have the feeling that you heard this somewhere…");
             setEventTrigger("7B");
+            player.setPlayerPos(5);
             next();
         }
     }
@@ -432,6 +433,7 @@ public class Events {
             inventory.empty();
         }
         setEventTrigger("ARRESTED");
+        player.rest();
         next();
     }
 

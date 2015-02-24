@@ -125,7 +125,7 @@ public class ChoiceAction {
                 break;
             case 1:
                 statsChanged[0] = 1;
-
+                statsChanged[3] = 35;
                 break;
             case 2:
                 if (und > 14) {
@@ -143,6 +143,8 @@ public class ChoiceAction {
             case 4:
                 inventory.delInvalidItem();
                 statsChanged[2] = -2;
+                statsChanged[0] = 2;
+                statsChanged[1] = 2;
                 Player.say("With your brilliant mind, you take out your jacket and fling them away, then run. Magnificient!");
         }
         return statsChanged;
@@ -183,16 +185,17 @@ public class ChoiceAction {
     public int[] statsEvent5A(int choice) {
         switch (choice) {
             case 0:
-                statsChanged[1] = -1;
+                statsChanged[1] = -2;
+                statsChanged[2] = 2;
                 statsChanged[3] = 20;
                 break;
             case 1:
                 statsChanged[1] = -1;
-                statsChanged[2] = +2;
+                statsChanged[2] = 1;
                 statsChanged[3] = 30;
                 break;
             case 2:
-                statsChanged[1] = 1;
+                statsChanged[1] = 2;
                 break;
         }
         return statsChanged;
@@ -214,10 +217,11 @@ public class ChoiceAction {
         return statsChanged;
     }
 
-	public int[] statsEvent8A(int choice) {
+	public int[] statsEvent8A(int choice, Events events) {
 		switch (choice) {
 		case 0:
 			statsChanged[0] = 1;
+            events.setEventTrigger("SIDEKICK");
 			break;
 		case 1:
 			statsChanged[0] = 1;

@@ -72,6 +72,6 @@ public class Place {
 
     @Override
     public String toString() {
-        return this.placeName + " - " + this.placeDescription;
+        return "CURRENT PLACE : " + this.placeName;
     }
 }

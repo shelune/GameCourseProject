@@ -123,17 +123,17 @@ public class Dialogue {
     };
     private String[] firstDeath_p0 = {
             "...\tAs if he were waiting for your question! He gapses it : 'Dude you know what, our only JANITOR is DEAD!'",
-            "...\tThey don't even know what the cause was! He was just, like, straight up dead like that! No injury and no blood, so people suspect it was a breakdown",
+            "...\tThey don't even know what the cause was! He was just, like, straight up dead like that! No injury and no blood, so people suspect it was a breakdown.",
             "...\t'But the stuff in his room was a bit shuffled up, I heard so. There's no way he died from a breakdown shit, he is the most healthy person I know!', Rekt hisses.",
             "...\t'So, what do you say, are you coming to his house with me? We can, you know, get in to see the scene!",
-            "...\tWhat will you do now, going with him?\n \t(0) Nod and agree \t (1) Nope, stay away from the dead", // options . 8
+            "...\tWhat will you do now, going with him?\n \t(0) Nod and agree \t (1) Nope, stay away from the dead.", // options . 8
     };
     private String[] firstDeath_p1 = {
             "...\t'Hey dude have you heard it! Our JANITOR is DEAD!' Rekt rushes towards you without you opening your trap.",
             "...\t'So, what do you say, are you coming to his house with me? We can, you know, get in to see the scene!",
             "...\t'But the stuff in his room was a bit shuffled up, I heard so. There's no way he died from a breakdown shit, he is the most healthy person I know!', Rekt hisses.", // 5
             "...\t'So, what do you say, are you coming to his house with me? We can, you know, get in to see the scene!",
-            "...\tWhat will you do now, going with him?\n \t(0) Nod and agree \t (1) Nope, stay away from the dead", // options . 8
+            "...\tWhat will you do now, going with him?\n \t(0) Nod and agree \t (1) Nope, stay away from the dead.", // options . 8
     };
 
     private String[] firstDeathChoice = {
@@ -148,8 +148,8 @@ public class Dialogue {
             "'This place is giving chill, dude!', Rekt seems not so welcomed by this place.",
             "It is quite a small house with several small strange-looking statues at front.",
             "Clearly it has been locked away after the owner’s death. You two approach the door, but seemingly there’s no way to get in.",
-            "Unless you get the keys… or something else",
-            "Let’s go back for now",
+            "Unless you get the keys… or something else.",
+            "Let’s go back for now.",
     };
 
     /////////////////////////////////// 5A
@@ -160,7 +160,7 @@ public class Dialogue {
 
     private String[] event5AChoice	= {
             "‘Why are you holding such a cheap stuff for so long dude?!’, Rekt doesn’t agree with you on that, then.",
-            "You spend quite a lot of time searching for hidden way into the house, but in vain. So tired already…",
+            "You spend quite a lot of time searching for hidden way into the house, but in vain. So tired already...",
             "It seems like the statue has been meddled with recently, but for what?",
     };
 

@@ -33,7 +33,7 @@ public class Inventory {
                 toRemove.add(i);
             }
         }
-        if (length > 7) {
+        if (length > 5) {
             toRemove.add(inventory.get(0));
         }
         inventory.removeAll(toRemove);

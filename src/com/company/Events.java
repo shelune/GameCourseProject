@@ -117,6 +117,7 @@ public class Events {
         player.setAllStats(doChoiceAction.statsFirstDeath(choice));
         setEventTrigger("3A");
         setEventTrigger("JN");                                                  // Janitor
+        player.setPlayerPos(2);
         next();
     }
 
@@ -128,7 +129,6 @@ public class Events {
         setEventTrigger("3B");
         player.setPlayerPos(0);
         player.setPlayerStamina(30);
-        next();
     }
 
 	public void getEvent5A(Player player) {
@@ -161,7 +161,6 @@ public class Events {
     }
 
     public void getEvent7A(Player player) {
-        ChoiceAction doChoiceAction = new ChoiceAction();
         if (isTriggered("7A")) {
             return;
         }
@@ -201,12 +200,10 @@ public class Events {
         }
         printEvent(eventDial.getEvent8A());
         int choice = takeInput(1);
-        if (choice == 0) {
-            setEventTrigger("SIDEKICK");
-        }
-        player.setAllStats(doChoiceAction.statsEvent8A(choice));
+        player.setAllStats(doChoiceAction.statsEvent8A(choice, this));
         Player.say("Let’s come to that Tattooist’s place now, shall we?");
         setEventTrigger("8A");
+        player.setPlayerPos(0);
         next();
     }
 

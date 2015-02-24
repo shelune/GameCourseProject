@@ -18,7 +18,7 @@ public class Player {
     private int playerUnd = 10;                                 // UNDERSTANDING
     private int playerAbn = 10;                                 // ABNORMALITY
     private int playerPos = 0;
-    private int playerPosTemp = 0;
+
     private int staminaPerMove = 8 + rand.nextInt(12);          // stamina cost when moving around the map
 
     private int dayCount = 1;                                   // DAY COUNT!!!!
@@ -36,9 +36,9 @@ public class Player {
 
         GAME:                                                   // main loop
         while (gameRun) {
-            while (dayCount < 22 && playerStamina > 20) {
+            while (dayCount < 21 && playerStamina > 25) {
                 if (events.isTriggered("GAMEOVER")) {
-                    getGameOver();
+                    printGameOver();
                 }
                 switch (dayCount) {                             // this switch is for night events
                     case 1:
@@ -48,8 +48,8 @@ public class Player {
                         if (!events.isTriggered("MT")) {
                             say("You are unable to solve the mystery of Janitor's death. 14 days later...");
                             events.setEventTrigger("GAMEOVER");
+                            printGameOver();
                         }
-                        dayCount = 21;
                         break;
 
                 }
@@ -58,7 +58,6 @@ public class Player {
                 printPlayerStamina();
                 printAllStats();
                 map.printPlace(playerPos);
-                input.nextLine();
                 notice();
                 actions();                                      // all actions available
             }
@@ -74,7 +73,6 @@ public class Player {
                 }
                 break;
         }
-
     }
 
     public void actions() {
@@ -83,11 +81,15 @@ public class Player {
         switch (choice) {
             case 1:                                                     // Go to places
                 events.getEventFirstSeeNumbers(this);                   // event 1A
+                if (dayCount == 7) {
+                    events.getEvent7A(this);
+                    events.getEvent7B(this);
+                    events.getEvent7C(this);
+                }
                 if (dayCount == 14) {
                     events.getHangOut(this);
                     events.getSeeWomanNumber(this, inventory);
                 }
-
                 move();
                 Events.next();
                 break;
@@ -112,8 +114,6 @@ public class Player {
                 rest();
                 break;
             case 0:
-                events.getFrontOfTattoo();
-                events.getFrontOfTattooPuzzle(inventory);
                 break;
         }
     }
@@ -127,15 +127,7 @@ public class Player {
 
         }
         say(dialogue.goSomewhere(playerPos, events));
-        playerPosTemp = map.move(playerPos, events);
-        if (playerPosTemp != 1 && !events.isTriggered("TC") && dayCount % 7 != 0) {
-            say("But school is waiting right now!");
-            return;
-        }
-        if (playerPosTemp != playerPos) {
-            setPlayerStamina(staminaPerMove);                   // check if go or stay, then cost stamina
-            playerPos = playerPosTemp;
-        }
+        map.move(playerPos, events, this);
         loadEventsAfterMoved();
     }
 
@@ -155,16 +147,11 @@ public class Player {
         if (playerPos == 1 && dayCount == 3) {
             events.getEventFirstDeath(this);
         }
-        if (playerPos == 4 && dayCount == 3) {
+        if (playerPos == 4 && events.isTriggered("3A")) {
             events.getEventFirstAtJanitors(this);
         }
-        if (playerPos == 4 && dayCount == 5 && inventory.hasItem("Old Key") != null) {
+        if (playerPos == 4 && inventory.hasItem("Old Key") != null) {
             events.getEventFirstInJanitor(inventory, this);
-        }
-        if (playerPos == 0 && dayCount == 7) {
-            events.getEvent7A(this);
-            events.getEvent7B(this);
-            events.getEvent7C(this);
         }
         if (playerPos == 1 && dayCount == 8) {
             events.getEvent8A(this);
@@ -296,15 +283,14 @@ public class Player {
 
     public void takeItems(ArrayList<Item> itemList) {
         say(dialogue.getExploreItems());
-        int take = -1;
-        while (take >= itemList.size() || take < 0) {
-            try {
-                take = input.nextInt();
-                say("[Only choose the item numbers available]");
-            } catch (InputMismatchException e) {
-                say("[No item taken]");
-                return;
-            }
+        String strChoice = input.nextLine();
+        int take;
+        try {
+            take = Integer.parseInt(strChoice);
+            say("[Only choose the item numbers available]");
+        } catch (NumberFormatException e) {
+            say("[No item taken]");
+            return;
         }
         ArrayList toRemove = new ArrayList();
         for (Item item : itemList) {
@@ -326,10 +312,6 @@ public class Player {
         dayCount = day;
     }
 
-    public void setPlayerCrg(int courage) {
-        this.playerCrg += courage;
-    }
-
     public void setPlayerUnd(int und) {
         this.playerUnd += und;
     }
@@ -346,19 +328,17 @@ public class Player {
     }
 
     public void printAllStats() {                                           // keep track of stats, will be removed
-        say("CRG: " + this.playerCrg + "\tUND: " + this.playerUnd + "\tABN: " + this.playerAbn);
+        say("CRG: " + this.playerCrg + "\tUND: " + this.playerUnd + "\tABN: " + this.playerAbn + "\t | SCORE : " + getScore());
     }
 
     public void printPlayerStamina() {
-        System.out.println("Your Stamina now is : " + this.playerStamina);
+        System.out.println("CURRENT STAMINA : " + this.playerStamina);
     }
 
     public Player getPlayer() {
         say("What do you want your name to be__?");
         String name = input.nextLine();
-        say("What is your title__? (e.g The Great Dictator or smt)");
-        String description = input.nextLine();
-        return new Player(name, description, 100);
+        return new Player(name, "", 100);
     }
 
     public int getPlayerUnd() {
@@ -373,6 +353,14 @@ public class Player {
         return this.playerAbn;
     }
 
+    public int getDayCount() {
+        return this.dayCount;
+    }
+
+    public int getStaminaLost() {
+        return this.staminaPerMove;
+    }
+
     public void printAchievements() {
         say("ACHIEVEMENTS: ");
         for (String e : events.getEventList()) {
@@ -382,13 +370,18 @@ public class Player {
         }
     }
 
-    public void getGameOver() {
+    public void printGameOver() {
         say("GAME OVER!");
         if (events.isTriggered("21A")) {
             say("CONGRATULATIONS ON FINISHING THE GAME!");
         }
         printAchievements();
         System.exit(0);
+    }
+
+    public int getScore() {
+        int score = (playerCrg * 2 + playerUnd) * playerAbn / 10;
+        return score;
     }
 
     public static void say(String text) {

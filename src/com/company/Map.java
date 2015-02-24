@@ -36,26 +36,32 @@ public class Map {
 
     public void printPlace(int x) {
         System.out.println(getPlace(x));
+        input.nextLine();
     }
 
-    public int move(int playerPos, Events events) {               // check everything then move player
+    public void move(int playerPos, Events events, Player player) {               // check everything then move player
         int destination = -1;
         while (destination >= map.size() || destination < 0) {
             try {
                 System.out.println("[Only places with numbers in brackets are available!]");
                 destination = input.nextInt();
             } catch (InputMismatchException e) {
-                System.out.println("[Only places with numbers in brackets are available!]");
                 input.nextLine();
             }
         }
         if (isReachable(playerPos, destination) && isAccessible(events, destination)) {
-            playerPos = destination;
-            printPlace(playerPos);
-            return playerPos;
+            if (destination != 1 && !events.isTriggered("TC") && player.getDayCount() % 7 != 0) {
+                Player.say("But school is waiting right now!");
+                input.nextLine();
+                return;
+            }
+            player.setPlayerPos(destination);
+            if (playerPos != destination) {
+                player.setPlayerStamina(player.getStaminaLost());
+                printPlace(destination);
+            }
         } else {
             System.out.println("Area not accessible!");
-            return playerPos;
         }
     }
 

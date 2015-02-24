@@ -168,6 +168,7 @@ public class Item {
         if (inventory.hasItem("Phone") != null) {
             Player.say("Using the phone, you're able to pinpoint the place. It lies near the mountain!\n +++ NEW AREA OPENED : LAB +++");
             events.setEventTrigger("LB");
+            solved();
         } else {
             Player.say("It looks like some geographic points, but you need something with GPS to pinpoint the exact place.");
         }

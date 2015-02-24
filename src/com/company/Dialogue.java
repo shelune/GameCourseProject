@@ -118,7 +118,7 @@ public class Dialogue {
     /////////////////////////////////// 3A - First Death Janitor
     private String[] firstDeath = {
             "\tYou walk into the class, thinking you're late but actually you're not. It seems that people are fussing over something so they ignore you.", // 0
-            "...\tThe Chemistry class goes on as usual but the teacher seems a bit troubled. What happened, you wonder...",
+            "...\tThe Chemistry class goes on as usual but the teacher seems a bit troubled. 'What has happened?', you wonder...",
             "...\tRekt seems to be quite worried as well. Will you ask him the happening?\n \t(0) Ask him \t (1) Just ignore it", //options . 2
     };
     private String[] firstDeath_p0 = {
@@ -198,7 +198,7 @@ public class Dialogue {
     };
 
     private String[] event7BChoice = {
-            "Before you make a move, Mr.Tate already gets his arm by you and forbid any further movement. ‘Why don’t you take a seat and wait for your friend, lad?’, he seemingly doesn’t want you to enter his shop. ",
+            "Before you make a move, Mr.Tate already gets his arm by you and forbid any further movement. \n‘Why don’t you take a seat and wait for your friend, lad?’, he seemingly doesn’t want you to enter his shop. ",
             "‘It should not be of your concern, right? Let’s make this quick and nice’, Mr.Tate doesn’t want to mention his guest.",
             ""
     };
@@ -208,7 +208,7 @@ public class Dialogue {
             "‘That ringtone is so like the one I heard a while ago. What is its name, Mr.Tate?’, you ask.",
             "‘Oh, it’s not mine, it’s his phone, and yes, that ringtone is quite unique’.",
             "So his guest is probably someone you know, but who…",
-            "Before you can even make the wildest guest, Mr.Tate has already finished the tattoo. ",
+            "While you are still bugging your head, Mr.Tate has already finished the tattoo. ",
             "You don’t even get what it is, but guess what, Rekt likes it!",
             "‘Thank you so much, Mr.’, Rekt nods and nods.",
             "Suddenly, the ringtone is on again, but this time you don’t even bother to ask more about it… The flash has kicked in.",
@@ -235,6 +235,12 @@ public class Dialogue {
             "‘What was the cause? Did he just go crazy and smash his head onto the shelf?’",
             "‘I don’t know, I mean, he was completely normal last evening when I saw him!’",
             "You want to go inside to ask it out.\n\t(0) Ask the crowd, it’s enough for you.\n\t(1) Split the crowd and go straight into the house"
+    };
+
+    private String[] event8BChoice = {
+            "The people surrounding are quite clueless as you. You decide to go straight into the house.",
+            "You press your body through the people and just enters the house.",
+            "Rekt proves to be a great asset as always. He actively pushes the crowd to help you enter.",
     };
 
     /////////////////////////////////// 9A - Infrontof Tattooist's
@@ -1008,6 +1014,10 @@ public class Dialogue {
 
     public String getEvent7BChoice(int choice)	{
         return this.event7BChoice[choice];
+    }
+
+    public String getEvent8BChoice(int choice) {
+        return this.event8BChoice[choice];
     }
 
     public String getEvent15BChoice(int choice)	{

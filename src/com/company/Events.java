@@ -128,7 +128,7 @@ public class Events {
         printEvent(eventDial.getFirstAtJanitors());
         setEventTrigger("3B");
         player.setPlayerPos(0);
-        player.setPlayerStamina(30);
+        player.setPlayerStamina(50);
     }
 
 	public void getEvent5A(Player player) {
@@ -190,6 +190,7 @@ public class Events {
         }
         printEvent(eventDial.getEvent7C());
         setEventTrigger("7C");
+        player.rest();
         next();
     }
 
@@ -218,10 +219,9 @@ public class Events {
             }
             int choice = takeInput(options);
             player.setAllStats(doChoiceAction.statsEvent8B(choice));
+            Player.say(eventDial.getEvent8BChoice(choice));
             setEventTrigger("8B");
             next();
-        } else {
-            return;
         }
     }
 
@@ -296,7 +296,7 @@ public class Events {
         String password = dateFormat.format(cal.getTime());
         String guess = input.nextLine();
         if (guess.equals(password)) {
-            inventory.addItem(new Item("Pass Card", "Access card for a lab somewhere"));
+            inventory.addItem(new Item("Pass Card", "Access card for a lab somewhere", "PUZZLE"));
             Player.say("The box opens.. There's is a pass card inside.\n[Pass Card] Obtained!");
             setEventTrigger("10A");
         } else {
@@ -305,7 +305,6 @@ public class Events {
                 setEventTrigger("10B");
             }
         }
-
     }
 
     public void getFrontOfLab(Inventory inventory, Player player) {

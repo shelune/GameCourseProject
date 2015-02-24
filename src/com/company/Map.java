@@ -51,7 +51,7 @@ public class Map {
         }
         if (isReachable(playerPos, destination) && isAccessible(events, destination)) {
             if (destination != 1 && !events.isTriggered("TC") && player.getDayCount() % 7 != 0) {
-                Player.say("But school is waiting right now!");
+                Player.say("You have to go to your class first!");
                 input.nextLine();
                 return;
             }
@@ -81,7 +81,7 @@ public class Map {
     public Place addHome() {
         Place home = new Place (0, "Home", "This is your own home", "HM");
         home.setItems();
-        Collections.addAll(home.getAccessTo(), "Home", "ClassA", "Mountain", "Janitor's", "Mr.Cherr's", "Police station");
+        Collections.addAll(home.getAccessTo(), "Home", "ClassA", "Mountain", "Janitor's", "Tattoo's", "Teacher's", "Police station");
         return home;
     }
 
@@ -114,8 +114,8 @@ public class Map {
     }
 
     public Place addTattoo() {
-        Place tattoo = new Place(5, "Mr.Tate's", "A famous tattooist's in your area. It has some weird graffiti on the walls.", "TT");
-        Collections.addAll(tattoo.getAccessTo(), "Home", "Tattoo");
+        Place tattoo = new Place(5, "Tattoo's", "A famous tattooist's in your area. It has some weird graffiti on the walls.", "TT");
+        Collections.addAll(tattoo.getAccessTo(), "Home", "Tattoo's");
         tattoo.setItems();
         return tattoo;
     }
@@ -128,8 +128,8 @@ public class Map {
     }
 
     public Place addTeacher() {
-        Place teacher = new Place(7, "Mr.Cherr's", "Your chemistry teacher's house. It looks nice and clean", "VL");
-        Collections.addAll(teacher.getAccessTo(), "Home", "Teacher");
+        Place teacher = new Place(7, "Teacher's", "Your chemistry teacher's house. It looks nice and clean", "VL");
+        Collections.addAll(teacher.getAccessTo(), "Home", "Teacher's");
         teacher.setItems();
         return teacher;
     }

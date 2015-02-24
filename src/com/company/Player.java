@@ -46,13 +46,17 @@ public class Player {
                         break;
                     case 7:
                         if (!events.isTriggered("MT")) {
-                            say("You are unable to solve the mystery of Janitor's death. 14 days later...");
+                            say("You are unable to solve the mystery of Janitor's death.");
                             events.setEventTrigger("GAMEOVER");
-                            printGameOver();
                         }
                         break;
-
+                    case 11:
+                        if (!events.isTriggered("10A")) {
+                            say("You are unable to solve the mystery of the Tattooist's death.");
+                            events.setEventTrigger("GAMEOVER");
+                        }
                 }
+                printGameOver();
                 say("\t \t \t \t \t \t \t \t \t \t [DAY : " + dayCount + "]");
                 System.out.println(events.getEventList());
                 printPlayerStamina();
@@ -85,10 +89,12 @@ public class Player {
                     events.getEvent7A(this);
                     events.getEvent7B(this);
                     events.getEvent7C(this);
+                    return;
                 }
                 if (dayCount == 14) {
                     events.getHangOut(this);
                     events.getSeeWomanNumber(this, inventory);
+                    return;
                 }
                 move();
                 Events.next();
@@ -114,6 +120,8 @@ public class Player {
                 rest();
                 break;
             case 0:
+                Collections.addAll(events.getEventList(), "1A", "1B", "CB", "2A", "2B", "2C", "3A", "JN", "3B", "5A", "MT", "7A", "TT", "7B", "7C","TC");
+                setDayCount(8);
                 break;
         }
     }
@@ -142,7 +150,6 @@ public class Player {
             events.getEventGetBullied(this, playerUnd, inventory);
             events.getEventMetJanitor(this);
             events.getEventSeeJanitorNumber(this, inventory);
-            // events.setEventTrigger("JN");
         }
         if (playerPos == 1 && dayCount == 3) {
             events.getEventFirstDeath(this);
@@ -258,10 +265,12 @@ public class Player {
     }
 
     public void rest() {
-        if (!events.isTriggered("TC")) {
-            say("You are not a sloth, right?!");
-            Events.next();
-            return;
+        if (dayCount % 7 != 0) {
+            if (!events.isTriggered("TC")) {
+                say("You are not a sloth, right?!");
+                Events.next();
+                return;
+            }
         }
         if (!events.isTriggered("ARRESTED")) {
             playerPos = 0;
@@ -371,12 +380,14 @@ public class Player {
     }
 
     public void printGameOver() {
-        say("GAME OVER!");
-        if (events.isTriggered("21A")) {
-            say("CONGRATULATIONS ON FINISHING THE GAME!");
+        if (events.isTriggered("GAMEOVER")) {
+            say("GAME OVER!");
+            if (events.isTriggered("21A")) {
+                say("CONGRATULATIONS ON FINISHING THE GAME!");
+            }
+            printAchievements();
+            System.exit(0);
         }
-        printAchievements();
-        System.exit(0);
     }
 
     public int getScore() {

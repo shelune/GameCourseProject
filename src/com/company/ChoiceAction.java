@@ -125,6 +125,7 @@ public class ChoiceAction {
                 break;
             case 1:
                 statsChanged[0] = 1;
+                statsChanged[1] = -4;
                 statsChanged[3] = 35;
                 break;
             case 2:
@@ -205,10 +206,11 @@ public class ChoiceAction {
         switch (choice) {
             case 0:
                 statsChanged[0] = 1;
-                statsChanged[2] = 3;
+                statsChanged[2] = 1;
                 break;
             case 1:
-                statsChanged[2] = 3;
+                statsChanged[1] = -2;
+                statsChanged[2] = 2;
                 break;
             case 2:
                 statsChanged[1] = 2;

@@ -36,7 +36,6 @@ public class Map {
 
     public void printPlace(int x) {
         System.out.println(getPlace(x));
-        input.nextLine();
     }
 
     public void move(int playerPos, Events events, Player player) {               // check everything then move player

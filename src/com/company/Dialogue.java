@@ -16,16 +16,18 @@ public class Dialogue {
     private String toPolice = "\t (8) Police station";
     private String toRiver = "\t (9) River";
     /////////////////////////////////// Notices / Warnings / Statements
-    private String instruction = "You emerge as a Student in this game. You have a friend named Rekt.\nYour daily life consists of going to school, walking ";
-    private String endDay = "You're tired and decide to get a rest.\n\t# Stamina reverted to 100 #\nA new day has begun";
+    private String instruction = "you emerge as a Student in this game. You have a friend named Rekt.\nYour daily life consists of going to school, walking by and exploring some places, studying and sleeping, just as normal as might be.\nBut now you are having the weirdest dream of your life, and it is going change your life forever.\n\nNow please press Enter to see the general guideline";
+    private String inputInstruction = "General Guidelines for Playing: \n\t_ Press ENTER after each line to proceed, until you are given choices to make. \n\t\t.There are some times you have to press ENTER more than once, please be patient.\n\t_ When given choices, you are allowed to input number in brackets (e.g (0) xxx (1) xxx, you input 0 or 1).\n\t_ On the left side, there's a board showing your current status.\n\t\t.CURRENT STAMINA is your health, which depletes for most action you take.\n\t\t.CURRENT PLACE is the place you're in, which leads to exclusive locations.\n\t\t.SCORE is the your score based on your 3 stats, Courage, Understanding and Abnormalilty, which will be affected by your actions.\n\t_ On the right side, there's indication which current day is.\n\t\t.If a specific day passes without solving a specific mystery, it's Game Over.\n\n\t||| The Game Starts Now! |||\n\n\n\n-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-\n";
+    private String dailyInstruction = "\t_ Everytime you're given 6 actions to perform.\n\t_ [Move] is the most important command, as events and puzzles will happen when you move to some places.\n\t\t.At the beginning of the day (except for day 7 and day 14), you need to [Move] to [Your classroom], after that you're free to do whatever you want.\n\t_ [Explore] is to check the area's items.\n\t\t.Items are needed for specific events and puzzles. Some help you recover STAMINA.\n\t\t.You can take 6 items at max, if you have more than 6, the first item will be discarded.\n\t_ [Eat food] is to recover your STAMINA if your Inventor has food.\n\t_ [Study] is an useful command, as it increases your Understanding by 2 at the cost of half your CURRENT STAMINA.\n\t\t.You should only [Study] when there's no event, as it consumes lots of STAMINA.\n\t_ [Check Inventory] is to see into your Inventory.\n\t\t.Sometimes there's a Key Item which requires solving. Check your Inventory often as it doesn't cost STAMINA.\n\t_ [Rest] is the last command, allows you to teleport to home, restore STAMINA and go to the next day.\n\t\t.When your CURRENT STAMINA is below 25, you automatically [REST].";
+    private String endDay = "...\tYou're tired and decide to get a rest.\n\t# Stamina reverted to 100 #\n\tA new day has begun";
     private String stillFull = "You are still full! You shouldn't eat!";
     private String janitorNote = "I enjoyed the XXXXX days when we were worXXg together in that XXX.\nIt was just a magical substance, and XXXX.\nIt tXXd the daily XXX that we cannot live without into XXXhing so XXX.\nXXX promised that XXX the fate of us but the project got XXXXX due to XXX\n\t\t\t\t\t\t\t56.82.13 | Z \n\t\t\t\t\t\t\t165.168.11 | 3";
     /////////////////////////////////// Main Event - First Night
     private String[] firstNight = {
-            "...!", //0
-            ".........!",
-            ".............!",
-            ".............. DaRkNeSs!",
+            "*Huff puff*",
+            "*Huff puff*",
+            "*Huff puff*",
+            ".............. It's coming!",
             "The pure color of despair and fear...! That very darkness is crawling and crawling the way onto your body ...!",
             "Is this a dream? If it is... then why are you feeling such cold ...? And pain, in your head..?",
             "VROOM!... A figure suddenly pops up in the midst of the shade, blacker than even the night itself.",
@@ -40,7 +42,7 @@ public class Dialogue {
     /////////////////////////////////// Main Event - First See Numbers p1
     private String[] firstSeeNumChoice_p1 =	{
             "...\n\tRekt sees you with very confusing eyes. He thinks you haven't got yourself awake yet.\n\tYou just prove your awkwardness within 5 seconds. Good fuqing job!\n\t# Abnormality went up by 2 #",
-            "...\n\tHe laughs it off then proceeds to tell one of his humble dream where he slays Death himself.\nSeems like your story is not a big deal to your best dude at all, huh?",
+            "...\n\tHe laughs it off then proceeds to tell one of his humble dream where he slays Death himself.\n\tSeems like your story is not a big deal to your best dude at all, huh?",
     };
     private String[] firstSeeNumbers_p1 = {
             "...\tYou walk outside to see Rekt a.k.a your buddy standing right beside your post.", //0
@@ -84,7 +86,7 @@ public class Dialogue {
     private String[] getBullied = {
             "...\tIt is another long day for you. What a relief you don't get to see those numbers again.",
             "...\t*Thump!* You smash your face into a back. When you get your head up, suddenly all your short-lived relief just vanish...",
-            "...\tIt's your 10-year-bully and his pack. 'Not again...', you murmur...\nBut from the way they stretch their necks and cracks their knuckles, you can be sure the next thing coming is not a hug.",
+            "...\tIt's your 10-year-bully and his pack. 'Not again...', you murmur...\n\tBut from the way they stretch their necks and cracks their knuckles, you can be sure the next thing coming is not a hug.",
             "...\tWhat is your decision before your face may merge with the wall?",
             "\t(0) Run. Run away. It's not that protagonist is immortal.\n\t(1) Fight your ass back. You'll get beaten up anyway, so let your dignity intact!\n\t(2) Let's negotiate. Your words fight better than your flimsy fists\n\t(3) Distract them. Sneak out!",};
 
@@ -113,8 +115,8 @@ public class Dialogue {
 
     private String[] seeJanitorNumberChoice = {
             "...\tThe janitor smirks ‘Have you got punched so hard that you see numbers instead of stars now?!’… Yeah again… Why even surprised?",
-            "...\t’Are you hungry now, son?’, the janitor expresses his worry for you.\n‘Go home and take a break, I also need to see an old friend now. But before I go, have my cake, don't get yourself hungry eh!'. He even gives you a cake!",
-            "...\t’Yeah you look pale, son. Have a bite on this cake, will you? I’m coming home to see an old friend now so catch ya later!’.\nThe janitor is so nice.",
+            "...\t’Are you hungry now, son?’, the janitor expresses his worry for you.\n\t‘Go home and take a break, I also need to see an old friend now. But before I go, have my cake, don't get yourself hungry eh!'. He even gives you a cake!",
+            "...\t’Yeah you look pale, son. Have a bite on this cake, will you? I’m coming home to see an old friend now so catch ya later!’.\n\tThe janitor is so nice.",
     };
 
     /////////////////////////////////// 3A - First Death Janitor
@@ -738,16 +740,16 @@ public class Dialogue {
         int subject = rand.nextInt(3);
         switch (subject) {
             case 0:
-                result = "Today you have Maths. Gosh this stuff blows your brain.\n\t# Understanding went up by 2 #";
+                result = "\tToday you have Maths. Gosh this stuff blows your brain.\n\t# Understanding went up by 2 #";
                 break;
             case 1:
-                result = "Today you have Finnish. What the heck do they think when putting Finnish in your schedule?!\n\t# Understanding went up by 2 #";
+                result = "\tToday you have Finnish. What the heck do they think when putting Finnish in your schedule?!\n\t# Understanding went up by 2 #";
                 break;
             case 2:
-                result = "Today you have Biology. So hard, but at least you are familiar with it from before.\n\t# Understanding went up by 2 #";
+                result = "\tToday you have Biology. So hard, but at least you are familiar with it from before.\n\t# Understanding went up by 2 #";
                 break;
             case 3:
-                result = "Today is for History! Gosh, they always say that you should let it past right?! Right?!\n\t# Understanding went up by 2 #";
+                result = "\tToday is for History! Gosh, they always say that you should let it past right?! Right?!\n\t# Understanding went up by 2 #";
         }
         return result;
     }
@@ -1076,5 +1078,17 @@ public class Dialogue {
 
     public String getREvent3Choice(int choice) {
         return rEvent3Choice[choice];
+    }
+
+    public String getInstruction(Player player) {
+        return player.getPlayerName() + ", " + instruction;
+    }
+
+    public String getInputInstruction() {
+        return inputInstruction;
+    }
+
+    public String getDailyInstruction() {
+        return dailyInstruction;
     }
 }

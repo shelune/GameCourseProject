@@ -32,16 +32,19 @@ public class Player {
 
     public void start() {
         getPlayer();                                            // Create a player @l.214
-        boolean gameRun = true;
-
-        GAME:                                                   // main loop
-        while (gameRun) {
+                                                                // main loop
+        while (true) {
             while (dayCount < 21 && playerStamina > 25) {
                 if (events.isTriggered("GAMEOVER")) {
                     printGameOver();
                 }
                 switch (dayCount) {                             // this switch is for night events
                     case 1:
+                        if (!events.isTriggered("0A")) {
+                            say(dialogue.getInstruction(this));
+                            Events.next();
+                            say(dialogue.getInputInstruction());
+                        }
                         events.getEventFirstNight(this);
                         break;
                     case 7:
@@ -66,8 +69,9 @@ public class Player {
                 say("\t \t \t \t \t \t \t \t \t \t [DAY : " + dayCount + "]");
                 System.out.println(events.getEventList());
                 printPlayerStamina();
-                printAllStats();
                 map.printPlace(playerPos);
+                printAllStats();
+                events.getDailyInstructions();
                 notice();
                 actions();                                      // all actions available
             }
@@ -365,7 +369,12 @@ public class Player {
     public Player getPlayer() {
         say("What do you want your name to be__?");
         String name = input.nextLine();
+        playerName = name;
         return new Player(name, "", 100);
+    }
+
+    public String getPlayerName() {
+        return this.playerName;
     }
 
     public int getPlayerUnd() {

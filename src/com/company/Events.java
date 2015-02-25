@@ -24,6 +24,17 @@ public class Events {
         Player.say("Eventually, the darkness slowly fades away ... But the creepy feeling keeps on and prolongs throughout the night. It was a very haunting dream...");
         next();
     }
+
+    public void getDailyInstructions() {
+        if (isTriggered("0B")) {
+            return;
+        }
+        Player.say("Press Enter to see the daily instruction.");
+        next();
+        Player.say(eventDial.getDailyInstruction());
+        setEventTrigger("0B");
+        next();
+    }
     public void getEventFirstSeeNumbers(Player player) {
         ChoiceAction doChoiceAction = new ChoiceAction();
         if (eventTrigger.contains("1A")) {
@@ -64,6 +75,7 @@ public class Events {
             Item jacket = inventory.hasItem("Jacket");
             if(jacket != null) {
                 choice = 4;
+                setEventTrigger("NINJA");
                 jacket.consume();
             }
         }

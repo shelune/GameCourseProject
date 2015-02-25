@@ -10,5 +10,4 @@ public class Main {
         Player player = new Player("", "", 100);
         player.start();
     }
-
 }

@@ -51,8 +51,14 @@ public class Player {
                         }
                         break;
                     case 11:
-                        if (!events.isTriggered("10A")) {
+                        if (!events.isTriggered("LB")) {
                             say("You are unable to solve the mystery of the Tattooist's death.");
+                            events.setEventTrigger("GAMEOVER");
+                        }
+                        break;
+                    case 15:
+                        if (!events.isTriggered("12A")) {
+                            say("You are unable to solve the mystery of the woman.");
                             events.setEventTrigger("GAMEOVER");
                         }
                 }
@@ -398,6 +404,7 @@ public class Player {
                 say("CONGRATULATIONS ON FINISHING THE GAME!");
             }
             printAchievements();
+            say("FINAL SCORE : " + getScore());
             System.exit(0);
         }
     }

@@ -38,6 +38,7 @@ public class Events {
         Player.say(eventDial.getFirstSeeNumChoice_p2(choice));
         player.setAllStats(doChoiceAction.statsFirstSeeNum_p2(choice));
         setEventTrigger("1A");
+        setEventTrigger("CB");
         next();
     }
     public void getEventAfterClass1st(Player player, Inventory inventory) {
@@ -312,7 +313,7 @@ public class Events {
             return;
         }
         printEvent(eventDial.getFrontOfLab());
-        if (player.getPlayerUnd() > 20 && player.getPlayerCrg() > 20) {
+        if (player.getPlayerUnd() > 50 && player.getPlayerCrg() > 18) {
             if (inventory.hasItem("Small Hammer") != null) {
                 Player.say("With your brilliant mind and courage, you used the hammer to fix the small bridge and go past it into the lab");
                 setEventTrigger("12A");

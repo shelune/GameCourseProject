@@ -193,6 +193,9 @@ public class Player {
         }
         if (dayCount == 18) {
             events.getEvent18A(this, inventory);
+            if (events.isTriggered("18A1")) {
+                events.getDeleteCase(this);
+            }
         }
         if (dayCount == 19) {
             if (events.isTriggered("ARRESTED")) {

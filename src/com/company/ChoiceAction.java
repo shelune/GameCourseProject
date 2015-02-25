@@ -276,7 +276,7 @@ public class ChoiceAction {
         }
     }
 
-    public int[] statsEvent18A(int choice, Player player, Inventory inventory) {
+    public int[] statsEvent18A(int choice, Player player, Inventory inventory, Events events) {
         switch (choice) {
             case 0:
             	statsChanged[0] = 2;
@@ -284,8 +284,9 @@ public class ChoiceAction {
                 player.setDayCount(21);
                 break;
             case 1:
-            	inventory.addItem(new Item("Potion 1", "Potion 1"));
-            	inventory.addItem(new Item("Potion 2", "Potion 2"));
+            	inventory.addItem(new Item("Potion 1", "A weird looking bottle of chemical substances"));
+            	inventory.addItem(new Item("Potion 2", "A weird looking bottle of chemical substances"));
+                events.setEventTrigger("18A1");
                 break;
         }
         return statsChanged;

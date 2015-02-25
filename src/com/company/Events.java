@@ -481,7 +481,7 @@ public class Events {
         printEvent(eventDial.getEvent18A());
         int choice = takeInput(1);
         Player.say(eventDial.getEvent18AChoice(choice));
-        player.setAllStats(doChoiceAction.statsEvent18A(choice, player, inventory));
+        player.setAllStats(doChoiceAction.statsEvent18A(choice, player, inventory, this));
         setEventTrigger("18A");
         next();
     }

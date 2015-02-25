@@ -176,6 +176,15 @@ public class Player {
         if (playerPos == 6) {
             events.getFrontOfLab(inventory, this);
         }
+        if (dayCount == 15 && playerPos == 7) {
+            events.getEvent15A(this);
+            events.getEvent15B(this);
+            events.getEvent15C(this);
+            events.getEvent15D(this);
+            if (!events.isTriggered("GAMEOVER")) {
+                events.getGivePotion();
+            }
+        }
         if (dayCount == 16) {
             events.getEvent16A(this, inventory);
         }

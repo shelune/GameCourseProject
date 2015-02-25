@@ -146,7 +146,7 @@ public class ChoiceAction {
                 statsChanged[2] = -2;
                 statsChanged[0] = 2;
                 statsChanged[1] = 2;
-                Player.say("With your brilliant mind, you take out your jacket and fling them away, then run. Magnificient!");
+                Player.say("With your brilliant mind, you take out your [Jacket] and fling it away, then run. Magnificent!");
         }
         return statsChanged;
     }
@@ -266,6 +266,14 @@ public class ChoiceAction {
                 break;
         }
         return statsChanged;
+    }
+
+    public void actionEvent15D(int choice, Events events) {
+        switch (choice) {
+            case 1:
+                events.setEventTrigger("GAMEOVER");
+                break;
+        }
     }
 
     public int[] statsEvent18A(int choice, Player player, Inventory inventory) {

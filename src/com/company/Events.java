@@ -429,11 +429,9 @@ public class Events {
         printEvent(eventDial.getEvent15D());
         int choice = takeInput(1);
         Player.say(eventDial.getEvent15DChoice(choice));
+        doChoiceAction.actionEvent15D(choice, this);
         setEventTrigger("15D");
         next();
-        if (choice==1)	{
-            setEventTrigger("GAMEOVER");
-        }
     }
 
     public void getGivePotion() {

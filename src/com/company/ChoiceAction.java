@@ -129,24 +129,24 @@ public class ChoiceAction {
                 statsChanged[3] = 35;
                 break;
             case 2:
-                if (und > 14) {
+                if (und > 18) {
                     statsChanged[0] = 2;
-                    Player.say("In the end it's not that bad. They listen to your reasons!");
+                    Player.say("... In the end it's not that bad. They listen to your reasons!");
                 } else {
                     inventory.empty();
-                    Player.say("Ugh! You cannot talk those things out and get mugged by them...");
+                    Player.say("... Ugh! You cannot talk those things out and get mugged by them...");
                 }
                 break;
             case 3:
                 statsChanged[3] = 30;
-                Player.say("Wait what are you gonna distract them with?!");
+                Player.say("... Wait what are you gonna distract them with?!");
                 break;
             case 4:
                 inventory.delInvalidItem();
                 statsChanged[2] = -2;
                 statsChanged[0] = 2;
                 statsChanged[1] = 2;
-                Player.say("With your brilliant mind, you take out your [Jacket] and fling it away, then run. Magnificent!");
+                Player.say("... With your brilliant mind, you take out your [Jacket] and fling it away, then run. Magnificent!");
         }
         return statsChanged;
     }
@@ -341,14 +341,14 @@ public class ChoiceAction {
                 if (inventory.hasItem("Small Hammer") != null) {
                     sHammer.consume();
                     inventory.addItem(new Item("Brick", "A craggy but sturdy brick, can be thrown at b!tches for permanent damage"));
-                    Player.say("With the small hammer, you eventually take out the brick. But the hammer is also done fore. This brick could be in use for later.\n [Brick] Obtained");
+                    Player.say("... With the small hammer, you eventually take out the brick. But the hammer is also done fore. This brick could be in use for later.\n [Brick] Obtained");
                 } else {
-                    Player.say("You try and try but the brick is still stuck onto the wall, you can’t take it with proper tool");
+                    Player.say("... You try and try but the brick is still stuck onto the wall, you can’t take it with proper tool");
                 }
                 break;
             case 1:
                 statsChanged[1] = 1;
-                Player.say("If someone catches you, it may spell disaster for you.");
+                Player.say("... If someone catches you, it may spell disaster for you.");
                 break;
         }
         return statsChanged;

@@ -121,7 +121,7 @@ public class Dialogue {
 
     /////////////////////////////////// 3A - First Death Janitor
     private String[] firstDeath = {
-            "\tYou walk into the class, thinking you're late but actually you're not. It seems that people are fussing over something so they ignore you.", // 0
+            "... You walk into the class, thinking you're late but actually you're not. It seems that people are fussing over something so they ignore you.", // 0
             "... The Chemistry class goes on as usual but the teacher seems a bit troubled. 'What has happened?', you wonder...",
             "... Rekt seems to be quite worried as well. Will you ask him the happening?\n \t(0) Ask him \t (1) Just ignore it", //options . 2
     };
@@ -202,7 +202,7 @@ public class Dialogue {
     };
 
     private String[] event7BChoice = {
-            "... Before you make a move, Mr.Tate already gets his arm by you and forbid any further movement. \n‘Why don’t you take a seat and wait for your friend, lad?’, he seemingly doesn’t want you to enter his shop. ",
+            "... Before you make a move, Mr.Tate already gets his arm by you and forbid any further movement. \n... ‘Why don’t you take a seat and wait for your friend, lad?’, he seemingly doesn’t want you to enter his shop. ",
             "... ‘It should not be of your concern, right? Let’s make this quick and nice’, Mr.Tate doesn’t want to mention his guest.",
             ""
     };

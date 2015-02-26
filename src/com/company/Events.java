@@ -10,6 +10,55 @@ public class Events {
     private ArrayList<String> eventTrigger = new ArrayList<String>();
     private Dialogue eventDial = new Dialogue(); // get the dialogues for events
     //private ChoiceAction doChoiceAction = new ChoiceAction();
+
+    public void getHint(Inventory inventory, Player player) {
+        if (!isTriggered("TC")) {
+            if (player.getDayCount() % 7 == 0) {
+                Player.say("Today is off. But spending time at home is not nice, right? Let's go somewhere!");
+            } else {
+                Player.say("Probably you want to go to class first. Choose [Move] then [Your classroom]");
+            }
+        }
+        if (isTriggered("TC") && !isTriggered("1B")) {
+            Player.say("Let's check [Your buddy's classroom], it's right beside your class anyway.");
+        }
+        if (isTriggered("1B") && inventory.hasItem("Finnish Homework") != null) {
+            Player.say("Now you have received the first puzzle item. Why don't you [Check inventory] and solve it?");
+        }
+        if (isTriggered("3A") && !isTriggered("3B")) {
+            Player.say("You can only go to Janitor's from [Home] and from [ClassB]. Be sure where you're standing.");
+        }
+        if (isTriggered("3B") && player.getDayCount() > 3 && !isTriggered("5A")) {
+            Player.say("It seems like Janitor's place may hold some puzzle. Try [Explore] and get the an item maybe?");
+        }
+        if (isTriggered("5A") && !isTriggered("5B")) {
+            Player.say("The [Statue] may have something inside it, but you need a tool to break it first.");
+        }
+        if (isTriggered("5B") && !isTriggered("MT")) {
+            Player.say("[Small Note] in your Inventory needs a correct answer. It's a bit tricky!");
+        }
+        if (isTriggered("8A") && !isTriggered("8B")) {
+            Player.say("Check out the new place. It seems like something went wrong there...");
+        }
+        if (isTriggered("9A") && !isTriggered("9B")) {
+            Player.say("The dog may like bones. And obviously more than one.");
+        }
+        if (isTriggered("10B") && !isTriggered("10A")) {
+            Player.say("The [Pass Card] needs some kind of GPS tool to pinpoint the location. What tool can be used?");
+        }
+        if (isTriggered("LB") && !isTriggered("12A")) {
+            Player.say("The entry into the [Lab] is blocked. You will need to tool to fix that.");
+        }
+        if (isTriggered("VL") && !isTriggered("15B")) {
+            Player.say("What happened to your teacher? Better go check his place...");
+        }
+        if (isTriggered("18A") && !isTriggered("18A1")) {
+            Player.say("Better not escape the jail without getting rid of your files here...");
+        }
+        else {
+            Player.say("If you have come to class already and feel like doing nothing, [Study] can help increase your score! Don't do that on day 7 and 14 though.");
+        }
+    }
     public void getEventFirstNight(Player player) { // COU - UND - ABN - STAMINA
         ChoiceAction doChoiceAction = new ChoiceAction();
         if (isTriggered("0A")) {
@@ -151,7 +200,7 @@ public class Events {
 			int choice = takeInput(2);
 			Player.say(eventDial.getEvent5AChoice(choice));
 			player.setAllStats(doChoiceAction.statsEvent5A(choice));
-			Player.say("Anyway, you have no idea what to do with the statue yet, so just keep it for later.");
+			Player.say("... Anyway, you have no idea what to do with the statue yet, so just keep it for later.");
 			setEventTrigger("5A");
 			next();
 		} else {
@@ -253,7 +302,6 @@ public class Events {
         printEvent(eventDial.getFrontOfTattooPuzzle());
         Item bone = inventory.hasItem("Bones");
         if (bone != null) {
-            bone.consume();
             if (bone.getItemCount() < 2) {
                 Player.say("You fed the dog some bones, but they were consumed too quickly.");
                 bone.consume();

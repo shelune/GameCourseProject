@@ -74,6 +74,7 @@ public class Player {
                 events.getDailyInstructions();
                 notice();
                 actions();                                      // all actions available
+                input.nextLine();
             }
             rest();
         }
@@ -107,29 +108,25 @@ public class Player {
                     return;
                 }
                 move();
-                events.next();
                 break;
             case 2:                                                     // Check area
                 explore();
-                events.next();
                 //
                 break;
             case 3:                                                     // Recover Stamina (if have food)
                 eat();
-                events.next();
                 break;
             case 4:                                                     // Study
                 study();
-                events.next();
                 break;
             case 5:                                                      // Get inventory
                 showInventory();
-                events.next();
                 break;
             case 6:                                                      // Rest
                 rest();
                 break;
             case 0:
+                events.getHint(inventory, this);
                 break;
         }
     }
@@ -324,7 +321,7 @@ public class Player {
         ArrayList toRemove = new ArrayList();
         for (Item item : itemList) {
             if (item == itemList.get(take)) {
-                say(item.getItemName() + " taken.");
+                say("[" + item.getItemName() + "] taken.");
                 if (!item.getItemName().equalsIgnoreCase("bones")) {
                     toRemove.add(item);
                 }

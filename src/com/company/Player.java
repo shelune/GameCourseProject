@@ -107,31 +107,29 @@ public class Player {
                     return;
                 }
                 move();
-                Events.next();
+                events.next();
                 break;
             case 2:                                                     // Check area
                 explore();
-                Events.next();
+                events.next();
                 //
                 break;
             case 3:                                                     // Recover Stamina (if have food)
                 eat();
-                Events.next();
+                events.next();
                 break;
             case 4:                                                     // Study
                 study();
-                Events.next();
+                events.next();
                 break;
             case 5:                                                      // Get inventory
                 showInventory();
-                Events.next();
+                events.next();
                 break;
             case 6:                                                      // Rest
                 rest();
                 break;
             case 0:
-                Collections.addAll(events.getEventList(), "1A", "1B", "CB", "2A", "2B", "2C", "3A", "JN", "3B", "5A", "MT", "7A", "TT", "7B", "7C","TC");
-                setDayCount(8);
                 break;
         }
     }
@@ -186,7 +184,7 @@ public class Player {
         if (playerPos == 6) {
             events.getFrontOfLab(inventory, this);
         }
-        if (dayCount == 15 && playerPos == 7) {
+        if (dayCount == 15 && playerPos == 1) {
             events.getEvent15A(this);
             events.getEvent15B(this);
             events.getEvent15C(this);

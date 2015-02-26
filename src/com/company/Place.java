@@ -65,6 +65,9 @@ public class Place {
                 Item bones = new Item("Bones", "Dogs enjoy this so much");
                 Collections.addAll(temp, statue, bones);
                 break;
+            case 5:
+                Item dye = new Item("Hairdye", "A small bottle of hair dye with good smell");
+                Collections.addAll(temp, dye);
 
         }
         itemList = temp;

@@ -190,7 +190,6 @@ public class Events {
             int choice = takeInput(2);
             Player.say(eventDial.getEvent7BChoice(choice));
             player.setAllStats(doChoiceAction.statsEvent7B(choice));
-            Player.say("While you are waiting, a phone rings from inside the store. Its sound… It’s so peculiar, yet a bit similar. You have the feeling that you heard this somewhere…");
             setEventTrigger("7B");
             player.setPlayerPos(5);
             next();
@@ -261,7 +260,7 @@ public class Events {
             } else {
                 Player.say("Having eaten all the bones, the dog now is too full and starts to sleep.\nYou can sneak past it now.");
                 setEventTrigger("9B");
-                for (int i = 0; i < bone.getItemCount(); i++) {
+                for (int i = 0; i <= bone.getItemCount(); i++) {
                     bone.consume();
                 }
             }
@@ -325,7 +324,7 @@ public class Events {
             return;
         }
         printEvent(eventDial.getFrontOfLab());
-        if (player.getPlayerUnd() > 50 && player.getPlayerCrg() > 18) {
+        if (player.getPlayerUnd() > 45 && player.getPlayerCrg() > 16) {
             if (inventory.hasItem("Small Hammer") != null) {
                 Player.say("With your brilliant mind and courage, you used the hammer to fix the small bridge and go past it into the lab");
                 setEventTrigger("12A");
@@ -381,6 +380,7 @@ public class Events {
             getFollowMan(player, inventory);
         }
         setEventTrigger("14B");
+        player.rest();
         next();
     }
 
@@ -462,12 +462,14 @@ public class Events {
         }
         printEvent(eventDial.getGetArrested());
         setEventTrigger("16A");
-        if (player.getPlayerAbn() > 14) {
+        if (inventory.hasItem("Hairdye") != null) {
             inventory.empty();
             inventory.addItem(new Item("Small Hammer", "A tiny hammer you used to play when you were young"));
             inventory.addItem(new Item("Phone", "Used to call someone"));
+            Player.say("'Oh you happen to have my favourite color hairdye, I will let you keep your casual stuff, but not more than that', said the officer");
         } else {
             inventory.empty();
+            Player.say("'Due to security reasons, all your items will be discarded.', said the officer");
         }
         setEventTrigger("ARRESTED");
         player.rest();

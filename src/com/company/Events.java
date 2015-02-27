@@ -31,7 +31,7 @@ public class Events {
         if (isTriggered("3B") && player.getDayCount() > 3 && !isTriggered("5A")) {
             Player.say("It seems like Janitor's place may hold some puzzle. Try [Explore] and get the an item maybe?");
         }
-        if (isTriggered("5A") && !isTriggered("5B")) {
+        if (isTriggered("5A") && inventory.hasItem("Old Key") == null) {
             Player.say("The [Statue] may have something inside it, but you need a tool to break it first.");
         }
         if (isTriggered("5B") && !isTriggered("MT")) {
@@ -263,7 +263,7 @@ public class Events {
         printEvent(eventDial.getEvent8A());
         int choice = takeInput(1);
         player.setAllStats(doChoiceAction.statsEvent8A(choice, this));
-        Player.say("Let’s come to that Tattooist’s place now, shall we?");
+        Player.say("... Let’s come to that Tattooist’s place now, shall we?");
         setEventTrigger("8A");
         player.setPlayerPos(0);
         next();
@@ -302,16 +302,14 @@ public class Events {
         printEvent(eventDial.getFrontOfTattooPuzzle());
         Item bone = inventory.hasItem("Bones");
         if (bone != null) {
-            if (bone.getItemCount() < 2) {
+            if (bone.getItemCount() < 3) {
                 Player.say("You fed the dog some bones, but they were consumed too quickly.");
-                bone.consume();
             } else {
                 Player.say("Having eaten all the bones, the dog now is too full and starts to sleep.\nYou can sneak past it now.");
                 setEventTrigger("9B");
-                for (int i = 0; i <= bone.getItemCount(); i++) {
-                    bone.consume();
-                }
             }
+            bone.consume();
+            inventory.delInvalidItem();
         }
         next();
     }

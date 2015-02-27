@@ -35,13 +35,13 @@ public class Dialogue {
     };
     ///////////////// Choice /////////////////
     private String[] firstNightChoice = {
-            "...\n\tYou slam yourself into the figure, but it just disperse ...\n\tAfter a few times, you find it nowhere to be seen ... It's gone! \n\tBut your Courage is sure to be needed in this journey!\n\t# Courage went up by 2 #", //Choice 0
-            "...\n\tYou take some time standing there and look at the figure ...\n\tIt jumps and shakes around you, but no real movement at all ... It is actually wandering away...!\n\tYour Patience and Understanding of situation may be great in this journey\n\t# Understanding went up by 2 #",//Choice 1
+            "...\n\tYou slam yourself into the figure, but it just disperse ...\n\tAfter a few times, you find it nowhere to be seen ... It's gone! \n\tBut your Courage is sure to be needed in this journey!", //Choice 0
+            "...\n\tYou take some time standing there and look at the figure ...\n\tIt jumps and shakes around you, but no real movement at all ... It is actually wandering away...!\n\tYour Patience and Understanding of situation may be great in this journey.",//Choice 1
             "...\n\tYou just run away, avoiding any further advancement of the figure...\n\tAfter all, nothing really happened...", // Choice 2
     };
     /////////////////////////////////// Main Event - First See Numbers p1
     private String[] firstSeeNumChoice_p1 =	{
-            "...\n\tRekt sees you with very confusing eyes. He thinks you haven't got yourself awake yet.\n\tYou just prove your awkwardness within 5 seconds. Good fuqing job!\n\t# Abnormality went up by 2 #",
+            "...\n\tRekt sees you with very confusing eyes. He thinks you haven't got yourself awake yet.\n\tYou just prove your awkwardness within 5 seconds. Good fuqing job!",
             "...\n\tHe laughs it off then proceeds to tell one of his humble dream where he slays Death himself.\n\tSeems like your story is not a big deal to your best dude at all, huh?",
     };
     private String[] firstSeeNumbers_p1 = {
@@ -55,8 +55,8 @@ public class Dialogue {
     };
     /////////////////////////////////// Main Event - First See Numbers p2
     private String[] firstSeeNumChoice_p2 = {
-            "... You take in a big breath and continue walking. But you feel like your weirdness just gets to another level...\n\t# Abnormality went up by 2 #",
-            "... You tell Rekt cautiously : 'It's like I'm still sleepy'. Immediately, he swings his big palm into your face.\n\tSwear to God you can even see whirling stars now, but at least you don't get suspected.\n\t# Abnormality went down by 1 #\n\t# Stamina went down by A LOT #",
+            "... You take in a big breath and continue walking. But you feel like your weirdness just gets to another level...",
+            "... You tell Rekt cautiously : 'It's like I'm still sleepy'. Immediately, he swings his big palm into your face.\n\tSwear to God you can even see whirling stars now, but at least you don't get suspected.",
     };
     private String[] firstSeeNumbers_p2 = {
             "... With no further delay, you and Rekt rush to school as it is a bit late already\n\tBut it is like your nightmare never ends!... There are the numbers '21' floating on EVERYONE on the street!",
@@ -137,12 +137,12 @@ public class Dialogue {
             "... 'So, what do you say, are you coming to his house with me? We can, you know, get in to see the scene!",
             "... 'But the stuff in his room was a bit shuffled up, I heard so. There's no way he died from a breakdown shit, he is the most healthy person I know!', Rekt hisses.", // 5
             "... 'So, what do you say, are you coming to his house with me? We can, you know, get in to see the scene!",
-            "What will you do now, going with him?\n \t(0) Nod and agree \t (1) Nope, stay away from the dead.", // options . 8
+            "... What will you do now, going with him?\n \t(0) Nod and agree \t (1) Nope, stay away from the dead.", // options . 8
     };
 
     private String[] firstDeathChoice = {
-            "... Rekt smiles eagerly, 'That's my dude! Alright this evening we will pay him a visit! Don't be late!'...\n \t# Courage went up by 2 #\t# Understanding went up by 1 #...\n \t +++ NEW AREA OPENED : JANITOR'S HOUSE +++",
-            "... Rekt knocks on your shoulder, 'What the hell dude?! He was fighting off the bullies for you, remember?! You're coming with me!'...\n \t# Courage went down by 1 #\t# Understanding went down by 1 #...\n \t +++ NEW AREA OPENED : JANITOR'S HOUSE +++",
+            "... Rekt smiles eagerly, 'That's my dude! Alright this evening we will pay him a visit! Don't be late!'...\n \t +++ NEW AREA OPENED : JANITOR'S HOUSE +++",
+            "... Rekt knocks on your shoulder, 'What the hell dude?! He was fighting off the bullies for you, remember?! You're coming with me!'...\n \t +++ NEW AREA OPENED : JANITOR'S HOUSE +++",
     };
 
     /////////////////////////////////// 3B - First At Janitor's
@@ -653,9 +653,9 @@ public class Dialogue {
             "... What should you do now?! \n \t(0) What's done is done. Wait for the next bus. \n \t(1) â€œBorrowâ€� one of the bicycles and cycle to school. \n \t(2) Give up, go back home and sleep your frustration off. ",};
 
     private String[] rEvent3Choice = {
-            "... You come for the school quite late and miss the class. \n\t# UND went down by 2 #",
-            "... You barely make it to the class and take the quiz.\nAlso you don't really remember whose the bike was... So better just keep it for now eh?\n\t# COU went up by 2 #\n\t# 'Bicycle' Obtained #",
-            "... Not a single f*** was given that day, so you enjoy staying home reading some books.\n\t# UND went down by 4 #",
+            "... You come for the school quite late and miss the class.",
+            "... You barely make it to the class and take the quiz.\nAlso you don't really remember whose the bike was... So better just keep it for now eh?\n\t# 'Bicycle' Obtained #",
+            "... Not a single f*** was given that day, so you enjoy staying home reading some books.",
     };
 
     /////////////////////////////////// Constructor
@@ -741,16 +741,16 @@ public class Dialogue {
         int subject = rand.nextInt(3);
         switch (subject) {
             case 0:
-                result = "\tToday you have Maths. Gosh this stuff blows your brain.\n\t# Understanding went up by 2 #";
+                result = "\tToday you have Maths. Gosh this stuff blows your brain.";
                 break;
             case 1:
-                result = "\tToday you have Finnish. What the heck do they think when putting Finnish in your schedule?!\n\t# Understanding went up by 2 #";
+                result = "\tToday you have Finnish. What the heck do they think when putting Finnish in your schedule?!";
                 break;
             case 2:
-                result = "\tToday you have Biology. So hard, but at least you are familiar with it from before.\n\t# Understanding went up by 2 #";
+                result = "\tToday you have Biology. So hard, but at least you are familiar with it from before.";
                 break;
             case 3:
-                result = "\tToday is for History! Gosh, they always say that you should let it past right?! Right?!\n\t# Understanding went up by 2 #";
+                result = "\tToday is for History! Gosh, they always say that you should let it past right?! Right?!";
         }
         return result;
     }

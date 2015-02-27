@@ -150,18 +150,18 @@ public class ChoiceAction {
             case 2:
                 if (und > 14) {
                     statsChanged[0] = 2;
-                    Player.say("In the end it's not that bad. They listen to your reasons!");
+                    Player.say("... In the end it's not that bad. They listen to your reasons!");
                     Player.say("\t# Courage went up by 2 #");
                 } else {
                     inventory.empty();
-                    Player.say("Ugh! You cannot talk those things out and get mugged by them...");
+                    Player.say("... Ugh! You cannot talk those things out and get mugged by them...");
                 }
                 break;
             case 3:
                 statsChanged[1] = -4;
                 statsChanged[2] = 2;
                 statsChanged[3] = 30;
-                Player.say("Wait what are you gonna distract them with?!");
+                Player.say(".. Wait what are you gonna distract them with?!");
                 Player.say("\t# Understanding went down by 4 #\t# Abnormality went up by 2 #\t# Stamina went down by 30 #");
                 break;
             case 4:
@@ -169,7 +169,7 @@ public class ChoiceAction {
                 statsChanged[2] = -2;
                 statsChanged[0] = 2;
                 statsChanged[1] = 2;
-                Player.say("With your brilliant mind, you take out your [Jacket] and fling it away, then run. Magnificent!");
+                Player.say("... With your brilliant mind, you take out your [Jacket] and fling it away, then run. Magnificent!");
                 Player.say("\t# Courage went up by 2 #\t# Understanding went up by 2 #\t# Abnormality went down by 2 #");
         }
         return statsChanged;
@@ -199,12 +199,12 @@ public class ChoiceAction {
                 Player.say("\t# Courage went up by 1 #\t# Abnormality went up by 2 #");
                 break;
             case 1:
-                inventory.addItem(new Item("Cake", "Recovers 20 Stamina", -10, 1));
-                Player.say("[Cake] Obtained!");
+                inventory.addItem(new Item("Cake", "Recovers 20 Stamina", -20, 1));
+                Player.say("\t[Cake] Obtained!");
                 break;
             case 2:
-                inventory.addItem(new Item("Cake", "Recovers 20 Stamina", -10, 1));
-                Player.say("[Cake] Obtained!");
+                inventory.addItem(new Item("Cake", "Recovers 10 Stamina", -10, 1));
+                Player.say("\t[Cake] Obtained!");
                 break;
         }
         return statsChanged;
@@ -386,15 +386,15 @@ public class ChoiceAction {
                 if (inventory.hasItem("Small Hammer") != null) {
                     sHammer.consume();
                     inventory.addItem(new Item("Brick", "A craggy but sturdy brick, can be thrown at b!tches for permanent damage"));
-                    Player.say("With the small hammer, you eventually take out the brick. But the hammer is also done fore. This brick could be in use for later.\n [Brick] Obtained");
+                    Player.say("... With the small hammer, you eventually take out the brick. But the hammer is also done fore. This brick could be in use for later.\n [Brick] Obtained");
                 } else {
-                    Player.say("You try and try but the brick is still stuck onto the wall, you can’t take it with proper tool");
+                    Player.say("... You try and try but the brick is still stuck onto the wall, you can’t take it with proper tool");
                 }
                 Player.say("\t# Courage went up by 2 #\t# Abnormality went up by 2 #");
                 break;
             case 1:
                 statsChanged[1] = 1;
-                Player.say("If someone catches you, it may spell disaster for you.");
+                Player.say("... If someone catches you, it may spell disaster for you.");
                 Player.say("\t# Understanding went up by 1 #");
                 break;
         }
@@ -452,7 +452,7 @@ public class ChoiceAction {
     public void actionFinalAtCherr(int choice, Inventory inventory, Player player, Events events) {
         switch (choice) {
             case 0:
-                if (player.getPlayerUnd() > 24) {
+                if (player.getPlayerUnd() > 44) {
                     events.printEvent(dialogue.getTalkWoman());
                     inventory.addItem(new Item("Potion Note", "A note used to distinguish two potions."));
                 } else {

@@ -12,9 +12,11 @@ public class ChoiceAction {
         switch (choice) {
             case 0:
                 statsChanged[0] = 2;
+                Player.say("\t# Courage went up by 2 #");
                 break;
             case 1:
                 statsChanged[1] = 2;
+                Player.say("\t# Understanding went up by 2 #");
                 break;
             case 2:
                 break;
@@ -22,24 +24,27 @@ public class ChoiceAction {
         return statsChanged;
     }
 
-    public int[] statsFirstDeath(int choice)	{
-    	switch (choice) {
-        case 0:
-            statsChanged[0] = 2;
-            statsChanged[1] = 1;
-            break;
-        case 1:
-            statsChanged[0] = -1;
-            statsChanged[1] = -1;
-            break;
-    	}
-    	return statsChanged;
+    public int[] statsFirstDeath(int choice) {
+        switch (choice) {
+            case 0:
+                statsChanged[0] = 2;
+                statsChanged[1] = 1;
+                Player.say("\t# Courage went up by 2 #\t# Understanding went up by 1 #");
+                break;
+            case 1:
+                statsChanged[0] = -1;
+                statsChanged[1] = -1;
+                Player.say("\t# Courage went down by 1 #\t# Understanding went down by 1 #");
+                break;
+        }
+        return statsChanged;
     }
 
     public int[] statsFirstSeeNum_p1(int choice) {
         switch (choice) {
             case 0:
                 statsChanged[2] = 2;
+                Player.say("\t# Abnormality went up by 2 #");
                 break;
             case 1:
                 break;
@@ -51,67 +56,79 @@ public class ChoiceAction {
         switch (choice) {
             case 0:
                 statsChanged[2] = 1;
+                Player.say("\t# Abnormality went up by 1 #");
                 break;
             case 1:
                 statsChanged[2] = -1;
                 statsChanged[3] = 30;
+                Player.say("\t# Abnormality went down by 1 #\t# Stamina went down by 30 #");
                 break;
         }
         return statsChanged;
     }
 
     public int[] statsEvent1(int choice) {
-    	switch (choice)	{
-    		case 0:
-    			statsChanged[0] = -2;
-    			statsChanged[2] = 2;
-    			break;
-    		case 1:
-    			statsChanged[0] = 1;
-    			statsChanged[2] = 1;
-    			break;
-    		case 2:
-    			statsChanged[0] = 2;
-    			statsChanged[1] = -1;
-    			break;
-    		case 3:
-    			statsChanged[0] = -3;
-    			break;
-    	}
-    	return statsChanged;
+        switch (choice) {
+            case 0:
+                statsChanged[0] = -2;
+                statsChanged[2] = 2;
+                Player.say("\t# Courage went down by 2 #\t# Abnormality went up by 2 #");
+                break;
+            case 1:
+                statsChanged[0] = 1;
+                statsChanged[2] = 1;
+                Player.say("\t# Courage went up by 1 #\t# Abnormality went up by 1 #");
+                break;
+            case 2:
+                statsChanged[0] = 2;
+                statsChanged[1] = -1;
+                Player.say("\t# Courage went up by 2 #\t# Understanding went down by 1 #");
+                break;
+            case 3:
+                statsChanged[0] = -3;
+                Player.say("\t# Courage went down by 3 #");
+                break;
+        }
+        return statsChanged;
     }
 
     public int[] statsEvent2(int choice) {
-    	switch (choice)	{
-    		case 0:
-    			statsChanged[1] = 1;
-    			break;
-    		case 1:
-    			break;
-    		case 2:
-    			break;
-    		case 3:
-    			statsChanged[0] = 1;
-    			statsChanged[1] = -3;
-    			break;
-    	}
-    	return statsChanged;
+        switch (choice) {
+            case 0:
+                statsChanged[1] = 1;
+                Player.say("\t# Understanding went up by 1 #");
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                statsChanged[0] = 1;
+                statsChanged[1] = -3;
+                Player.say("\t# Courage went up by 1 #\t# Understanding went down by 3 #");
+                break;
+        }
+        return statsChanged;
     }
 
     public int[] statsEvent3(int choice, Inventory inventory) {
         switch (choice)	{
             case 0:
                 statsChanged[1] = -4;
+                Player.say("\t# Understanding went down by 4 #");
                 break;
             case 1:
                 statsChanged[0] = 2;
                 inventory.addItem(new Item("Bike", "Make it easier for you to go around"));
+                Player.say("\t# Courage went up by 2 #");
                 break;
             case 2:
                 statsChanged[1] = -4;
+                Player.say("\t# Understanding went down by 4 #");
                 break;
             case 3:
                 statsChanged[4] = 50;
+                Player.say("\t# Stamina went down by 50 #");
                 break;
         }
         return statsChanged;
@@ -122,31 +139,38 @@ public class ChoiceAction {
             case 0:
                 statsChanged[0] = -1;
                 statsChanged[2] = 1;
+                Player.say("\t# Courage went down by 1 #\t# Abnormality went up by 1 #");
                 break;
             case 1:
                 statsChanged[0] = 1;
                 statsChanged[1] = -4;
                 statsChanged[3] = 35;
+                Player.say("\t# Courage went up by 1 #\t# Understanding went down by 4 #\t# Stamina went down by 35 #");
                 break;
             case 2:
-                if (und > 18) {
+                if (und > 14) {
                     statsChanged[0] = 2;
-                    Player.say("... In the end it's not that bad. They listen to your reasons!");
+                    Player.say("In the end it's not that bad. They listen to your reasons!");
+                    Player.say("\t# Courage went up by 2 #");
                 } else {
                     inventory.empty();
-                    Player.say("... Ugh! You cannot talk those things out and get mugged by them...");
+                    Player.say("Ugh! You cannot talk those things out and get mugged by them...");
                 }
                 break;
             case 3:
+                statsChanged[1] = -4;
+                statsChanged[2] = 2;
                 statsChanged[3] = 30;
-                Player.say("... Wait what are you gonna distract them with?!");
+                Player.say("Wait what are you gonna distract them with?!");
+                Player.say("\t# Understanding went down by 4 #\t# Abnormality went up by 2 #\t# Stamina went down by 30 #");
                 break;
             case 4:
                 inventory.delInvalidItem();
                 statsChanged[2] = -2;
                 statsChanged[0] = 2;
                 statsChanged[1] = 2;
-                Player.say("... With your brilliant mind, you take out your [Jacket] and fling it away, then run. Magnificent!");
+                Player.say("With your brilliant mind, you take out your [Jacket] and fling it away, then run. Magnificent!");
+                Player.say("\t# Courage went up by 2 #\t# Understanding went up by 2 #\t# Abnormality went down by 2 #");
         }
         return statsChanged;
     }
@@ -157,9 +181,11 @@ public class ChoiceAction {
                 break;
             case 1:
                 statsChanged[0] = 1;
+                Player.say("\t# Courage went up by 1 #");
                 break;
             case 2:
                 statsChanged[1] = -1;
+                Player.say("\t# Understanding went down by 1 #");
                 break;
         }
         return statsChanged;
@@ -170,6 +196,7 @@ public class ChoiceAction {
             case 0:
                 statsChanged[0] = 1;
                 statsChanged[2] = 2;
+                Player.say("\t# Courage went up by 1 #\t# Abnormality went up by 2 #");
                 break;
             case 1:
                 inventory.addItem(new Item("Cake", "Recovers 20 Stamina", -10, 1));
@@ -189,14 +216,17 @@ public class ChoiceAction {
                 statsChanged[1] = -2;
                 statsChanged[2] = 2;
                 statsChanged[3] = 20;
+                Player.say("\t# Understanding went down by 2 #\t# Abnormality went up by 2 #\t# Stamina went down by 20 #");
                 break;
             case 1:
                 statsChanged[1] = -1;
                 statsChanged[2] = 1;
                 statsChanged[3] = 30;
+                Player.say("\t# Understanding went down by 1 #\t# Abnormality went up by 1 #\t# Stamina went down by 30 #");
                 break;
             case 2:
                 statsChanged[1] = 2;
+                Player.say("\t# Understanding went up by 2 #");
                 break;
         }
         return statsChanged;
@@ -207,10 +237,12 @@ public class ChoiceAction {
             case 0:
                 statsChanged[0] = 1;
                 statsChanged[2] = 1;
+                Player.say("\t# Courage went up by 1 #\t# Abnormality went up by 1 #");
                 break;
             case 1:
                 statsChanged[1] = -2;
                 statsChanged[2] = 2;
+                Player.say("\t# Understanding went down by 2 #\t# Abnormality went up by 2 #");
                 break;
             case 2:
                 statsChanged[1] = 2;
@@ -219,35 +251,40 @@ public class ChoiceAction {
         return statsChanged;
     }
 
-	public int[] statsEvent8A(int choice, Events events) {
-		switch (choice) {
-		case 0:
-			statsChanged[0] = 1;
-            events.setEventTrigger("SIDEKICK");
-			break;
-		case 1:
-			statsChanged[0] = 1;
-			statsChanged[2] = 2;
-			break;
-		}
-		return statsChanged;
-	}
+    public int[] statsEvent8A(int choice, Events events) {
+        switch (choice) {
+            case 0:
+                statsChanged[0] = 1;
+                events.setEventTrigger("SIDEKICK");
+                Player.say("\t# Courage went up by 1 #");
+                break;
+            case 1:
+                statsChanged[0] = 1;
+                statsChanged[2] = 2;
+                Player.say("\t# Courage went up by 1 #\t# Abnormality went up by 2 #");
+                break;
+        }
+        return statsChanged;
+    }
 
-	public int[] statsEvent8B(int choice) {
-		switch (choice) {
-		case 0:
-			statsChanged[1] = 1;
-			statsChanged[2] = 2;
-			statsChanged[3] = 20;
-			break;
-		case 1:
-			statsChanged[0] = 2;
-			statsChanged[2] = 2;
-			statsChanged[3] = 20;
-			break;
-		case 2:
-            statsChanged[2] = -2;
-            break;
+    public int[] statsEvent8B(int choice) {
+        switch (choice) {
+            case 0:
+                statsChanged[1] = 1;
+                statsChanged[2] = 2;
+                statsChanged[3] = 20;
+                Player.say("\t# Understanding went up by 1 #\t# Abnormality went up by 2 #\t# Stamina went down by 20 #");
+                break;
+            case 1:
+                statsChanged[0] = 2;
+                statsChanged[2] = 2;
+                statsChanged[3] = 20;
+                Player.say("\t# Courage went up by 2 #\t# Abnormality went up by 2 #\t# Stamina went down by 20 #");
+                break;
+            case 2:
+                statsChanged[2] = -2;
+                Player.say("\t# Abnormality went down by 2 #");
+                break;
         }
         return statsChanged;
     }
@@ -259,10 +296,12 @@ public class ChoiceAction {
                 break;
             case 1:
                 statsChanged[1] = 1;
+                Player.say("\t# Understanding went up by 1 #");
                 break;
             case 2:
                 statsChanged[0] = 2;
                 statsChanged[2] = 2;
+                Player.say("\t# Courage went up by 2 #\t# Abnormality went up by 2 #");
                 break;
         }
         return statsChanged;
@@ -279,8 +318,9 @@ public class ChoiceAction {
     public int[] statsEvent18A(int choice, Player player, Inventory inventory, Events events) {
         switch (choice) {
             case 0:
-            	statsChanged[0] = 2;
+                statsChanged[0] = 2;
                 statsChanged[2] = -1;
+                Player.say("\t# Courage went up by 2 #\t# Abnormality went down by 1 #");
                 player.setDayCount(21);
                 break;
             case 1:
@@ -291,16 +331,18 @@ public class ChoiceAction {
         }
         return statsChanged;
     }
-
+    
     public int[] statsFollowMan(int choice, Events events, Inventory inventory) {
         switch (choice) {
             case 0:
                 statsChanged[0] = 3;
+                Player.say("\t# Courage went up by 3 #");
                 events.setEventTrigger("GAMEOVER");
                 break;
             case 1:
                 statsChanged[0] = -1;
                 statsChanged[1] = 2;
+                Player.say("\t# Courage went down by 1 #\t# Understanding went up by 2 #");
                 inventory.addItem(new Item("Potion X", "A weird looking bottle with a purple substance inside."));
                 break;
         }
@@ -317,16 +359,19 @@ public class ChoiceAction {
             case 0:
                 statsChanged[0] = 2;
                 statsChanged[2] = 2;
+                Player.say("\t# Courage went up by 2 #\t# Abnormality went up by 2 #");
                 player.rest();
                 break;
             case 1:
                 statsChanged[0] = -2;
                 statsChanged[2] = -1;
+                Player.say("\t# Courage went down by 2 #\t# Abnormality went down by 1 #");
                 events.setEventTrigger("14B1");
                 break;
             case 2:
                 statsChanged[0] = 1;
                 statsChanged[1] = 2;
+                Player.say("\t# Courage went up by 1 #\t# Understanding went up by 2 #");
                 break;
         }
         return statsChanged;
@@ -341,14 +386,16 @@ public class ChoiceAction {
                 if (inventory.hasItem("Small Hammer") != null) {
                     sHammer.consume();
                     inventory.addItem(new Item("Brick", "A craggy but sturdy brick, can be thrown at b!tches for permanent damage"));
-                    Player.say("... With the small hammer, you eventually take out the brick. But the hammer is also done fore. This brick could be in use for later.\n [Brick] Obtained");
+                    Player.say("With the small hammer, you eventually take out the brick. But the hammer is also done fore. This brick could be in use for later.\n [Brick] Obtained");
                 } else {
-                    Player.say("... You try and try but the brick is still stuck onto the wall, you can’t take it with proper tool");
+                    Player.say("You try and try but the brick is still stuck onto the wall, you can’t take it with proper tool");
                 }
+                Player.say("\t# Courage went up by 2 #\t# Abnormality went up by 2 #");
                 break;
             case 1:
                 statsChanged[1] = 1;
-                Player.say("... If someone catches you, it may spell disaster for you.");
+                Player.say("If someone catches you, it may spell disaster for you.");
+                Player.say("\t# Understanding went up by 1 #");
                 break;
         }
         return statsChanged;
@@ -359,9 +406,11 @@ public class ChoiceAction {
             case 0:
                 statsChanged[1] = -2;
                 statsChanged[3] = 25;
+                Player.say("\t# Understanding went down by 2 #\t# Stamina went down by 25 #");
                 break;
             case 1:
                 statsChanged[1] = -1;
+                Player.say("\t# Understanding went down by 1 #");
                 break;
         }
         return statsChanged;
@@ -373,10 +422,12 @@ public class ChoiceAction {
                 statsChanged[0] = 2;
                 statsChanged[1] = 2;
                 player.setPlayerPos(0);
+                Player.say("\t# Courage went up by 2 #\t# Understanding went up by 2 #");
                 break;
             case 1:
                 statsChanged[1] = -1;
                 statsChanged[2] = -2;
+                Player.say("\t# Understanding went down by 1 #\t# Abnormality went down by 2 #");
                 break;
         }
         return statsChanged;
@@ -392,6 +443,7 @@ public class ChoiceAction {
                 statsChanged[3] = 25;
                 player.setPlayerPos(0);
                 Player.say(dialogue.getFinalCluesChoice(0));
+                Player.say("\t# Stamina went down by 25 #");
                 break;
         }
         return statsChanged;
@@ -420,8 +472,7 @@ public class ChoiceAction {
         }
         if (statMax == player.getPlayerCrg()) {
             Player.say(dialogue.getFinalShowdownChoice(0));
-        }
-        else {
+        } else {
             Player.say(dialogue.getFinalShowdownChoice(1));
         }
     }

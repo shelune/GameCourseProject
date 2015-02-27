@@ -74,7 +74,7 @@ public class Item {
     }
 
     public void puzzle(Events events, Player player, Inventory inventory) {
-        Events.next();
+        input.nextLine();
         if (!keyItem) {
             player.setPlayerStamina(20);
         } else {
@@ -177,7 +177,7 @@ public class Item {
             try {
                 choice = input.nextInt();
             } catch (InputMismatchException e) {
-                Events.next();
+                input.nextLine();
             }
         }
         return choice;

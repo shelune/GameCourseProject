@@ -8,10 +8,8 @@ public class Inventory {
     public void addItem(Item item) {
         if (inventory.contains(item)) {
             item.addItemCount();
-            Player.say("Item amount ++");
         } else {
             inventory.add(item);
-            Player.say("New item added.");
         }
     }
 

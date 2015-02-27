@@ -27,7 +27,7 @@ public class Player {
         this.playerName = name;
         this.playerDescription = description;
         this.playerStamina = stamina;
-        Collections.addAll(events.getEventList(), "HM", "CA", "1A", "CB", "1B", "CB", "2A", "2B", "2C", "FINNISHLOVER", "3A", "JN", "3B", "5A", "MT,", "5B", "7A", "TT", "7B", "7C", "8A", "8B", "9A", "TC");  // give player access to Home and ClassA
+        Collections.addAll(events.getEventList(), "HM", "CA");  // give player access to Home and ClassA
     }
 
     public void start() {
@@ -42,7 +42,7 @@ public class Player {
                     case 1:
                         if (!events.isTriggered("0A")) {
                             say(dialogue.getInstruction(this));
-                            Events.next();
+                            input.nextLine();
                             say(dialogue.getInputInstruction());
                         }
                         events.getEventFirstNight(this);
@@ -285,7 +285,7 @@ public class Player {
         if (dayCount % 7 != 0) {
             if (!events.isTriggered("TC")) {
                 say("You are not a sloth, right?!");
-                Events.next();
+                input.nextLine();
                 return;
             }
         }
@@ -296,7 +296,7 @@ public class Player {
         events.clearEventTrigger("TC");
         say(dialogue.getEndDay());
         dayCount++;
-        Events.next();
+        input.nextLine();
     }
 
     public void setPlayerStamina(int stamina) {

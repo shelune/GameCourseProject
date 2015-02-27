@@ -2,7 +2,7 @@ package com.company;
 import java.util.Random;
 public class Dialogue {
     /////////////////////////////////// Option Commands + Location Commands
-    private String generalOpts = "Please choose one action from below. \n \t (1). Move \n \t (2). Explore \n \t (3). Eat food \n \t (4). Study \n \t (5). Check inventory \n \t (6). Rest";
+    private String generalOpts = "Please choose one action from below.\n \t (0). Hints \n \t (1). Move \n \t (2). Explore \n \t (3). Eat food \n \t (4). Study \n \t (5). Check inventory \n \t (6). Rest";
     private String exploreItems = "[If you want to take items, input a number in the brackets above. If not, just give some letters]\n\t\t\t-----\nWhich one do you want to take?";
     private String checkClue = "Do you want to check this ";
     private String toHome = "\t (0) Home";

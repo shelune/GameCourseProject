@@ -64,6 +64,11 @@ public class Player {
                             say("You are unable to solve the mystery of the woman.");
                             events.setEventTrigger("GAMEOVER");
                         }
+                        break;
+                    case 16:
+                        if (!events.isTriggered("18A1")) {
+                            say("You get killed in the middle of the night. By the murderer, obviously.");
+                        }
                 }
                 printGameOver();
                 say("\t \t \t \t \t \t \t \t \t \t [DAY : " + dayCount + "]");
@@ -188,7 +193,9 @@ public class Player {
             events.getEvent15C(this);
             events.getEvent15D(this);
             if (!events.isTriggered("GAMEOVER")) {
-                events.getGivePotion();
+                events.getGivePotion(this);
+            } else {
+                rest();
             }
         }
         if (dayCount == 16) {
@@ -282,6 +289,13 @@ public class Player {
     }
 
     public void rest() {
+        if (events.isTriggered("ARRESTED")) {
+            setPlayerStamina(-1);
+            dayCount++;
+            say("You're in jail... Day goes by quickly.");
+            input.nextLine();
+            return;
+        }
         if (dayCount % 7 != 0) {
             if (!events.isTriggered("TC")) {
                 say("You are not a sloth, right?!");
@@ -289,9 +303,7 @@ public class Player {
                 return;
             }
         }
-        if (!events.isTriggered("ARRESTED")) {
-            playerPos = 0;
-        }
+        playerPos = 0;
         setPlayerStamina(-1);
         events.clearEventTrigger("TC");
         say(dialogue.getEndDay());

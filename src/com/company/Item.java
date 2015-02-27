@@ -74,7 +74,6 @@ public class Item {
     }
 
     public void puzzle(Events events, Player player, Inventory inventory) {
-        input.nextLine();
         if (!keyItem) {
             player.setPlayerStamina(20);
         } else {

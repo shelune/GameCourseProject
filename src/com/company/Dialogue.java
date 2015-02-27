@@ -440,7 +440,7 @@ public class Dialogue {
             "... Now you are at the darkest place ever. You are not allowed to move anywhere...",
             "... This is so terrifying.",
             "... You notice a small craggy brick popping out over your head. This jail has got really old. ",
-            "Do you want to poke this oldass brick out…?\n \t(0) Poke it out! Poke it out!\n \t (1) Better leave it there.",
+            "Do you want to poke this oldass brick out…?\n \t(0) Poke it out! Poke it out!\n \t(1) Better leave it there.",
     };
 
     /////////////////////////////////// 18A
@@ -674,11 +674,11 @@ public class Dialogue {
                 if (events.isTriggered("JN")) {
                     fromPlace += toJanitor;
                 }
-                if (events.isTriggered("VL")) {
-                    fromPlace += toTeacher;
-                }
                 if (events.isTriggered("TT")) {
                     fromPlace += toTattoo;
+                }
+                if (events.isTriggered("VL")) {
+                    fromPlace += toTeacher;
                 }
                 if (events.isTriggered("PL")) {
                     fromPlace += toPolice;

@@ -43,7 +43,7 @@ public class Events {
         if (isTriggered("9A") && !isTriggered("9B")) {
             Player.say("The dog may like bones. And obviously more than one.");
         }
-        if (isTriggered("10B") && !isTriggered("10A")) {
+        if (isTriggered("10A") && !isTriggered("LB")) {
             Player.say("The [Pass Card] needs some kind of GPS tool to pinpoint the location. What tool can be used?");
         }
         if (isTriggered("LB") && !isTriggered("12A")) {
@@ -355,6 +355,9 @@ public class Events {
         Calendar cal = Calendar.getInstance();
         String password = dateFormat.format(cal.getTime());
         String guess = input.nextLine();
+        while (guess.isEmpty()) {
+            guess = input.nextLine();
+        }
         if (guess.equals(password)) {
             inventory.addItem(new Item("Pass Card", "Access card for a lab somewhere", "PUZZLE"));
             Player.say("The box opens.. There's is a pass card inside.\n[Pass Card] Obtained!");
@@ -495,12 +498,13 @@ public class Events {
         next();
     }
 
-    public void getGivePotion() {
+    public void getGivePotion(Player player) {
         if (isTriggered("15E")) {
             return;
         }
         printEvent(eventDial.getGivePotion());
         setEventTrigger("15E");
+        player.rest();
         next();
     }
 
@@ -533,6 +537,8 @@ public class Events {
         int choice = takeInput(1);
         player.setAllStats(doChoiceAction.statsInJail(choice, player, inventory));
         setEventTrigger("17A");
+        player.setPlayerPos(8);
+        player.rest();
         next();
     }
 

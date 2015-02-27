@@ -48,6 +48,10 @@ public class Map {
                 input.nextLine();
             }
         }
+        if (events.isTriggered("ARRESTED")) {
+            Player.say("You're in jail. Your movement is limited.");
+            return;
+        }
         if (isReachable(playerPos, destination) && isAccessible(events, destination)) {
             if (destination != 1 && !events.isTriggered("TC") && player.getDayCount() % 7 != 0) {
                 Player.say("You have to go to your class first!");

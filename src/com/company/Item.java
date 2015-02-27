@@ -50,7 +50,7 @@ public class Item {
     }
 
     public void addItemCount() {
-        itemCount ++;
+        itemCount += 1;
     }
 
     public int getItemCount() {
@@ -66,7 +66,7 @@ public class Item {
     }
 
     public void consume() {
-        this.itemCount = 0;
+        this.itemCount--;
     }
 
     public String getItemClue() {

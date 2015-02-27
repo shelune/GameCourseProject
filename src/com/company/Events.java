@@ -20,7 +20,7 @@ public class Events {
             }
         }
         if (isTriggered("TC") && !isTriggered("1B")) {
-            Player.say("Let's check [Your buddy's classroom], it's right beside your class anyway.");
+            Player.say("Let's go home for now, it has been harsh for you");
         }
         if (isTriggered("1B") && inventory.hasItem("Finnish Homework") != null) {
             Player.say("Now you have received the first puzzle item. Why don't you [Check inventory] and solve it?");
@@ -31,7 +31,7 @@ public class Events {
         if (isTriggered("3B") && player.getDayCount() > 3 && !isTriggered("5A")) {
             Player.say("It seems like Janitor's place may hold some puzzle. Try [Explore] and get the an item maybe?");
         }
-        if (isTriggered("5A") && inventory.hasItem("Old Key") == null) {
+        if (isTriggered("5A") && inventory.hasItem("Old Key") == null && !isTriggered("5B")) {
             Player.say("The [Statue] may have something inside it, but you need a tool to break it first.");
         }
         if (isTriggered("5B") && !isTriggered("MT")) {
@@ -308,8 +308,9 @@ public class Events {
                 Player.say("Having eaten all the bones, the dog now is too full and starts to sleep.\nYou can sneak past it now.");
                 setEventTrigger("9B");
             }
-            bone.consume();
-            inventory.delInvalidItem();
+            for (int i = 0; i < bone.getItemCount(); i++) {
+                inventory.use(bone);
+            }
         }
         next();
     }

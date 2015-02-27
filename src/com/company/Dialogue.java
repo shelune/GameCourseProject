@@ -41,13 +41,13 @@ public class Dialogue {
     };
     /////////////////////////////////// Main Event - First See Numbers p1
     private String[] firstSeeNumChoice_p1 =	{
-            "...\n\tRekt sees you with very confusing eyes. He thinks you haven't got yourself awake yet.\n\tYou just prove your awkwardness within 5 seconds. Good fuqing job!",
-            "...\n\tHe laughs it off then proceeds to tell one of his humble dream where he slays Death himself.\n\tSeems like your story is not a big deal to your best dude at all, huh?",
+            "... Rekt sees you with very confusing eyes. He thinks you haven't got yourself awake yet.\n\tYou just prove your awkwardness within 5 seconds. Good fuqing job!",
+            "... He laughs it off then proceeds to tell one of his humble dream where he slays Death himself.\n\tSeems like your story is not a big deal to your best dude at all, huh?",
     };
     private String[] firstSeeNumbers_p1 = {
             "... You walk outside to see Rekt a.k.a your buddy standing right beside your post.", //0
             "... You are just about to whine to him about your dream last night ... before you see IT!",
-            "... There is a NUMBER floating on his head! It is a vague and bad-drawn number that reads '21'.\n\tYou rub your eyes, and rub them again, but the number still persists.",
+            "... There is a NUMBER floating on his head! It is a vague and bad-drawn number that reads '21'.\n... You rub your eyes, and rub them again, but the number still persists.",
             "... Then Rekt slowly turns around and wave you eagerly... Suddenly there is a FLASH...",
             "... To your surprise, the floating number just disappear, into thin air, like nothing ever happened.",
             "... Rekt seems to notice your weird expression. He is asking you what was wrong...",

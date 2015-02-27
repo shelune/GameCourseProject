@@ -91,6 +91,7 @@ public class Player {
     }
 
     public void actions() {
+        inventory.delInvalidItem();
         say(dialogue.getGeneralOpts());
         int choice = events.takeInput(6);
         switch (choice) {
@@ -265,7 +266,6 @@ public class Player {
     }
 
     public void showInventory() {
-        inventory.delInvalidItem();
         inventory.printInventory();
         Item keyItem = inventory.searchKeyItem();
         if (keyItem != null) {
@@ -313,6 +313,10 @@ public class Player {
         int take;
         try {
             take = Integer.parseInt(strChoice);
+            if (take >= itemList.size()) {
+                say("[No such item found]");
+                return;
+            }
             say("[Only choose the item numbers available]");
         } catch (NumberFormatException e) {
             say("[No item taken]");
@@ -322,13 +326,13 @@ public class Player {
         for (Item item : itemList) {
             if (item == itemList.get(take)) {
                 say("[" + item.getItemName() + "] taken.");
-                if (!item.getItemName().equalsIgnoreCase("bones")) {
+                inventory.addItem(item);
+                if (!item.getItemName().equals("Bones")) {
                     toRemove.add(item);
                 }
                 if (item.getItemName().equalsIgnoreCase(("statue"))) {
                     events.getEvent5A(this);
                 }
-                inventory.addItem(item);
             }
         }
         itemList.removeAll(toRemove);

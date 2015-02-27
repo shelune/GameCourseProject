@@ -8,8 +8,10 @@ public class Inventory {
     public void addItem(Item item) {
         if (inventory.contains(item)) {
             item.addItemCount();
+            Player.say("Item amount ++");
         } else {
             inventory.add(item);
+            Player.say("New item added.");
         }
     }
 
@@ -29,7 +31,7 @@ public class Inventory {
         ArrayList toRemove = new ArrayList();
         int length = inventory.size();
         for (Item i : inventory) {
-            if (i.getItemCount() == 0) {
+            if (i.getItemCount() <= 0) {
                 toRemove.add(i);
             }
         }

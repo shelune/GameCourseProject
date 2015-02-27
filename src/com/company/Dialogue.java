@@ -35,14 +35,14 @@ public class Dialogue {
     };
     ///////////////// Choice /////////////////
     private String[] firstNightChoice = {
-            "...\n\tYou slam yourself into the figure, but it just disperse ...\n\tAfter a few times, you find it nowhere to be seen ... It's gone! \n\tBut your Courage is sure to be needed in this journey!", //Choice 0
-            "...\n\tYou take some time standing there and look at the figure ...\n\tIt jumps and shakes around you, but no real movement at all ... It is actually wandering away...!\n\tYour Patience and Understanding of situation may be great in this journey.",//Choice 1
-            "...\n\tYou just run away, avoiding any further advancement of the figure...\n\tAfter all, nothing really happened...", // Choice 2
+            "... You slam yourself into the figure, but it just disperse ...\n... After a few times, you find it nowhere to be seen ... It's gone! \n... But your Courage is sure to be needed in this journey!", //Choice 0
+            "... You take some time standing there and look at the figure ...\n... It jumps and shakes around you, but no real movement at all ... It is actually wandering away...!\n... Your Patience and Understanding of situation may be great in this journey.",//Choice 1
+            "... You just run away, avoiding any further advancement of the figure...\n... After all, nothing really happened...", // Choice 2
     };
     /////////////////////////////////// Main Event - First See Numbers p1
-    private String[] firstSeeNumChoice_p1 =	{
-            "... Rekt sees you with very confusing eyes. He thinks you haven't got yourself awake yet.\n\tYou just prove your awkwardness within 5 seconds. Good fuqing job!",
-            "... He laughs it off then proceeds to tell one of his humble dream where he slays Death himself.\n\tSeems like your story is not a big deal to your best dude at all, huh?",
+    private String[] firstSeeNumChoice_p1 = {
+            "... Rekt sees you with very confusing eyes. He thinks you haven't got yourself awake yet.\n... You just prove your awkwardness within 5 seconds. Good fuqing job!",
+            "... He laughs it off then proceeds to tell one of his humble dream where he slays Death himself.\n... Seems like your story is not a big deal to your best dude at all, huh?",
     };
     private String[] firstSeeNumbers_p1 = {
             "... You walk outside to see Rekt a.k.a your buddy standing right beside your post.", //0
@@ -56,10 +56,10 @@ public class Dialogue {
     /////////////////////////////////// Main Event - First See Numbers p2
     private String[] firstSeeNumChoice_p2 = {
             "... You take in a big breath and continue walking. But you feel like your weirdness just gets to another level...",
-            "... You tell Rekt cautiously : 'It's like I'm still sleepy'. Immediately, he swings his big palm into your face.\n\tSwear to God you can even see whirling stars now, but at least you don't get suspected.",
+            "... You tell Rekt cautiously : 'It's like I'm still sleepy'. Immediately, he swings his big palm into your face.\n... Swear to God you can even see whirling stars now, but at least you don't get suspected.",
     };
     private String[] firstSeeNumbers_p2 = {
-            "... With no further delay, you and Rekt rush to school as it is a bit late already\n\tBut it is like your nightmare never ends!... There are the numbers '21' floating on EVERYONE on the street!",
+            "... With no further delay, you and Rekt rush to school as it is a bit late already\n... But it is like your nightmare never ends!... There are the numbers '21' floating on EVERYONE on the street!",
             "... WHAT THE HECK IS GOING ON?!!",
             "... You cannot do anything but gasp before this strange scene, but another flash kicks in, and those numbers just vanish again!",
             "... You talk to yourself : 'Maybe I am still not that awake yet...'. So you decide to: \n \t(0) Calm yourself down and keep on \t (1) Ask Rekt to slap you hard in the face\n", //14 . OPTIONS
@@ -86,7 +86,7 @@ public class Dialogue {
     private String[] getBullied = {
             "... It is another long day for you. What a relief you don't get to see those numbers again.",
             "... *Thump!* You smash your face into a back. When you get your head up, suddenly all your short-lived relief just vanish...",
-            "... It's your 10-year-bully and his pack. 'Not again...', you murmur...\n\tBut from the way they stretch their necks and cracks their knuckles, you can be sure the next thing coming is not a hug.",
+            "... It's your 10-year-bully and his pack. 'Not again...', you murmur...\n... But from the way they stretch their necks and cracks their knuckles, you can be sure the next thing coming is not a hug.",
             "... What is your decision before your face may merge with the wall?",
             "\t(0) Run. Run away. It's not that protagonist is immortal.\n\t(1) Fight your ass back. You'll get beaten up anyway, so let your dignity intact!\n\t(2) Let's negotiate. Your words fight better than your flimsy fists\n\t(3) Distract them. Sneak out!",};
 
@@ -115,8 +115,8 @@ public class Dialogue {
 
     private String[] seeJanitorNumberChoice = {
             "... The janitor smirks ‘Have you got punched so hard that you see numbers instead of stars now?!’… Yeah again… Why even surprised?",
-            "... ’Are you hungry now, son?’, the janitor expresses his worry for you.\n\t‘Go home and take a break, I also need to see an old friend now. But before I go, have my cake, don't get yourself hungry eh!'. He even gives you a cake!",
-            "... ’Yeah you look pale, son. Have a bite on this cake, will you? I’m coming home to see an old friend now so catch ya later!’.\n\tThe janitor is so nice.",
+            "... ’Are you hungry now, son?’, the janitor expresses his worry for you.\n... ‘Go home and take a break, I also need to see an old friend now. But before I go, have my cake, don't get yourself hungry eh!'. He even gives you a cake!",
+            "... ’Yeah you look pale, son. Have a bite on this cake, will you? I’m coming home to see an old friend now so catch ya later!’.\n... The janitor is so nice.",
     };
 
     /////////////////////////////////// 3A - First Death Janitor

@@ -14,7 +14,11 @@ public class Inventory {
     }
 
     public void use(Item item) {
-        item.consume();
+        if (item.getItemCount() > 1) {
+            item.consume();
+        } else {
+            inventory.remove(item);
+        }
     }
 
     public int search(Item item) {
@@ -29,7 +33,7 @@ public class Inventory {
                 toRemove.add(i);
             }
         }
-        if (length > 6) {
+        if (length > 7) {
             toRemove.add(inventory.get(0));
         }
         inventory.removeAll(toRemove);

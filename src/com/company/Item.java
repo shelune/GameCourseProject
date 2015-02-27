@@ -78,7 +78,7 @@ public class Item {
             player.setPlayerStamina(20);
         } else {
             if (itemName.equalsIgnoreCase(("small note"))) {
-                doSmallNote(player, events);
+                doSmallNote(inventory,player, events);
             }
             if (itemName.equalsIgnoreCase("finnish homework")) {            // puzzle for the Finnish Homework (1stDayAfterClass)
                 doFinnishHomework(player, events);
@@ -96,7 +96,7 @@ public class Item {
         this.keyItem = false;
     }
 
-    public void doSmallNote(Player player, Events events) {
+    public void doSmallNote(Inventory inventory, Player player, Events events) {
         Player.say(getItemClue());
         Player.say("What do you these numbers at the end of the note to be?\n\t(0) An IP address\n\t(1) A location\n\t(2) Some phone numbers\n\t(3) Words in a book");
         int i = takeInput(3);
@@ -106,6 +106,7 @@ public class Item {
                 Player.say("...\t +++ NEW AREA OPENED : MOUNTAIN +++");
                 events.setEventTrigger("MT");
                 solved();
+                inventory.use(this);
                 break;
             default:
                 Player.say("It seems not to be the case here... Although you want to think of something else, it is getting really late and you need some other time to figure this out.");
@@ -140,13 +141,14 @@ public class Item {
             return;
         }
         Player.say("This crack seems to be patched very recently, but you need some tools to open it.");
+        Item statue = inventory.hasItem("Statue");
         if (inventory.hasItem("Small Hammer") != null) {
             Player.say("With the small hammer, you make a dent onto the statue. You see something...");
+            inventory.use(statue);
+            solved();
             Item janiKey = new Item("Old Key", "An rusty key that can open some kind of doors");
             inventory.addItem(janiKey);
             Player.say("['Old Key' OBTAINED]");
-            this.consume();
-            solved();
         } else {
             Player.say("However, now you don't seem to have the right tool.");
         }

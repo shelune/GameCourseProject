@@ -208,6 +208,10 @@ public class Player {
             events.getEvent18A(this, inventory);
             if (events.isTriggered("18A1")) {
                 events.getDeleteCase(this);
+            } else {
+                Player.say("You manage to get to home and rest after a very long day.");
+                playerPos = 0;
+                dayCount++;
             }
         }
         if (dayCount == 19) {

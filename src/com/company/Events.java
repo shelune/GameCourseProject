@@ -305,7 +305,7 @@ public class Events {
             if (bone.getItemCount() < 3) {
                 Player.say("You fed the dog some bones, but they were consumed too quickly.");
             } else {
-                Player.say("Having eaten all the bones, the dog now is too full and starts to sleep.\nYou can sneak past it now.");
+                Player.say("... Having eaten all the bones, the dog now is too full and starts to sleep.\n... You can sneak past it now.");
                 setEventTrigger("9B");
             }
             int boneCount = bone.getItemCount();
@@ -404,7 +404,7 @@ public class Events {
             return;
         }
         printEvent(eventDial.getSeeWomanNumber());
-        if (player.getPlayerCrg() > 30) {
+        if (player.getPlayerCrg() > 14) {
             printEvent(eventDial.getSeeWomanNumberHiCrg());
             int choice = takeInput(2);
             player.setAllStats(doChoiceAction.statsSeeWomanHiCrg(choice, player, this));
@@ -552,10 +552,14 @@ public class Events {
         Player.say(eventDial.getEvent18AChoice(choice));
         player.setAllStats(doChoiceAction.statsEvent18A(choice, player, inventory, this));
         setEventTrigger("18A");
+        setEventTrigger("PL");
         next();
     }
 
     public void getDeleteCase(Player player) {
+        if (isTriggered("18B")) {
+            return;
+        }
         printEvent(eventDial.getDeleteCase());
         int correct = 42;
         int guess = takeInput(99);
@@ -563,7 +567,12 @@ public class Events {
         for (guessCount = 0; guessCount < 3; guessCount++) {
             if (guess == correct) {
                 Player.say("Yes! You found the case! Delete it and you're free as ever!");
+                Player.say("You two make it out of the Police Station.");
                 eventTrigger.remove("ARRESTED");
+                setEventTrigger("18B");
+                player.setPlayerPos(0);
+                setEventTrigger("TC");
+                player.rest();
                 return;
             } else {
                 guessCount++;

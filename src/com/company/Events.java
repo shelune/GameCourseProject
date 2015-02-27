@@ -775,6 +775,7 @@ public class Events {
             try {
                 choice = input.nextInt();
             } catch (InputMismatchException e) {
+                Player.say("Invalid Input. Please enter a number.");
                 next();
             }
         }

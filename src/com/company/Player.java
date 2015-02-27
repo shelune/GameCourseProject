@@ -208,6 +208,7 @@ public class Player {
             events.getEvent18A(this, inventory);
             if (events.isTriggered("18A1")) {
                 events.getDeleteCase(this);
+                return;
             } else {
                 Player.say("You manage to get to home and rest after a very long day.");
                 playerPos = 0;
@@ -220,7 +221,9 @@ public class Player {
                 setPlayerPos(8);
                 events.setEventTrigger("GAMEOVER");
             } else {
-                events.getFinalLab(this, inventory);
+                if (playerPos == 6) {
+                    events.getFinalLab(this, inventory);
+                }
             }
         }
         if (dayCount == 20) {

@@ -53,7 +53,7 @@ public class Map {
             return;
         }
         if (isReachable(playerPos, destination) && isAccessible(events, destination)) {
-            if (destination != 1 && !events.isTriggered("TC") && player.getDayCount() % 7 != 0) {
+            if (destination != 1 && !events.isTriggered("TC") && player.getDayCount() % 7 != 0 && player.getDayCount() < 19) {
                 Player.say("You have to go to your class first!");
                 input.nextLine();
                 return;

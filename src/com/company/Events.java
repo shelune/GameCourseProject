@@ -308,7 +308,8 @@ public class Events {
                 Player.say("Having eaten all the bones, the dog now is too full and starts to sleep.\nYou can sneak past it now.");
                 setEventTrigger("9B");
             }
-            for (int i = 0; i < bone.getItemCount(); i++) {
+            int boneCount = bone.getItemCount();
+            for (int i = 0; i < boneCount; i++) {
                 inventory.use(bone);
             }
         }

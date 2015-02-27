@@ -16,11 +16,7 @@ public class Inventory {
     }
 
     public void use(Item item) {
-        if (item.getItemCount() > 1) {
-            item.consume();
-        } else {
-            inventory.remove(item);
-        }
+        item.consume();
     }
 
     public int search(Item item) {

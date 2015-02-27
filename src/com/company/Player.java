@@ -27,7 +27,7 @@ public class Player {
         this.playerName = name;
         this.playerDescription = description;
         this.playerStamina = stamina;
-        Collections.addAll(events.getEventList(), "HM", "CA");  // give player access to Home and ClassA
+        Collections.addAll(events.getEventList(), "HM", "CA", "1A", "CB", "1B", "CB", "2A", "2B", "2C", "FINNISHLOVER", "3A", "JN", "3B", "5A", "MT,", "5B", "7A", "TT", "7B", "7C", "8A", "8B", "9A", "TC");  // give player access to Home and ClassA
     }
 
     public void start() {
@@ -60,7 +60,7 @@ public class Player {
                         }
                         break;
                     case 15:
-                        if (!events.isTriggered("12A")) {
+                        if (inventory.hasItem("Pass Card") == null) {
                             say("You are unable to solve the mystery of the woman.");
                             events.setEventTrigger("GAMEOVER");
                         }

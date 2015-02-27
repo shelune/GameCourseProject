@@ -19,7 +19,7 @@ public class Events {
                 Player.say("Probably you want to go to class first. Choose [Move] then [Your classroom]");
             }
         }
-        if (isTriggered("TC") && !isTriggered("1B")) {
+        if (isTriggered("TC") && !isTriggered("1B") && player.getDayCount() < 3) {
             Player.say("Let's go home for now, it has been harsh for you");
         }
         if (isTriggered("1B") && inventory.hasItem("Finnish Homework") != null) {

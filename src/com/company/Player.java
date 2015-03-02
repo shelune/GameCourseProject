@@ -81,7 +81,11 @@ public class Player {
                 actions();                                      // all actions available
                 input.nextLine();
             }
-            rest();
+            if (dayCount < 21) {
+                rest();
+            } else {
+                printGameOver();
+            }
         }
     }
 
@@ -231,9 +235,9 @@ public class Player {
         }
         if (playerPos == 7 && dayCount == 20) {
             events.getFinalAtCherr(this, inventory);
-            events.getFinalShowdown(this);
         }
-        if (playerPos == 9 && events.isTriggered("20E")) {
+        if (playerPos == 9 && events.isTriggered("20D")) {
+            events.getFinalShowdown(this);
             events.getFinalEvent();
         }
     }
@@ -299,14 +303,13 @@ public class Player {
         if (events.isTriggered("ARRESTED")) {
             setPlayerStamina(-1);
             dayCount++;
-            say("You're in jail... Day goes by quickly.");
+            say("... You're in jail... Day goes by quickly.");
             input.nextLine();
             return;
         }
         if (dayCount % 7 != 0) {
             if (!events.isTriggered("TC")) {
                 say("You are not a sloth, right?!");
-                input.nextLine();
                 return;
             }
         }

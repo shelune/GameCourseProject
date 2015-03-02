@@ -354,12 +354,15 @@ public class ChoiceAction {
         events.setEventTrigger("VL");
     }
 
-    public int[] statsSeeWomanHiCrg(int choice, Player player, Events events) {
+    public int[] statsSeeWomanHiCrg(int choice, Player player, Events events, Inventory inventory) {
         switch (choice) {
             case 0:
                 statsChanged[0] = 2;
                 statsChanged[2] = 2;
                 Player.say("\t# Courage went up by 2 #\t# Abnormality went up by 2 #");
+                Player.say("... The woman walks faster and faster, before finally disappearing. But she drops this bottle...\n\t[Potion X] Obtained.");
+                inventory.addItem(new Item("Potion X", "A weird looking bottle with a purple substance inside."));
+                events.setEventTrigger("TC");
                 player.rest();
                 break;
             case 1:

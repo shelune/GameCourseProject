@@ -457,7 +457,7 @@ public class Dialogue {
 
     private String[] event18AChoice = {
             "... You managed to escape the jail, but the next day the police come again and drag you back to the station.\nYou are not allowed to get out of jail and your friend cannot bail you out a second time...",
-            "... ‘The bottle is the one responsible for their death, I think. It leaves no trace when diluting in water, while the other neutralizes it’.\nHe further explains his fear, ‘But these things are just samples… Someone must have perfected and mass-produced them, so we must find the place to check this out. By the way, in the process I removed the labels and forgot to put them back…’\nBefore that, however, you need to delete your case file at this station, otherwise the police will still find out about this and capture you again!\n>>> Obtained ‘Potion 1’ and ‘Potion 2’.",
+            "... ‘The bottle is the one responsible for their death, I think. It leaves no trace when diluting in water, while the other neutralizes it’.\n... He further explains his fear, ‘But these things are just samples… Someone must have perfected and mass-produced them, so we must find the place to check this out. By the way, in the process I removed the labels and forgot to put them back…’\n... Before that, however, you need to delete your case file at this station, otherwise the police will still find out about this and capture you again!\n>>>\t [Potion 1] and [Potion 2] Obtained.",
     };
 
     private String[] deleteCase = {
@@ -590,7 +590,7 @@ public class Dialogue {
             "... But the poison has already been poured down into the river.",
             "... Now all you’re facing is the choice between being a hero and a zero.",
             "... You have to choose between the 2 potions, one being the lifesaver, the other worsening the effect.",
-            "... You decide to choose…?\n \t(0) Potion 1 \n \t (1) Potion 2",
+            "... You decide to choose…?\n \t(0) Potion 1 \n \t(1) Potion 2",
     };
 
     private String[] finalEventAlter = {

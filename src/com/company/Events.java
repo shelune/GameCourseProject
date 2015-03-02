@@ -55,6 +55,9 @@ public class Events {
         if (isTriggered("18A") && !isTriggered("18A1")) {
             Player.say("Better not escape the jail without getting rid of your files here...");
         }
+        if (player.getDayCount() == 19 && !isTriggered("19A")) {
+            Player.say("You have the feeling that the Lab may hold something tricky about the Potion found the other days.");
+        }
         else {
             Player.say("If you have come to class already and feel like doing nothing, [Study] can help increase your score! Don't do that on day 7 and 14 though.");
         }
@@ -407,7 +410,7 @@ public class Events {
         if (player.getPlayerCrg() > 14) {
             printEvent(eventDial.getSeeWomanNumberHiCrg());
             int choice = takeInput(2);
-            player.setAllStats(doChoiceAction.statsSeeWomanHiCrg(choice, player, this));
+            player.setAllStats(doChoiceAction.statsSeeWomanHiCrg(choice, player, this, inventory));
             if (choice == 1) {
                 printEvent(eventDial.getSeeWomanNumberLowCrg());
                 next();
@@ -518,10 +521,10 @@ public class Events {
             inventory.empty();
             inventory.addItem(new Item("Small Hammer", "A tiny hammer you used to play when you were young"));
             inventory.addItem(new Item("Phone", "Used to call someone"));
-            Player.say("'Oh you happen to have my favourite color hairdye, I will let you keep your casual stuff, but not more than that', said the officer");
+            Player.say("... 'Oh you happen to have my favourite color hairdye, I will let you keep your casual stuff, but not more than that', said the officer");
         } else {
             inventory.empty();
-            Player.say("'Due to security reasons, all your items will be discarded.', said the officer");
+            Player.say("... 'Due to security reasons, all your items will be discarded.', said the officer");
         }
         setEventTrigger("ARRESTED");
         player.rest();
@@ -589,7 +592,7 @@ public class Events {
         printEvent(eventDial.getFinalLab());
         int choice = takeInput(1);
         Player.say(eventDial.getFinalLabChoice(choice));
-        if (player.getPlayerCrg() > 24) {
+        if (player.getPlayerCrg() > 15) {
             Item brick = inventory.hasItem("Brick");
             if (brick != null) {
                 brick.consume();
@@ -605,6 +608,7 @@ public class Events {
         } else {
             getRiverDiscovered();
         }
+        player.rest();
         setEventTrigger("19A");
         next();
     }
@@ -701,6 +705,7 @@ public class Events {
             setEventTrigger("21A");
             setEventTrigger("HERO");
         }
+        setEventTrigger("GAMEOVER");
         next();
     }
 

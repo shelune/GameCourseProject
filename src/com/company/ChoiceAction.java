@@ -363,7 +363,6 @@ public class ChoiceAction {
                 Player.say("... The woman walks faster and faster, before finally disappearing. But she drops this bottle...\n\t[Potion X] Obtained.");
                 inventory.addItem(new Item("Potion X", "A weird looking bottle with a purple substance inside."));
                 events.setEventTrigger("TC");
-                player.rest();
                 break;
             case 1:
                 statsChanged[0] = -2;
@@ -455,7 +454,7 @@ public class ChoiceAction {
     public void actionFinalAtCherr(int choice, Inventory inventory, Player player, Events events) {
         switch (choice) {
             case 0:
-                if (player.getPlayerUnd() > 44) {
+                if (player.getPlayerUnd() > 42) {
                     events.printEvent(dialogue.getTalkWoman());
                     inventory.addItem(new Item("Potion Note", "A note used to distinguish two potions."));
                 } else {

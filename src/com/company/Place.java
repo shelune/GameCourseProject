@@ -59,6 +59,7 @@ public class Place {
                 Collections.addAll(temp, toolbox);
                 break;
             case 3:
+                Item branch = new Item("Branches", "Some woods that can be fired up.");
                 break;
             case 4:
                 Item statue = new Item("Statue", "A small statue with a small crack on it", "KEY INSIDE");
@@ -68,6 +69,15 @@ public class Place {
             case 5:
                 Item dye = new Item("Hairdye", "A small bottle of hair dye with good smell");
                 Collections.addAll(temp, dye);
+                break;
+            case 6:
+                Item magnifier = new Item("Magnifier", "A small tool that makes things bigger.");
+                Collections.addAll(temp, magnifier);
+                break;
+            case 7:
+                Item whistle = new Item("Whistle", "A small tool used by policemen.");
+                Collections.addAll(temp, whistle);
+                break;
 
         }
         itemList = temp;

@@ -16,7 +16,7 @@ public class Player {
     private int playerStamina;                                  // STAMINA (literally health)
     private int playerCrg = 10;                                 // COURAGE
     private int playerUnd = 10;                                 // UNDERSTANDING
-    private int playerAbn = 10;                                 // ABNORMALITY
+    private int playerAbn = 0;                                 // ABNORMALITY
     private int playerPos = 0;
 
     private int staminaPerMove = 8 + rand.nextInt(12);          // stamina cost when moving around the map
@@ -72,7 +72,7 @@ public class Player {
                 }
                 printGameOver();
                 say("\t \t \t \t \t \t \t \t \t \t [DAY : " + dayCount + "]");
-                System.out.println(events.getEventList());
+                // System.out.println(events.getEventList());
                 printPlayerStamina();
                 map.printPlace(playerPos);
                 printAllStats();
@@ -81,7 +81,7 @@ public class Player {
                 actions();                                      // all actions available
                 input.nextLine();
             }
-            if (dayCount < 21) {
+            if (dayCount < 20) {
                 rest();
             } else {
                 printGameOver();
@@ -92,10 +92,12 @@ public class Player {
     public void notice() {
         switch (dayCount) {
             case 4:
-                if (!events.isTriggered("MT")) {
+                if (!events.isTriggered("5A")) {
                     say("Probably you want to visit the Janitor's house today after class.");
                 }
                 break;
+            case 19:
+                say("From this day on, you don't need to go to class anymore.");
         }
     }
 
@@ -230,10 +232,10 @@ public class Player {
                 }
             }
         }
-        if (dayCount == 20) {
+        if (dayCount == 20 && events.isTriggered("20B")) {
             events.getFinalClues(this);
         }
-        if (playerPos == 7 && dayCount == 20) {
+        if (dayCount == 20 && playerPos == 7) {
             events.getFinalAtCherr(this, inventory);
         }
         if (playerPos == 9 && events.isTriggered("20D")) {
@@ -300,10 +302,13 @@ public class Player {
     }
 
     public void rest() {
+        if (dayCount > 18) {
+            events.setEventTrigger("TC");
+        }
         if (events.isTriggered("ARRESTED")) {
             setPlayerStamina(-1);
             dayCount++;
-            say("... You're in jail... Day goes by quickly.");
+            say("... You're in jail... Day goes by quickly. You decide to take a rest.");
             input.nextLine();
             return;
         }
@@ -380,7 +385,8 @@ public class Player {
     }
 
     public void printAllStats() {                                           // keep track of stats, will be removed
-        say("CRG: " + this.playerCrg + "\tUND: " + this.playerUnd + "\tABN: " + this.playerAbn + "\t | SCORE : " + getScore());
+        // say("CRG: " + this.playerCrg + "\tUND: " + this.playerUnd + "\tABN: " + this.playerAbn + "\t | SCORE : " + getScore());
+        say("SCORE : " + getScore());
     }
 
     public void printPlayerStamina() {
@@ -421,7 +427,7 @@ public class Player {
     public void printAchievements() {
         say("ACHIEVEMENTS: ");
         for (String e : events.getEventList()) {
-            if (e.length() > 4) {
+            if (e.length() > 3) {
                 System.out.println(" | " + e);
             }
         }

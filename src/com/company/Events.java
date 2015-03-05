@@ -16,7 +16,9 @@ public class Events {
             if (player.getDayCount() % 7 == 0) {
                 Player.say("Today is off. But spending time at home is not nice, right? Let's go somewhere!");
             } else {
-                Player.say("Probably you want to go to class first. Choose [Move] then [Your classroom]");
+                if (player.getDayCount() <= 18) {
+                    Player.say("Probably you want to go to class first. Choose [Move] then [Your classroom]");
+                }
             }
         }
         if (isTriggered("TC") && !isTriggered("1B") && player.getDayCount() < 3) {
@@ -380,11 +382,11 @@ public class Events {
         printEvent(eventDial.getFrontOfLab());
         if (player.getPlayerUnd() > 45 && player.getPlayerCrg() > 16) {
             if (inventory.hasItem("Small Hammer") != null) {
-                Player.say("With your brilliant mind and courage, you used the hammer to fix the small bridge and go past it into the lab");
+                Player.say("... With your brilliant mind and courage, you used the hammer to fix the small bridge and go past it into the lab");
                 setEventTrigger("12A");
             }
         } else if (inventory.hasItem("Toolbox") != null) {
-            Player.say("The tool box has everything you need to fix the bridge.\nBut it takes you so long that you grow tired and decide to go home for a rest");
+            Player.say("... The tool box has everything you need to fix the bridge.\n... But it takes you so long that you grow tired and decide to go home for a rest");
             player.rest();
             setEventTrigger("12A");
         }
@@ -434,7 +436,6 @@ public class Events {
             getFollowMan(player, inventory);
         }
         setEventTrigger("14B");
-        player.rest();
         next();
     }
 
@@ -608,7 +609,6 @@ public class Events {
         } else {
             getRiverDiscovered();
         }
-        player.rest();
         setEventTrigger("19A");
         next();
     }

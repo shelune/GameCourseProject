@@ -378,8 +378,8 @@ public class Dialogue {
 
     private String[] event15BChoice = {
             "... Mr.Cherr looks away, with a cannot-be-worse face. He apologizes deeply and asks you to return. He guarantees his return tomorrow.",
-            "... The miserable face of Mr.Cherr gets lifted up by a bit.\n‘How would you know that?’ He shakes your shoulder a bit hard.\n‘My wife just got kidnapped yesterday. I haven’t seen her since the afternoon. Then this morning comes with a note…’.\nHe gives you a note that has ‘Gubbidy Bubbidy To Your Wife, Your Work Has Earned Its Worth’.\nHe must have been devastated by this…",
-            "... Mr.Cherr looks at you with uncannily weird eyes… He may be thinking that you’re crazy.\nAnyway, you manage to get his attention. Let’s come inside and talk about his situation\n‘Are you being assaulted or threated by someone?’\nThe miserable face of Mr.Cherr gets lifted up by a bit.\n‘How would you know that?’ He shakes your shoulder a bit hard.\n‘My wife just got kidnapped yesterday. I haven’t seen her since the afternoon. Then this morning comes with a note…’.\nHe gives you a note that has ‘Gubbidy Bubbidy To Your Wife, Your Work Has Earned Its Worth’.\nHe must have been devastated by this…",
+            "... The miserable face of Mr.Cherr gets lifted up by a bit.\n... ‘How would you know that?’ He shakes your shoulder a bit hard.\n... ‘My wife just got kidnapped yesterday. I haven’t seen her since the afternoon. Then this morning comes with a note…’.\n... He gives you a note that has ‘Gubbidy Bubbidy To Your Wife, Your Work Has Earned Its Worth’.\n.... He must have been devastated by this…",
+            "... Mr.Cherr looks at you with uncannily weird eyes… He may be thinking that you’re crazy.\n... Anyway, you manage to get his attention. Let’s come inside and talk about his situation\n... ‘Are you being assaulted or threated by someone?’\n... The miserable face of Mr.Cherr gets lifted up by a bit.\n... ‘How would you know that?’ He shakes your shoulder a bit hard.\n... ‘My wife just got kidnapped yesterday. I haven’t seen her since the afternoon. Then this morning comes with a note…’.\nHe gives you a note that has ‘Gubbidy Bubbidy To Your Wife, Your Work Has Earned Its Worth’.\n... He must have been devastated by this…",
     };
 
     /////////////////////////////////// 15C
@@ -406,7 +406,7 @@ public class Dialogue {
     };
 
     private String[] event15DChoice = {
-            "... Having left the house, your attention now turns to the bottle.\nPerhaps someone with great knowledge can help you with this.\nMaybe your own teacher…? Or your friend Rekt..?",
+            "... Having left the house, your attention now turns to the bottle.\n... Perhaps someone with great knowledge can help you with this.\n... Maybe your own teacher…? Or your friend Rekt..?",
             "... You spent the whole evening at Mr.Cherr’s place as well.\nAfter all he looks quite glad to have you there.\nWhat a long day, and you decide to go home for a rest."
     };
 
